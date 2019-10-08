@@ -23,33 +23,35 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// Configuration for optimization early stopping
+    /// Configuration for input column (feature)
     /// </summary>
     [DataContract]
-    public partial class ConvergencyCriterion :  IEquatable<ConvergencyCriterion>
+    public partial class InputConfig :  IEquatable<InputConfig>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConvergencyCriterion" /> class.
+        /// Initializes a new instance of the <see cref="InputConfig" /> class.
         /// </summary>
-        /// <param name="numberOfLatestGenerations">numberOfLatestGenerations.</param>
-        /// <param name="percentageOfTolerance">percentageOfTolerance.</param>
-        public ConvergencyCriterion(int? numberOfLatestGenerations = default(int?), double? percentageOfTolerance = default(double?))
+        /// <param name="range">Min and max value for input.</param>
+        /// <param name="isOptional">Is input(feature) optional, used for feature selection.</param>
+        public InputConfig(Range range = default(Range), bool? isOptional = default(bool?))
         {
-            this.NumberOfLatestGenerations = numberOfLatestGenerations;
-            this.PercentageOfTolerance = percentageOfTolerance;
+            this.Range = range;
+            this.IsOptional = isOptional;
         }
         
         /// <summary>
-        /// Gets or Sets NumberOfLatestGenerations
+        /// Min and max value for input
         /// </summary>
-        [DataMember(Name="numberOfLatestGenerations", EmitDefaultValue=false)]
-        public int? NumberOfLatestGenerations { get; set; }
+        /// <value>Min and max value for input</value>
+        [DataMember(Name="range", EmitDefaultValue=false)]
+        public Range Range { get; set; }
 
         /// <summary>
-        /// Gets or Sets PercentageOfTolerance
+        /// Is input(feature) optional, used for feature selection
         /// </summary>
-        [DataMember(Name="percentageOfTolerance", EmitDefaultValue=false)]
-        public double? PercentageOfTolerance { get; set; }
+        /// <value>Is input(feature) optional, used for feature selection</value>
+        [DataMember(Name="isOptional", EmitDefaultValue=false)]
+        public bool? IsOptional { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,9 +60,9 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ConvergencyCriterion {\n");
-            sb.Append("  NumberOfLatestGenerations: ").Append(NumberOfLatestGenerations).Append("\n");
-            sb.Append("  PercentageOfTolerance: ").Append(PercentageOfTolerance).Append("\n");
+            sb.Append("class InputConfig {\n");
+            sb.Append("  Range: ").Append(Range).Append("\n");
+            sb.Append("  IsOptional: ").Append(IsOptional).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -81,29 +83,29 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ConvergencyCriterion);
+            return this.Equals(input as InputConfig);
         }
 
         /// <summary>
-        /// Returns true if ConvergencyCriterion instances are equal
+        /// Returns true if InputConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of ConvergencyCriterion to be compared</param>
+        /// <param name="input">Instance of InputConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ConvergencyCriterion input)
+        public bool Equals(InputConfig input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.NumberOfLatestGenerations == input.NumberOfLatestGenerations ||
-                    (this.NumberOfLatestGenerations != null &&
-                    this.NumberOfLatestGenerations.Equals(input.NumberOfLatestGenerations))
+                    this.Range == input.Range ||
+                    (this.Range != null &&
+                    this.Range.Equals(input.Range))
                 ) && 
                 (
-                    this.PercentageOfTolerance == input.PercentageOfTolerance ||
-                    (this.PercentageOfTolerance != null &&
-                    this.PercentageOfTolerance.Equals(input.PercentageOfTolerance))
+                    this.IsOptional == input.IsOptional ||
+                    (this.IsOptional != null &&
+                    this.IsOptional.Equals(input.IsOptional))
                 );
         }
 
@@ -116,10 +118,10 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NumberOfLatestGenerations != null)
-                    hashCode = hashCode * 59 + this.NumberOfLatestGenerations.GetHashCode();
-                if (this.PercentageOfTolerance != null)
-                    hashCode = hashCode * 59 + this.PercentageOfTolerance.GetHashCode();
+                if (this.Range != null)
+                    hashCode = hashCode * 59 + this.Range.GetHashCode();
+                if (this.IsOptional != null)
+                    hashCode = hashCode * 59 + this.IsOptional.GetHashCode();
                 return hashCode;
             }
         }

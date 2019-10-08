@@ -23,7 +23,7 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// PredictionArrayConfig
+    /// Confuguration for predicting values from array
     /// </summary>
     [DataContract]
     public partial class PredictionArrayConfig :  IEquatable<PredictionArrayConfig>

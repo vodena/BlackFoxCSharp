@@ -29,8 +29,9 @@ namespace BlackFoxCSharp.Model
     public partial class KerasLayerConfig :  IEquatable<KerasLayerConfig>
     {
         /// <summary>
-        /// Defines ActivationFunction
+        /// Layer activation function
         /// </summary>
+        /// <value>Layer activation function</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ActivationFunctionEnum
         {
@@ -97,14 +98,15 @@ namespace BlackFoxCSharp.Model
         }
 
         /// <summary>
-        /// Gets or Sets ActivationFunction
+        /// Layer activation function
         /// </summary>
+        /// <value>Layer activation function</value>
         [DataMember(Name="activationFunction", EmitDefaultValue=false)]
         public ActivationFunctionEnum? ActivationFunction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KerasLayerConfig" /> class.
         /// </summary>
-        /// <param name="activationFunction">activationFunction.</param>
+        /// <param name="activationFunction">Layer activation function.</param>
         /// <param name="ranges">ranges.</param>
         public KerasLayerConfig(ActivationFunctionEnum? activationFunction = default(ActivationFunctionEnum?), List<Range> ranges = default(List<Range>))
         {

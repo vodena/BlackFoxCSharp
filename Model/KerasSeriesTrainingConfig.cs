@@ -23,10 +23,10 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// KerasTrainingConfig
+    /// KerasSeriesTrainingConfig
     /// </summary>
     [DataContract]
-    public partial class KerasTrainingConfig :  IEquatable<KerasTrainingConfig>
+    public partial class KerasSeriesTrainingConfig :  IEquatable<KerasSeriesTrainingConfig>
     {
         /// <summary>
         /// Training algorithm to use
@@ -86,13 +86,16 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="trainingAlgorithm", EmitDefaultValue=false)]
         public TrainingAlgorithmEnum? TrainingAlgorithm { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasTrainingConfig" /> class.
+        /// Initializes a new instance of the <see cref="KerasSeriesTrainingConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected KerasTrainingConfig() { }
+        protected KerasSeriesTrainingConfig() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasTrainingConfig" /> class.
+        /// Initializes a new instance of the <see cref="KerasSeriesTrainingConfig" /> class.
         /// </summary>
+        /// <param name="inputWindowConfigs">inputWindowConfigs.</param>
+        /// <param name="outputWindowConfigs">outputWindowConfigs.</param>
+        /// <param name="outputSampleStep">outputSampleStep.</param>
         /// <param name="batchSize">Training batch size.</param>
         /// <param name="datasetId">Data set id on which to train network.</param>
         /// <param name="inputRanges">Define min and max value for each input column(feature).</param>
@@ -103,12 +106,12 @@ namespace BlackFoxCSharp.Model
         /// <param name="crossValidation">Use cross validation.</param>
         /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required).</param>
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false.</param>
-        public KerasTrainingConfig(int? batchSize = default(int?), string datasetId = default(string), List<Range> inputRanges = default(List<Range>), KerasLayerConfig outputLayer = default(KerasLayerConfig), List<KerasHiddenLayerConfig> hiddenLayerConfigs = default(List<KerasHiddenLayerConfig>), TrainingAlgorithmEnum? trainingAlgorithm = default(TrainingAlgorithmEnum?), int? maxEpoch = default(int?), bool? crossValidation = default(bool?), double? validationSplit = default(double?), int? randomSeed = default(int?))
+        public KerasSeriesTrainingConfig(List<InputWindowConfig> inputWindowConfigs = default(List<InputWindowConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int? outputSampleStep = default(int?), int? batchSize = default(int?), string datasetId = default(string), List<Range> inputRanges = default(List<Range>), KerasLayerConfig outputLayer = default(KerasLayerConfig), List<KerasHiddenLayerConfig> hiddenLayerConfigs = default(List<KerasHiddenLayerConfig>), TrainingAlgorithmEnum? trainingAlgorithm = default(TrainingAlgorithmEnum?), int? maxEpoch = default(int?), bool? crossValidation = default(bool?), double? validationSplit = default(double?), int? randomSeed = default(int?))
         {
             // to ensure "maxEpoch" is required (not null)
             if (maxEpoch == null)
             {
-                throw new InvalidDataException("maxEpoch is a required property for KerasTrainingConfig and cannot be null");
+                throw new InvalidDataException("maxEpoch is a required property for KerasSeriesTrainingConfig and cannot be null");
             }
             else
             {
@@ -117,12 +120,15 @@ namespace BlackFoxCSharp.Model
             // to ensure "validationSplit" is required (not null)
             if (validationSplit == null)
             {
-                throw new InvalidDataException("validationSplit is a required property for KerasTrainingConfig and cannot be null");
+                throw new InvalidDataException("validationSplit is a required property for KerasSeriesTrainingConfig and cannot be null");
             }
             else
             {
                 this.ValidationSplit = validationSplit;
             }
+            this.InputWindowConfigs = inputWindowConfigs;
+            this.OutputWindowConfigs = outputWindowConfigs;
+            this.OutputSampleStep = outputSampleStep;
             this.BatchSize = batchSize;
             this.DatasetId = datasetId;
             this.InputRanges = inputRanges;
@@ -133,6 +139,24 @@ namespace BlackFoxCSharp.Model
             this.RandomSeed = randomSeed;
         }
         
+        /// <summary>
+        /// Gets or Sets InputWindowConfigs
+        /// </summary>
+        [DataMember(Name="inputWindowConfigs", EmitDefaultValue=false)]
+        public List<InputWindowConfig> InputWindowConfigs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OutputWindowConfigs
+        /// </summary>
+        [DataMember(Name="outputWindowConfigs", EmitDefaultValue=false)]
+        public List<OutputWindowConfig> OutputWindowConfigs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OutputSampleStep
+        /// </summary>
+        [DataMember(Name="outputSampleStep", EmitDefaultValue=false)]
+        public int? OutputSampleStep { get; set; }
+
         /// <summary>
         /// Training batch size
         /// </summary>
@@ -204,7 +228,10 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class KerasTrainingConfig {\n");
+            sb.Append("class KerasSeriesTrainingConfig {\n");
+            sb.Append("  InputWindowConfigs: ").Append(InputWindowConfigs).Append("\n");
+            sb.Append("  OutputWindowConfigs: ").Append(OutputWindowConfigs).Append("\n");
+            sb.Append("  OutputSampleStep: ").Append(OutputSampleStep).Append("\n");
             sb.Append("  BatchSize: ").Append(BatchSize).Append("\n");
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  InputRanges: ").Append(InputRanges).Append("\n");
@@ -235,20 +262,35 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KerasTrainingConfig);
+            return this.Equals(input as KerasSeriesTrainingConfig);
         }
 
         /// <summary>
-        /// Returns true if KerasTrainingConfig instances are equal
+        /// Returns true if KerasSeriesTrainingConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of KerasTrainingConfig to be compared</param>
+        /// <param name="input">Instance of KerasSeriesTrainingConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(KerasTrainingConfig input)
+        public bool Equals(KerasSeriesTrainingConfig input)
         {
             if (input == null)
                 return false;
 
             return 
+                (
+                    this.InputWindowConfigs == input.InputWindowConfigs ||
+                    this.InputWindowConfigs != null &&
+                    this.InputWindowConfigs.SequenceEqual(input.InputWindowConfigs)
+                ) && 
+                (
+                    this.OutputWindowConfigs == input.OutputWindowConfigs ||
+                    this.OutputWindowConfigs != null &&
+                    this.OutputWindowConfigs.SequenceEqual(input.OutputWindowConfigs)
+                ) && 
+                (
+                    this.OutputSampleStep == input.OutputSampleStep ||
+                    (this.OutputSampleStep != null &&
+                    this.OutputSampleStep.Equals(input.OutputSampleStep))
+                ) && 
                 (
                     this.BatchSize == input.BatchSize ||
                     (this.BatchSize != null &&
@@ -310,6 +352,12 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.InputWindowConfigs != null)
+                    hashCode = hashCode * 59 + this.InputWindowConfigs.GetHashCode();
+                if (this.OutputWindowConfigs != null)
+                    hashCode = hashCode * 59 + this.OutputWindowConfigs.GetHashCode();
+                if (this.OutputSampleStep != null)
+                    hashCode = hashCode * 59 + this.OutputSampleStep.GetHashCode();
                 if (this.BatchSize != null)
                     hashCode = hashCode * 59 + this.BatchSize.GetHashCode();
                 if (this.DatasetId != null)

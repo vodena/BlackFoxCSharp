@@ -23,10 +23,10 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// KerasOptimizationConfig
+    /// KerasSeriesOptimizationConfig
     /// </summary>
     [DataContract]
-    public partial class KerasOptimizationConfig :  IEquatable<KerasOptimizationConfig>
+    public partial class KerasSeriesOptimizationConfig :  IEquatable<KerasSeriesOptimizationConfig>
     {
         /// <summary>
         /// Defines the problem type. In case of binary classification,  there must be only one output column.
@@ -194,13 +194,16 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="activationFunctions", EmitDefaultValue=false)]
         public List<ActivationFunctionsEnum> ActivationFunctions { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasOptimizationConfig" /> class.
+        /// Initializes a new instance of the <see cref="KerasSeriesOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected KerasOptimizationConfig() { }
+        protected KerasSeriesOptimizationConfig() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasOptimizationConfig" /> class.
+        /// Initializes a new instance of the <see cref="KerasSeriesOptimizationConfig" /> class.
         /// </summary>
+        /// <param name="inputWindowRangeConfigs">inputWindowRangeConfigs.</param>
+        /// <param name="outputWindowConfigs">outputWindowConfigs.</param>
+        /// <param name="outputSampleStep">outputSampleStep.</param>
         /// <param name="dropout">dropout.</param>
         /// <param name="batchSize">batchSize.</param>
         /// <param name="datasetId">Data set id on which to train network.</param>
@@ -216,12 +219,12 @@ namespace BlackFoxCSharp.Model
         /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required).</param>
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false.</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public KerasOptimizationConfig(Range dropout = default(Range), int? batchSize = default(int?), string datasetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemTypeEnum? problemType = default(ProblemTypeEnum?), Range hiddenLayerCountRange = default(Range), Range neuronsPerLayer = default(Range), List<TrainingAlgorithmsEnum> trainingAlgorithms = default(List<TrainingAlgorithmsEnum>), List<ActivationFunctionsEnum> activationFunctions = default(List<ActivationFunctionsEnum>), int? maxEpoch = default(int?), bool? crossValidation = default(bool?), double? validationSplit = default(double?), int? randomSeed = default(int?), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
+        public KerasSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int? outputSampleStep = default(int?), Range dropout = default(Range), int? batchSize = default(int?), string datasetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemTypeEnum? problemType = default(ProblemTypeEnum?), Range hiddenLayerCountRange = default(Range), Range neuronsPerLayer = default(Range), List<TrainingAlgorithmsEnum> trainingAlgorithms = default(List<TrainingAlgorithmsEnum>), List<ActivationFunctionsEnum> activationFunctions = default(List<ActivationFunctionsEnum>), int? maxEpoch = default(int?), bool? crossValidation = default(bool?), double? validationSplit = default(double?), int? randomSeed = default(int?), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
         {
             // to ensure "maxEpoch" is required (not null)
             if (maxEpoch == null)
             {
-                throw new InvalidDataException("maxEpoch is a required property for KerasOptimizationConfig and cannot be null");
+                throw new InvalidDataException("maxEpoch is a required property for KerasSeriesOptimizationConfig and cannot be null");
             }
             else
             {
@@ -230,12 +233,15 @@ namespace BlackFoxCSharp.Model
             // to ensure "validationSplit" is required (not null)
             if (validationSplit == null)
             {
-                throw new InvalidDataException("validationSplit is a required property for KerasOptimizationConfig and cannot be null");
+                throw new InvalidDataException("validationSplit is a required property for KerasSeriesOptimizationConfig and cannot be null");
             }
             else
             {
                 this.ValidationSplit = validationSplit;
             }
+            this.InputWindowRangeConfigs = inputWindowRangeConfigs;
+            this.OutputWindowConfigs = outputWindowConfigs;
+            this.OutputSampleStep = outputSampleStep;
             this.Dropout = dropout;
             this.BatchSize = batchSize;
             this.DatasetId = datasetId;
@@ -251,6 +257,24 @@ namespace BlackFoxCSharp.Model
             this.EngineConfig = engineConfig;
         }
         
+        /// <summary>
+        /// Gets or Sets InputWindowRangeConfigs
+        /// </summary>
+        [DataMember(Name="inputWindowRangeConfigs", EmitDefaultValue=false)]
+        public List<InputWindowRangeConfig> InputWindowRangeConfigs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OutputWindowConfigs
+        /// </summary>
+        [DataMember(Name="outputWindowConfigs", EmitDefaultValue=false)]
+        public List<OutputWindowConfig> OutputWindowConfigs { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OutputSampleStep
+        /// </summary>
+        [DataMember(Name="outputSampleStep", EmitDefaultValue=false)]
+        public int? OutputSampleStep { get; set; }
+
         /// <summary>
         /// Gets or Sets Dropout
         /// </summary>
@@ -343,7 +367,10 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class KerasOptimizationConfig {\n");
+            sb.Append("class KerasSeriesOptimizationConfig {\n");
+            sb.Append("  InputWindowRangeConfigs: ").Append(InputWindowRangeConfigs).Append("\n");
+            sb.Append("  OutputWindowConfigs: ").Append(OutputWindowConfigs).Append("\n");
+            sb.Append("  OutputSampleStep: ").Append(OutputSampleStep).Append("\n");
             sb.Append("  Dropout: ").Append(Dropout).Append("\n");
             sb.Append("  BatchSize: ").Append(BatchSize).Append("\n");
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
@@ -379,20 +406,35 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KerasOptimizationConfig);
+            return this.Equals(input as KerasSeriesOptimizationConfig);
         }
 
         /// <summary>
-        /// Returns true if KerasOptimizationConfig instances are equal
+        /// Returns true if KerasSeriesOptimizationConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of KerasOptimizationConfig to be compared</param>
+        /// <param name="input">Instance of KerasSeriesOptimizationConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(KerasOptimizationConfig input)
+        public bool Equals(KerasSeriesOptimizationConfig input)
         {
             if (input == null)
                 return false;
 
             return 
+                (
+                    this.InputWindowRangeConfigs == input.InputWindowRangeConfigs ||
+                    this.InputWindowRangeConfigs != null &&
+                    this.InputWindowRangeConfigs.SequenceEqual(input.InputWindowRangeConfigs)
+                ) && 
+                (
+                    this.OutputWindowConfigs == input.OutputWindowConfigs ||
+                    this.OutputWindowConfigs != null &&
+                    this.OutputWindowConfigs.SequenceEqual(input.OutputWindowConfigs)
+                ) && 
+                (
+                    this.OutputSampleStep == input.OutputSampleStep ||
+                    (this.OutputSampleStep != null &&
+                    this.OutputSampleStep.Equals(input.OutputSampleStep))
+                ) && 
                 (
                     this.Dropout == input.Dropout ||
                     (this.Dropout != null &&
@@ -479,6 +521,12 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.InputWindowRangeConfigs != null)
+                    hashCode = hashCode * 59 + this.InputWindowRangeConfigs.GetHashCode();
+                if (this.OutputWindowConfigs != null)
+                    hashCode = hashCode * 59 + this.OutputWindowConfigs.GetHashCode();
+                if (this.OutputSampleStep != null)
+                    hashCode = hashCode * 59 + this.OutputSampleStep.GetHashCode();
                 if (this.Dropout != null)
                     hashCode = hashCode * 59 + this.Dropout.GetHashCode();
                 if (this.BatchSize != null)

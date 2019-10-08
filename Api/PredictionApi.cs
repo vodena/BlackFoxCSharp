@@ -25,24 +25,24 @@ namespace BlackFoxCSharp.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// 
+        /// Predict values from array
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>List&lt;List&lt;double?&gt;&gt;</returns>
         List<List<double?>> PostArray (PredictionArrayConfig config = null);
 
         /// <summary>
-        /// 
+        /// Predict values from array
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>ApiResponse of List&lt;List&lt;double?&gt;&gt;</returns>
         ApiResponse<List<List<double?>>> PostArrayWithHttpInfo (PredictionArrayConfig config = null);
         /// <summary>
@@ -69,24 +69,24 @@ namespace BlackFoxCSharp.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// 
+        /// Predict values from array
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>Task of List&lt;List&lt;double?&gt;&gt;</returns>
         System.Threading.Tasks.Task<List<List<double?>>> PostArrayAsync (PredictionArrayConfig config = null);
 
         /// <summary>
-        /// 
+        /// Predict values from array
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;List&lt;double?&gt;&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<List<double?>>>> PostArrayAsyncWithHttpInfo (PredictionArrayConfig config = null);
         /// <summary>
@@ -211,10 +211,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        ///  
+        /// Predict values from array 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>List&lt;List&lt;double?&gt;&gt;</returns>
         public List<List<double?>> PostArray (PredictionArrayConfig config = null)
         {
@@ -223,15 +223,15 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        ///  
+        /// Predict values from array 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>ApiResponse of List&lt;List&lt;double?&gt;&gt;</returns>
         public ApiResponse< List<List<double?>> > PostArrayWithHttpInfo (PredictionArrayConfig config = null)
         {
 
-            var localVarPath = "./api/Prediction/keras/array";
+            var localVarPath = "./api/prediction/keras/array";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -287,10 +287,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        ///  
+        /// Predict values from array 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>Task of List&lt;List&lt;double?&gt;&gt;</returns>
         public async System.Threading.Tasks.Task<List<List<double?>>> PostArrayAsync (PredictionArrayConfig config = null)
         {
@@ -300,15 +300,15 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        ///  
+        /// Predict values from array 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config"> (optional)</param>
+        /// <param name="config">PredictionArrayConfig (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;List&lt;double?&gt;&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<List<double?>>>> PostArrayAsyncWithHttpInfo (PredictionArrayConfig config = null)
         {
 
-            var localVarPath = "./api/Prediction/keras/array";
+            var localVarPath = "./api/prediction/keras/array";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -384,7 +384,7 @@ namespace BlackFoxCSharp.Api
         public ApiResponse< string > PostFileWithHttpInfo (PredictionFileConfig config = null)
         {
 
-            var localVarPath = "./api/Prediction/keras/file";
+            var localVarPath = "./api/prediction/keras/file";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -461,7 +461,7 @@ namespace BlackFoxCSharp.Api
         public async System.Threading.Tasks.Task<ApiResponse<string>> PostFileAsyncWithHttpInfo (PredictionFileConfig config = null)
         {
 
-            var localVarPath = "./api/Prediction/keras/file";
+            var localVarPath = "./api/prediction/keras/file";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);

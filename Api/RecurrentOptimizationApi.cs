@@ -21,7 +21,7 @@ namespace BlackFoxCSharp.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IOptimizationApi : IApiAccessor
+    public interface IRecurrentOptimizationApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
@@ -32,8 +32,8 @@ namespace BlackFoxCSharp.Api
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>KerasOptimizationStatus</returns>
-        KerasOptimizationStatus GetStatus (Guid? id);
+        /// <returns>KerasRecurrentOptimizationStatus</returns>
+        KerasRecurrentOptimizationStatus GetStatus (Guid? id);
 
         /// <summary>
         /// Get status of optimization
@@ -43,10 +43,10 @@ namespace BlackFoxCSharp.Api
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>ApiResponse of KerasOptimizationStatus</returns>
-        ApiResponse<KerasOptimizationStatus> GetStatusWithHttpInfo (Guid? id);
+        /// <returns>ApiResponse of KerasRecurrentOptimizationStatus</returns>
+        ApiResponse<KerasRecurrentOptimizationStatus> GetStatusWithHttpInfo (Guid? id);
         /// <summary>
-        /// Starts new optimization using keras
+        /// Starts new reccurent neural network optimization using keras
         /// </summary>
         /// <remarks>
         /// 
@@ -54,10 +54,10 @@ namespace BlackFoxCSharp.Api
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>Guid?</returns>
-        Guid? Post (KerasOptimizationConfig config = null);
+        Guid? Post (KerasRecurrentOptimizationConfig config = null);
 
         /// <summary>
-        /// Starts new optimization using keras
+        /// Starts new reccurent neural network optimization using keras
         /// </summary>
         /// <remarks>
         /// 
@@ -65,7 +65,7 @@ namespace BlackFoxCSharp.Api
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>ApiResponse of Guid?</returns>
-        ApiResponse<Guid?> PostWithHttpInfo (KerasOptimizationConfig config = null);
+        ApiResponse<Guid?> PostWithHttpInfo (KerasRecurrentOptimizationConfig config = null);
         /// <summary>
         /// Stop or cancel running optimization
         /// </summary>
@@ -89,27 +89,6 @@ namespace BlackFoxCSharp.Api
         /// <param name="optimizationAction">Stop, Cancel</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> PostActionWithHttpInfo (Guid? id, string optimizationAction);
-        /// <summary>
-        /// Starts new series optimization using keras
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>Guid?</returns>
-        Guid? PostSeries (KerasSeriesOptimizationConfig config = null);
-
-        /// <summary>
-        /// Starts new series optimization using keras
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>ApiResponse of Guid?</returns>
-        ApiResponse<Guid?> PostSeriesWithHttpInfo (KerasSeriesOptimizationConfig config = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -120,8 +99,8 @@ namespace BlackFoxCSharp.Api
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>Task of KerasOptimizationStatus</returns>
-        System.Threading.Tasks.Task<KerasOptimizationStatus> GetStatusAsync (Guid? id);
+        /// <returns>Task of KerasRecurrentOptimizationStatus</returns>
+        System.Threading.Tasks.Task<KerasRecurrentOptimizationStatus> GetStatusAsync (Guid? id);
 
         /// <summary>
         /// Get status of optimization
@@ -131,10 +110,10 @@ namespace BlackFoxCSharp.Api
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>Task of ApiResponse (KerasOptimizationStatus)</returns>
-        System.Threading.Tasks.Task<ApiResponse<KerasOptimizationStatus>> GetStatusAsyncWithHttpInfo (Guid? id);
+        /// <returns>Task of ApiResponse (KerasRecurrentOptimizationStatus)</returns>
+        System.Threading.Tasks.Task<ApiResponse<KerasRecurrentOptimizationStatus>> GetStatusAsyncWithHttpInfo (Guid? id);
         /// <summary>
-        /// Starts new optimization using keras
+        /// Starts new reccurent neural network optimization using keras
         /// </summary>
         /// <remarks>
         /// 
@@ -142,10 +121,10 @@ namespace BlackFoxCSharp.Api
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>Task of Guid?</returns>
-        System.Threading.Tasks.Task<Guid?> PostAsync (KerasOptimizationConfig config = null);
+        System.Threading.Tasks.Task<Guid?> PostAsync (KerasRecurrentOptimizationConfig config = null);
 
         /// <summary>
-        /// Starts new optimization using keras
+        /// Starts new reccurent neural network optimization using keras
         /// </summary>
         /// <remarks>
         /// 
@@ -153,7 +132,7 @@ namespace BlackFoxCSharp.Api
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>Task of ApiResponse (Guid?)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Guid?>> PostAsyncWithHttpInfo (KerasOptimizationConfig config = null);
+        System.Threading.Tasks.Task<ApiResponse<Guid?>> PostAsyncWithHttpInfo (KerasRecurrentOptimizationConfig config = null);
         /// <summary>
         /// Stop or cancel running optimization
         /// </summary>
@@ -177,42 +156,21 @@ namespace BlackFoxCSharp.Api
         /// <param name="optimizationAction">Stop, Cancel</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> PostActionAsyncWithHttpInfo (Guid? id, string optimizationAction);
-        /// <summary>
-        /// Starts new series optimization using keras
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>Task of Guid?</returns>
-        System.Threading.Tasks.Task<Guid?> PostSeriesAsync (KerasSeriesOptimizationConfig config = null);
-
-        /// <summary>
-        /// Starts new series optimization using keras
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>Task of ApiResponse (Guid?)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Guid?>> PostSeriesAsyncWithHttpInfo (KerasSeriesOptimizationConfig config = null);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class OptimizationApi : IOptimizationApi
+    public partial class RecurrentOptimizationApi : IRecurrentOptimizationApi
     {
         private BlackFoxCSharp.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OptimizationApi"/> class.
+        /// Initializes a new instance of the <see cref="RecurrentOptimizationApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public OptimizationApi(String basePath)
+        public RecurrentOptimizationApi(String basePath)
         {
             this.Configuration = new BlackFoxCSharp.Client.Configuration { BasePath = basePath };
 
@@ -220,12 +178,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OptimizationApi"/> class
+        /// Initializes a new instance of the <see cref="RecurrentOptimizationApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public OptimizationApi(BlackFoxCSharp.Client.Configuration configuration = null)
+        public RecurrentOptimizationApi(BlackFoxCSharp.Client.Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = BlackFoxCSharp.Client.Configuration.Default;
@@ -303,10 +261,10 @@ namespace BlackFoxCSharp.Api
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>KerasOptimizationStatus</returns>
-        public KerasOptimizationStatus GetStatus (Guid? id)
+        /// <returns>KerasRecurrentOptimizationStatus</returns>
+        public KerasRecurrentOptimizationStatus GetStatus (Guid? id)
         {
-             ApiResponse<KerasOptimizationStatus> localVarResponse = GetStatusWithHttpInfo(id);
+             ApiResponse<KerasRecurrentOptimizationStatus> localVarResponse = GetStatusWithHttpInfo(id);
              return localVarResponse.Data;
         }
 
@@ -315,14 +273,14 @@ namespace BlackFoxCSharp.Api
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>ApiResponse of KerasOptimizationStatus</returns>
-        public ApiResponse< KerasOptimizationStatus > GetStatusWithHttpInfo (Guid? id)
+        /// <returns>ApiResponse of KerasRecurrentOptimizationStatus</returns>
+        public ApiResponse< KerasRecurrentOptimizationStatus > GetStatusWithHttpInfo (Guid? id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling OptimizationApi->GetStatus");
+                throw new ApiException(400, "Missing required parameter 'id' when calling RecurrentOptimizationApi->GetStatus");
 
-            var localVarPath = "./api/optimization/keras/{id}/status";
+            var localVarPath = "./api/optimization/rnn/keras/{id}/status";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -361,9 +319,9 @@ namespace BlackFoxCSharp.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<KerasOptimizationStatus>(localVarStatusCode,
+            return new ApiResponse<KerasRecurrentOptimizationStatus>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (KerasOptimizationStatus) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(KerasOptimizationStatus)));
+                (KerasRecurrentOptimizationStatus) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(KerasRecurrentOptimizationStatus)));
         }
 
         /// <summary>
@@ -371,10 +329,10 @@ namespace BlackFoxCSharp.Api
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>Task of KerasOptimizationStatus</returns>
-        public async System.Threading.Tasks.Task<KerasOptimizationStatus> GetStatusAsync (Guid? id)
+        /// <returns>Task of KerasRecurrentOptimizationStatus</returns>
+        public async System.Threading.Tasks.Task<KerasRecurrentOptimizationStatus> GetStatusAsync (Guid? id)
         {
-             ApiResponse<KerasOptimizationStatus> localVarResponse = await GetStatusAsyncWithHttpInfo(id);
+             ApiResponse<KerasRecurrentOptimizationStatus> localVarResponse = await GetStatusAsyncWithHttpInfo(id);
              return localVarResponse.Data;
 
         }
@@ -384,14 +342,14 @@ namespace BlackFoxCSharp.Api
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Optimization Id</param>
-        /// <returns>Task of ApiResponse (KerasOptimizationStatus)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<KerasOptimizationStatus>> GetStatusAsyncWithHttpInfo (Guid? id)
+        /// <returns>Task of ApiResponse (KerasRecurrentOptimizationStatus)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<KerasRecurrentOptimizationStatus>> GetStatusAsyncWithHttpInfo (Guid? id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling OptimizationApi->GetStatus");
+                throw new ApiException(400, "Missing required parameter 'id' when calling RecurrentOptimizationApi->GetStatus");
 
-            var localVarPath = "./api/optimization/keras/{id}/status";
+            var localVarPath = "./api/optimization/rnn/keras/{id}/status";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -430,33 +388,33 @@ namespace BlackFoxCSharp.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<KerasOptimizationStatus>(localVarStatusCode,
+            return new ApiResponse<KerasRecurrentOptimizationStatus>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (KerasOptimizationStatus) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(KerasOptimizationStatus)));
+                (KerasRecurrentOptimizationStatus) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(KerasRecurrentOptimizationStatus)));
         }
 
         /// <summary>
-        /// Starts new optimization using keras 
+        /// Starts new reccurent neural network optimization using keras 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>Guid?</returns>
-        public Guid? Post (KerasOptimizationConfig config = null)
+        public Guid? Post (KerasRecurrentOptimizationConfig config = null)
         {
              ApiResponse<Guid?> localVarResponse = PostWithHttpInfo(config);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Starts new optimization using keras 
+        /// Starts new reccurent neural network optimization using keras 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>ApiResponse of Guid?</returns>
-        public ApiResponse< Guid? > PostWithHttpInfo (KerasOptimizationConfig config = null)
+        public ApiResponse< Guid? > PostWithHttpInfo (KerasRecurrentOptimizationConfig config = null)
         {
 
-            var localVarPath = "./api/optimization/keras";
+            var localVarPath = "./api/optimization/rnn/keras";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -512,12 +470,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Starts new optimization using keras 
+        /// Starts new reccurent neural network optimization using keras 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>Task of Guid?</returns>
-        public async System.Threading.Tasks.Task<Guid?> PostAsync (KerasOptimizationConfig config = null)
+        public async System.Threading.Tasks.Task<Guid?> PostAsync (KerasRecurrentOptimizationConfig config = null)
         {
              ApiResponse<Guid?> localVarResponse = await PostAsyncWithHttpInfo(config);
              return localVarResponse.Data;
@@ -525,15 +483,15 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Starts new optimization using keras 
+        /// Starts new reccurent neural network optimization using keras 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="config">KerasOptimizationConfig (optional)</param>
         /// <returns>Task of ApiResponse (Guid?)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Guid?>> PostAsyncWithHttpInfo (KerasOptimizationConfig config = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Guid?>> PostAsyncWithHttpInfo (KerasRecurrentOptimizationConfig config = null)
         {
 
-            var localVarPath = "./api/optimization/keras";
+            var localVarPath = "./api/optimization/rnn/keras";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -611,12 +569,12 @@ namespace BlackFoxCSharp.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling OptimizationApi->PostAction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling RecurrentOptimizationApi->PostAction");
             // verify the required parameter 'optimizationAction' is set
             if (optimizationAction == null)
-                throw new ApiException(400, "Missing required parameter 'optimizationAction' when calling OptimizationApi->PostAction");
+                throw new ApiException(400, "Missing required parameter 'optimizationAction' when calling RecurrentOptimizationApi->PostAction");
 
-            var localVarPath = "./api/optimization/keras/{id}/action/{optimizationAction}";
+            var localVarPath = "./api/optimization/rnn/keras/{id}/action/{optimizationAction}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -682,12 +640,12 @@ namespace BlackFoxCSharp.Api
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling OptimizationApi->PostAction");
+                throw new ApiException(400, "Missing required parameter 'id' when calling RecurrentOptimizationApi->PostAction");
             // verify the required parameter 'optimizationAction' is set
             if (optimizationAction == null)
-                throw new ApiException(400, "Missing required parameter 'optimizationAction' when calling OptimizationApi->PostAction");
+                throw new ApiException(400, "Missing required parameter 'optimizationAction' when calling RecurrentOptimizationApi->PostAction");
 
-            var localVarPath = "./api/optimization/keras/{id}/action/{optimizationAction}";
+            var localVarPath = "./api/optimization/rnn/keras/{id}/action/{optimizationAction}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -727,159 +685,6 @@ namespace BlackFoxCSharp.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 null);
-        }
-
-        /// <summary>
-        /// Starts new series optimization using keras 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>Guid?</returns>
-        public Guid? PostSeries (KerasSeriesOptimizationConfig config = null)
-        {
-             ApiResponse<Guid?> localVarResponse = PostSeriesWithHttpInfo(config);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Starts new series optimization using keras 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>ApiResponse of Guid?</returns>
-        public ApiResponse< Guid? > PostSeriesWithHttpInfo (KerasSeriesOptimizationConfig config = null)
-        {
-
-            var localVarPath = "./api/optimization/keras-series";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json-patch+json", 
-                "application/json", 
-                "text/json", 
-                "application/_*+json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "text/plain",
-                "application/json",
-                "text/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (config != null && config.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(config); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = config; // byte array
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostSeries", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Guid?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (Guid?) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Guid?)));
-        }
-
-        /// <summary>
-        /// Starts new series optimization using keras 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>Task of Guid?</returns>
-        public async System.Threading.Tasks.Task<Guid?> PostSeriesAsync (KerasSeriesOptimizationConfig config = null)
-        {
-             ApiResponse<Guid?> localVarResponse = await PostSeriesAsyncWithHttpInfo(config);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Starts new series optimization using keras 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="config">KerasSeriesOptimizationConfig (optional)</param>
-        /// <returns>Task of ApiResponse (Guid?)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Guid?>> PostSeriesAsyncWithHttpInfo (KerasSeriesOptimizationConfig config = null)
-        {
-
-            var localVarPath = "./api/optimization/keras-series";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json-patch+json", 
-                "application/json", 
-                "text/json", 
-                "application/_*+json"
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "text/plain",
-                "application/json",
-                "text/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (config != null && config.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(config); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = config; // byte array
-            }
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("PostSeries", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Guid?>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (Guid?) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Guid?)));
         }
 
     }

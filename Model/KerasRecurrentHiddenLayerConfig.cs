@@ -23,11 +23,86 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// Generic hidden layer configuration
+    /// Hidden layer confuguration for recurrent network
     /// </summary>
     [DataContract]
-    public partial class KerasHiddenLayerConfig :  IEquatable<KerasHiddenLayerConfig>
+    public partial class KerasRecurrentHiddenLayerConfig :  IEquatable<KerasRecurrentHiddenLayerConfig>
     {
+        /// <summary>
+        /// Recurrent activation function
+        /// </summary>
+        /// <value>Recurrent activation function</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RecurrentActivationFunctionEnum
+        {
+            
+            /// <summary>
+            /// Enum SoftMax for value: SoftMax
+            /// </summary>
+            [EnumMember(Value = "SoftMax")]
+            SoftMax = 1,
+            
+            /// <summary>
+            /// Enum Elu for value: Elu
+            /// </summary>
+            [EnumMember(Value = "Elu")]
+            Elu = 2,
+            
+            /// <summary>
+            /// Enum Selu for value: Selu
+            /// </summary>
+            [EnumMember(Value = "Selu")]
+            Selu = 3,
+            
+            /// <summary>
+            /// Enum SoftPlus for value: SoftPlus
+            /// </summary>
+            [EnumMember(Value = "SoftPlus")]
+            SoftPlus = 4,
+            
+            /// <summary>
+            /// Enum SoftSign for value: SoftSign
+            /// </summary>
+            [EnumMember(Value = "SoftSign")]
+            SoftSign = 5,
+            
+            /// <summary>
+            /// Enum ReLu for value: ReLu
+            /// </summary>
+            [EnumMember(Value = "ReLu")]
+            ReLu = 6,
+            
+            /// <summary>
+            /// Enum TanH for value: TanH
+            /// </summary>
+            [EnumMember(Value = "TanH")]
+            TanH = 7,
+            
+            /// <summary>
+            /// Enum Sigmoid for value: Sigmoid
+            /// </summary>
+            [EnumMember(Value = "Sigmoid")]
+            Sigmoid = 8,
+            
+            /// <summary>
+            /// Enum HardSigmoid for value: HardSigmoid
+            /// </summary>
+            [EnumMember(Value = "HardSigmoid")]
+            HardSigmoid = 9,
+            
+            /// <summary>
+            /// Enum Linear for value: Linear
+            /// </summary>
+            [EnumMember(Value = "Linear")]
+            Linear = 10
+        }
+
+        /// <summary>
+        /// Recurrent activation function
+        /// </summary>
+        /// <value>Recurrent activation function</value>
+        [DataMember(Name="recurrentActivationFunction", EmitDefaultValue=false)]
+        public RecurrentActivationFunctionEnum? RecurrentActivationFunction { get; set; }
         /// <summary>
         /// Layer activation function
         /// </summary>
@@ -104,18 +179,30 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="activationFunction", EmitDefaultValue=false)]
         public ActivationFunctionEnum? ActivationFunction { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasHiddenLayerConfig" /> class.
+        /// Initializes a new instance of the <see cref="KerasRecurrentHiddenLayerConfig" /> class.
         /// </summary>
+        /// <param name="recurrentActivationFunction">Recurrent activation function.</param>
+        /// <param name="recurrentDropout">Recurrent dropout.</param>
         /// <param name="neuronCount">Number of neurons in layer.</param>
         /// <param name="activationFunction">Layer activation function.</param>
         /// <param name="dropout">Layer dropout.</param>
-        public KerasHiddenLayerConfig(int? neuronCount = default(int?), ActivationFunctionEnum? activationFunction = default(ActivationFunctionEnum?), double? dropout = default(double?))
+        public KerasRecurrentHiddenLayerConfig(RecurrentActivationFunctionEnum? recurrentActivationFunction = default(RecurrentActivationFunctionEnum?), double? recurrentDropout = default(double?), int? neuronCount = default(int?), ActivationFunctionEnum? activationFunction = default(ActivationFunctionEnum?), double? dropout = default(double?))
         {
+            this.RecurrentActivationFunction = recurrentActivationFunction;
+            this.RecurrentDropout = recurrentDropout;
             this.NeuronCount = neuronCount;
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
         
+
+        /// <summary>
+        /// Recurrent dropout
+        /// </summary>
+        /// <value>Recurrent dropout</value>
+        [DataMember(Name="recurrentDropout", EmitDefaultValue=false)]
+        public double? RecurrentDropout { get; set; }
+
         /// <summary>
         /// Number of neurons in layer
         /// </summary>
@@ -138,7 +225,9 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class KerasHiddenLayerConfig {\n");
+            sb.Append("class KerasRecurrentHiddenLayerConfig {\n");
+            sb.Append("  RecurrentActivationFunction: ").Append(RecurrentActivationFunction).Append("\n");
+            sb.Append("  RecurrentDropout: ").Append(RecurrentDropout).Append("\n");
             sb.Append("  NeuronCount: ").Append(NeuronCount).Append("\n");
             sb.Append("  ActivationFunction: ").Append(ActivationFunction).Append("\n");
             sb.Append("  Dropout: ").Append(Dropout).Append("\n");
@@ -162,20 +251,30 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KerasHiddenLayerConfig);
+            return this.Equals(input as KerasRecurrentHiddenLayerConfig);
         }
 
         /// <summary>
-        /// Returns true if KerasHiddenLayerConfig instances are equal
+        /// Returns true if KerasRecurrentHiddenLayerConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of KerasHiddenLayerConfig to be compared</param>
+        /// <param name="input">Instance of KerasRecurrentHiddenLayerConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(KerasHiddenLayerConfig input)
+        public bool Equals(KerasRecurrentHiddenLayerConfig input)
         {
             if (input == null)
                 return false;
 
             return 
+                (
+                    this.RecurrentActivationFunction == input.RecurrentActivationFunction ||
+                    (this.RecurrentActivationFunction != null &&
+                    this.RecurrentActivationFunction.Equals(input.RecurrentActivationFunction))
+                ) && 
+                (
+                    this.RecurrentDropout == input.RecurrentDropout ||
+                    (this.RecurrentDropout != null &&
+                    this.RecurrentDropout.Equals(input.RecurrentDropout))
+                ) && 
                 (
                     this.NeuronCount == input.NeuronCount ||
                     (this.NeuronCount != null &&
@@ -202,6 +301,10 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.RecurrentActivationFunction != null)
+                    hashCode = hashCode * 59 + this.RecurrentActivationFunction.GetHashCode();
+                if (this.RecurrentDropout != null)
+                    hashCode = hashCode * 59 + this.RecurrentDropout.GetHashCode();
                 if (this.NeuronCount != null)
                     hashCode = hashCode * 59 + this.NeuronCount.GetHashCode();
                 if (this.ActivationFunction != null)

@@ -23,10 +23,10 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// KerasOptimizedNetwork
+    /// KerasRecurrentOptimizedNetwork
     /// </summary>
     [DataContract]
-    public partial class KerasOptimizedNetwork :  IEquatable<KerasOptimizedNetwork>
+    public partial class KerasRecurrentOptimizedNetwork :  IEquatable<KerasRecurrentOptimizedNetwork>
     {
         /// <summary>
         /// Algorithm on which network was trained
@@ -161,20 +161,18 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="outputLayerActivationFunction", EmitDefaultValue=false)]
         public OutputLayerActivationFunctionEnum? OutputLayerActivationFunction { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasOptimizedNetwork" /> class.
+        /// Initializes a new instance of the <see cref="KerasRecurrentOptimizedNetwork" /> class.
         /// </summary>
         /// <param name="id">Network id.</param>
         /// <param name="hiddenLayers">List of hidden layers.</param>
         /// <param name="trainingAlgorithm">Algorithm on which network was trained.</param>
         /// <param name="outputLayerActivationFunction">Activation function on output layer.</param>
-        /// <param name="featureSelection">А bool value for each input indicating whether that input is significant.</param>
-        public KerasOptimizedNetwork(string id = default(string), List<KerasHiddenLayerConfig> hiddenLayers = default(List<KerasHiddenLayerConfig>), TrainingAlgorithmEnum? trainingAlgorithm = default(TrainingAlgorithmEnum?), OutputLayerActivationFunctionEnum? outputLayerActivationFunction = default(OutputLayerActivationFunctionEnum?), List<bool?> featureSelection = default(List<bool?>))
+        public KerasRecurrentOptimizedNetwork(string id = default(string), List<KerasRecurrentHiddenLayerConfig> hiddenLayers = default(List<KerasRecurrentHiddenLayerConfig>), TrainingAlgorithmEnum? trainingAlgorithm = default(TrainingAlgorithmEnum?), OutputLayerActivationFunctionEnum? outputLayerActivationFunction = default(OutputLayerActivationFunctionEnum?))
         {
             this.Id = id;
             this.HiddenLayers = hiddenLayers;
             this.TrainingAlgorithm = trainingAlgorithm;
             this.OutputLayerActivationFunction = outputLayerActivationFunction;
-            this.FeatureSelection = featureSelection;
         }
         
         /// <summary>
@@ -189,16 +187,9 @@ namespace BlackFoxCSharp.Model
         /// </summary>
         /// <value>List of hidden layers</value>
         [DataMember(Name="hiddenLayers", EmitDefaultValue=false)]
-        public List<KerasHiddenLayerConfig> HiddenLayers { get; set; }
+        public List<KerasRecurrentHiddenLayerConfig> HiddenLayers { get; set; }
 
 
-
-        /// <summary>
-        /// А bool value for each input indicating whether that input is significant
-        /// </summary>
-        /// <value>А bool value for each input indicating whether that input is significant</value>
-        [DataMember(Name="featureSelection", EmitDefaultValue=false)]
-        public List<bool?> FeatureSelection { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -207,12 +198,11 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class KerasOptimizedNetwork {\n");
+            sb.Append("class KerasRecurrentOptimizedNetwork {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  HiddenLayers: ").Append(HiddenLayers).Append("\n");
             sb.Append("  TrainingAlgorithm: ").Append(TrainingAlgorithm).Append("\n");
             sb.Append("  OutputLayerActivationFunction: ").Append(OutputLayerActivationFunction).Append("\n");
-            sb.Append("  FeatureSelection: ").Append(FeatureSelection).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -233,15 +223,15 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KerasOptimizedNetwork);
+            return this.Equals(input as KerasRecurrentOptimizedNetwork);
         }
 
         /// <summary>
-        /// Returns true if KerasOptimizedNetwork instances are equal
+        /// Returns true if KerasRecurrentOptimizedNetwork instances are equal
         /// </summary>
-        /// <param name="input">Instance of KerasOptimizedNetwork to be compared</param>
+        /// <param name="input">Instance of KerasRecurrentOptimizedNetwork to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(KerasOptimizedNetwork input)
+        public bool Equals(KerasRecurrentOptimizedNetwork input)
         {
             if (input == null)
                 return false;
@@ -266,11 +256,6 @@ namespace BlackFoxCSharp.Model
                     this.OutputLayerActivationFunction == input.OutputLayerActivationFunction ||
                     (this.OutputLayerActivationFunction != null &&
                     this.OutputLayerActivationFunction.Equals(input.OutputLayerActivationFunction))
-                ) && 
-                (
-                    this.FeatureSelection == input.FeatureSelection ||
-                    this.FeatureSelection != null &&
-                    this.FeatureSelection.SequenceEqual(input.FeatureSelection)
                 );
         }
 
@@ -291,8 +276,6 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.TrainingAlgorithm.GetHashCode();
                 if (this.OutputLayerActivationFunction != null)
                     hashCode = hashCode * 59 + this.OutputLayerActivationFunction.GetHashCode();
-                if (this.FeatureSelection != null)
-                    hashCode = hashCode * 59 + this.FeatureSelection.GetHashCode();
                 return hashCode;
             }
         }

@@ -23,33 +23,35 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// Configuration for optimization early stopping
+    /// Series output column config
     /// </summary>
     [DataContract]
-    public partial class ConvergencyCriterion :  IEquatable<ConvergencyCriterion>
+    public partial class OutputWindowConfig :  IEquatable<OutputWindowConfig>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConvergencyCriterion" /> class.
+        /// Initializes a new instance of the <see cref="OutputWindowConfig" /> class.
         /// </summary>
-        /// <param name="numberOfLatestGenerations">numberOfLatestGenerations.</param>
-        /// <param name="percentageOfTolerance">percentageOfTolerance.</param>
-        public ConvergencyCriterion(int? numberOfLatestGenerations = default(int?), double? percentageOfTolerance = default(double?))
+        /// <param name="window">Window width, number od values to take.</param>
+        /// <param name="shift">Number of values to skip before taking value.  The negative value skips the data to the left, the positive skips the data to the right..</param>
+        public OutputWindowConfig(int? window = default(int?), int? shift = default(int?))
         {
-            this.NumberOfLatestGenerations = numberOfLatestGenerations;
-            this.PercentageOfTolerance = percentageOfTolerance;
+            this.Window = window;
+            this.Shift = shift;
         }
         
         /// <summary>
-        /// Gets or Sets NumberOfLatestGenerations
+        /// Window width, number od values to take
         /// </summary>
-        [DataMember(Name="numberOfLatestGenerations", EmitDefaultValue=false)]
-        public int? NumberOfLatestGenerations { get; set; }
+        /// <value>Window width, number od values to take</value>
+        [DataMember(Name="window", EmitDefaultValue=false)]
+        public int? Window { get; set; }
 
         /// <summary>
-        /// Gets or Sets PercentageOfTolerance
+        /// Number of values to skip before taking value.  The negative value skips the data to the left, the positive skips the data to the right.
         /// </summary>
-        [DataMember(Name="percentageOfTolerance", EmitDefaultValue=false)]
-        public double? PercentageOfTolerance { get; set; }
+        /// <value>Number of values to skip before taking value.  The negative value skips the data to the left, the positive skips the data to the right.</value>
+        [DataMember(Name="shift", EmitDefaultValue=false)]
+        public int? Shift { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,9 +60,9 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ConvergencyCriterion {\n");
-            sb.Append("  NumberOfLatestGenerations: ").Append(NumberOfLatestGenerations).Append("\n");
-            sb.Append("  PercentageOfTolerance: ").Append(PercentageOfTolerance).Append("\n");
+            sb.Append("class OutputWindowConfig {\n");
+            sb.Append("  Window: ").Append(Window).Append("\n");
+            sb.Append("  Shift: ").Append(Shift).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -81,29 +83,29 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ConvergencyCriterion);
+            return this.Equals(input as OutputWindowConfig);
         }
 
         /// <summary>
-        /// Returns true if ConvergencyCriterion instances are equal
+        /// Returns true if OutputWindowConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of ConvergencyCriterion to be compared</param>
+        /// <param name="input">Instance of OutputWindowConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ConvergencyCriterion input)
+        public bool Equals(OutputWindowConfig input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.NumberOfLatestGenerations == input.NumberOfLatestGenerations ||
-                    (this.NumberOfLatestGenerations != null &&
-                    this.NumberOfLatestGenerations.Equals(input.NumberOfLatestGenerations))
+                    this.Window == input.Window ||
+                    (this.Window != null &&
+                    this.Window.Equals(input.Window))
                 ) && 
                 (
-                    this.PercentageOfTolerance == input.PercentageOfTolerance ||
-                    (this.PercentageOfTolerance != null &&
-                    this.PercentageOfTolerance.Equals(input.PercentageOfTolerance))
+                    this.Shift == input.Shift ||
+                    (this.Shift != null &&
+                    this.Shift.Equals(input.Shift))
                 );
         }
 
@@ -116,10 +118,10 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NumberOfLatestGenerations != null)
-                    hashCode = hashCode * 59 + this.NumberOfLatestGenerations.GetHashCode();
-                if (this.PercentageOfTolerance != null)
-                    hashCode = hashCode * 59 + this.PercentageOfTolerance.GetHashCode();
+                if (this.Window != null)
+                    hashCode = hashCode * 59 + this.Window.GetHashCode();
+                if (this.Shift != null)
+                    hashCode = hashCode * 59 + this.Shift.GetHashCode();
                 return hashCode;
             }
         }

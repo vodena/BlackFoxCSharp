@@ -23,44 +23,11 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// KerasOptimizationConfig
+    /// KerasRecurrentOptimizationConfig
     /// </summary>
     [DataContract]
-    public partial class KerasOptimizationConfig :  IEquatable<KerasOptimizationConfig>
+    public partial class KerasRecurrentOptimizationConfig :  IEquatable<KerasRecurrentOptimizationConfig>
     {
-        /// <summary>
-        /// Defines the problem type. In case of binary classification,  there must be only one output column.
-        /// </summary>
-        /// <value>Defines the problem type. In case of binary classification,  there must be only one output column.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ProblemTypeEnum
-        {
-            
-            /// <summary>
-            /// Enum Regression for value: Regression
-            /// </summary>
-            [EnumMember(Value = "Regression")]
-            Regression = 1,
-            
-            /// <summary>
-            /// Enum BinaryClassification for value: BinaryClassification
-            /// </summary>
-            [EnumMember(Value = "BinaryClassification")]
-            BinaryClassification = 2,
-            
-            /// <summary>
-            /// Enum MultiClassClassification for value: MultiClassClassification
-            /// </summary>
-            [EnumMember(Value = "MultiClassClassification")]
-            MultiClassClassification = 3
-        }
-
-        /// <summary>
-        /// Defines the problem type. In case of binary classification,  there must be only one output column.
-        /// </summary>
-        /// <value>Defines the problem type. In case of binary classification,  there must be only one output column.</value>
-        [DataMember(Name="problemType", EmitDefaultValue=false)]
-        public ProblemTypeEnum? ProblemType { get; set; }
         /// <summary>
         /// Defines TrainingAlgorithms
         /// </summary>
@@ -194,34 +161,111 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="activationFunctions", EmitDefaultValue=false)]
         public List<ActivationFunctionsEnum> ActivationFunctions { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasOptimizationConfig" /> class.
+        /// Defines RecurrentActivationFunctions
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RecurrentActivationFunctionsEnum
+        {
+            
+            /// <summary>
+            /// Enum SoftMax for value: SoftMax
+            /// </summary>
+            [EnumMember(Value = "SoftMax")]
+            SoftMax = 1,
+            
+            /// <summary>
+            /// Enum Elu for value: Elu
+            /// </summary>
+            [EnumMember(Value = "Elu")]
+            Elu = 2,
+            
+            /// <summary>
+            /// Enum Selu for value: Selu
+            /// </summary>
+            [EnumMember(Value = "Selu")]
+            Selu = 3,
+            
+            /// <summary>
+            /// Enum SoftPlus for value: SoftPlus
+            /// </summary>
+            [EnumMember(Value = "SoftPlus")]
+            SoftPlus = 4,
+            
+            /// <summary>
+            /// Enum SoftSign for value: SoftSign
+            /// </summary>
+            [EnumMember(Value = "SoftSign")]
+            SoftSign = 5,
+            
+            /// <summary>
+            /// Enum ReLu for value: ReLu
+            /// </summary>
+            [EnumMember(Value = "ReLu")]
+            ReLu = 6,
+            
+            /// <summary>
+            /// Enum TanH for value: TanH
+            /// </summary>
+            [EnumMember(Value = "TanH")]
+            TanH = 7,
+            
+            /// <summary>
+            /// Enum Sigmoid for value: Sigmoid
+            /// </summary>
+            [EnumMember(Value = "Sigmoid")]
+            Sigmoid = 8,
+            
+            /// <summary>
+            /// Enum HardSigmoid for value: HardSigmoid
+            /// </summary>
+            [EnumMember(Value = "HardSigmoid")]
+            HardSigmoid = 9,
+            
+            /// <summary>
+            /// Enum Linear for value: Linear
+            /// </summary>
+            [EnumMember(Value = "Linear")]
+            Linear = 10
+        }
+
+
+        /// <summary>
+        /// List of recurrent activation functions to use
+        /// </summary>
+        /// <value>List of recurrent activation functions to use</value>
+        [DataMember(Name="recurrentActivationFunctions", EmitDefaultValue=false)]
+        public List<RecurrentActivationFunctionsEnum> RecurrentActivationFunctions { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KerasRecurrentOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected KerasOptimizationConfig() { }
+        protected KerasRecurrentOptimizationConfig() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasOptimizationConfig" /> class.
+        /// Initializes a new instance of the <see cref="KerasRecurrentOptimizationConfig" /> class.
         /// </summary>
         /// <param name="dropout">dropout.</param>
         /// <param name="batchSize">batchSize.</param>
+        /// <param name="recurrentDropout">recurrentDropout.</param>
+        /// <param name="recurrentOutputCount">recurrentOutputCount.</param>
         /// <param name="datasetId">Data set id on which to train network.</param>
         /// <param name="inputs">Define min and max value for each output column(feature), and is input optional.</param>
         /// <param name="outputRanges">Define min and max value for each output column(feature).</param>
-        /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
         /// <param name="hiddenLayerCountRange">Range in which to search number of hidden layers.</param>
         /// <param name="neuronsPerLayer">Range in which to search number of neurons per layer.</param>
         /// <param name="trainingAlgorithms">List of training algorithms to use.</param>
         /// <param name="activationFunctions">List of activation functions to use.</param>
+        /// <param name="recurrentActivationFunctions">List of recurrent activation functions to use.</param>
         /// <param name="maxEpoch">Maximum number of epoch (required).</param>
-        /// <param name="crossValidation">Use cross validation.</param>
-        /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required).</param>
-        /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false.</param>
+        /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1. (required).</param>
+        /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled.</param>
+        /// <param name="recurrentInputCountRange">Range in which to search number of recurrent inputs.</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public KerasOptimizationConfig(Range dropout = default(Range), int? batchSize = default(int?), string datasetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemTypeEnum? problemType = default(ProblemTypeEnum?), Range hiddenLayerCountRange = default(Range), Range neuronsPerLayer = default(Range), List<TrainingAlgorithmsEnum> trainingAlgorithms = default(List<TrainingAlgorithmsEnum>), List<ActivationFunctionsEnum> activationFunctions = default(List<ActivationFunctionsEnum>), int? maxEpoch = default(int?), bool? crossValidation = default(bool?), double? validationSplit = default(double?), int? randomSeed = default(int?), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
+        public KerasRecurrentOptimizationConfig(Range dropout = default(Range), int? batchSize = default(int?), Range recurrentDropout = default(Range), int? recurrentOutputCount = default(int?), string datasetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), Range hiddenLayerCountRange = default(Range), Range neuronsPerLayer = default(Range), List<TrainingAlgorithmsEnum> trainingAlgorithms = default(List<TrainingAlgorithmsEnum>), List<ActivationFunctionsEnum> activationFunctions = default(List<ActivationFunctionsEnum>), List<RecurrentActivationFunctionsEnum> recurrentActivationFunctions = default(List<RecurrentActivationFunctionsEnum>), int? maxEpoch = default(int?), double? validationSplit = default(double?), int? randomSeed = default(int?), Range recurrentInputCountRange = default(Range), RecurrentOptimizationEngineConfig engineConfig = default(RecurrentOptimizationEngineConfig))
         {
             // to ensure "maxEpoch" is required (not null)
             if (maxEpoch == null)
             {
-                throw new InvalidDataException("maxEpoch is a required property for KerasOptimizationConfig and cannot be null");
+                throw new InvalidDataException("maxEpoch is a required property for KerasRecurrentOptimizationConfig and cannot be null");
             }
             else
             {
@@ -230,7 +274,7 @@ namespace BlackFoxCSharp.Model
             // to ensure "validationSplit" is required (not null)
             if (validationSplit == null)
             {
-                throw new InvalidDataException("validationSplit is a required property for KerasOptimizationConfig and cannot be null");
+                throw new InvalidDataException("validationSplit is a required property for KerasRecurrentOptimizationConfig and cannot be null");
             }
             else
             {
@@ -238,16 +282,18 @@ namespace BlackFoxCSharp.Model
             }
             this.Dropout = dropout;
             this.BatchSize = batchSize;
+            this.RecurrentDropout = recurrentDropout;
+            this.RecurrentOutputCount = recurrentOutputCount;
             this.DatasetId = datasetId;
             this.Inputs = inputs;
             this.OutputRanges = outputRanges;
-            this.ProblemType = problemType;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
             this.NeuronsPerLayer = neuronsPerLayer;
             this.TrainingAlgorithms = trainingAlgorithms;
             this.ActivationFunctions = activationFunctions;
-            this.CrossValidation = crossValidation;
+            this.RecurrentActivationFunctions = recurrentActivationFunctions;
             this.RandomSeed = randomSeed;
+            this.RecurrentInputCountRange = recurrentInputCountRange;
             this.EngineConfig = engineConfig;
         }
         
@@ -262,6 +308,18 @@ namespace BlackFoxCSharp.Model
         /// </summary>
         [DataMember(Name="batchSize", EmitDefaultValue=false)]
         public int? BatchSize { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RecurrentDropout
+        /// </summary>
+        [DataMember(Name="recurrentDropout", EmitDefaultValue=false)]
+        public Range RecurrentDropout { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RecurrentOutputCount
+        /// </summary>
+        [DataMember(Name="recurrentOutputCount", EmitDefaultValue=false)]
+        public int? RecurrentOutputCount { get; set; }
 
         /// <summary>
         /// Data set id on which to train network
@@ -284,7 +342,6 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="outputRanges", EmitDefaultValue=false)]
         public List<Range> OutputRanges { get; set; }
 
-
         /// <summary>
         /// Range in which to search number of hidden layers
         /// </summary>
@@ -301,6 +358,7 @@ namespace BlackFoxCSharp.Model
 
 
 
+
         /// <summary>
         /// Maximum number of epoch
         /// </summary>
@@ -309,32 +367,32 @@ namespace BlackFoxCSharp.Model
         public int? MaxEpoch { get; set; }
 
         /// <summary>
-        /// Use cross validation
+        /// Portion of data set to use for validation, must be between 0 and 1.
         /// </summary>
-        /// <value>Use cross validation</value>
-        [DataMember(Name="crossValidation", EmitDefaultValue=false)]
-        public bool? CrossValidation { get; set; }
-
-        /// <summary>
-        /// Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false.
-        /// </summary>
-        /// <value>Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false.</value>
+        /// <value>Portion of data set to use for validation, must be between 0 and 1.</value>
         [DataMember(Name="validationSplit", EmitDefaultValue=false)]
         public double? ValidationSplit { get; set; }
 
         /// <summary>
-        /// Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false
+        /// Random number generator seed, if the value is zero, the rows will not be randomly shuffled
         /// </summary>
-        /// <value>Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false</value>
+        /// <value>Random number generator seed, if the value is zero, the rows will not be randomly shuffled</value>
         [DataMember(Name="randomSeed", EmitDefaultValue=false)]
         public int? RandomSeed { get; set; }
+
+        /// <summary>
+        /// Range in which to search number of recurrent inputs
+        /// </summary>
+        /// <value>Range in which to search number of recurrent inputs</value>
+        [DataMember(Name="recurrentInputCountRange", EmitDefaultValue=false)]
+        public Range RecurrentInputCountRange { get; set; }
 
         /// <summary>
         /// Optimization engine config
         /// </summary>
         /// <value>Optimization engine config</value>
         [DataMember(Name="engineConfig", EmitDefaultValue=false)]
-        public OptimizationEngineConfig EngineConfig { get; set; }
+        public RecurrentOptimizationEngineConfig EngineConfig { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -343,21 +401,23 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class KerasOptimizationConfig {\n");
+            sb.Append("class KerasRecurrentOptimizationConfig {\n");
             sb.Append("  Dropout: ").Append(Dropout).Append("\n");
             sb.Append("  BatchSize: ").Append(BatchSize).Append("\n");
+            sb.Append("  RecurrentDropout: ").Append(RecurrentDropout).Append("\n");
+            sb.Append("  RecurrentOutputCount: ").Append(RecurrentOutputCount).Append("\n");
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
             sb.Append("  OutputRanges: ").Append(OutputRanges).Append("\n");
-            sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
             sb.Append("  HiddenLayerCountRange: ").Append(HiddenLayerCountRange).Append("\n");
             sb.Append("  NeuronsPerLayer: ").Append(NeuronsPerLayer).Append("\n");
             sb.Append("  TrainingAlgorithms: ").Append(TrainingAlgorithms).Append("\n");
             sb.Append("  ActivationFunctions: ").Append(ActivationFunctions).Append("\n");
+            sb.Append("  RecurrentActivationFunctions: ").Append(RecurrentActivationFunctions).Append("\n");
             sb.Append("  MaxEpoch: ").Append(MaxEpoch).Append("\n");
-            sb.Append("  CrossValidation: ").Append(CrossValidation).Append("\n");
             sb.Append("  ValidationSplit: ").Append(ValidationSplit).Append("\n");
             sb.Append("  RandomSeed: ").Append(RandomSeed).Append("\n");
+            sb.Append("  RecurrentInputCountRange: ").Append(RecurrentInputCountRange).Append("\n");
             sb.Append("  EngineConfig: ").Append(EngineConfig).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -379,15 +439,15 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KerasOptimizationConfig);
+            return this.Equals(input as KerasRecurrentOptimizationConfig);
         }
 
         /// <summary>
-        /// Returns true if KerasOptimizationConfig instances are equal
+        /// Returns true if KerasRecurrentOptimizationConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of KerasOptimizationConfig to be compared</param>
+        /// <param name="input">Instance of KerasRecurrentOptimizationConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(KerasOptimizationConfig input)
+        public bool Equals(KerasRecurrentOptimizationConfig input)
         {
             if (input == null)
                 return false;
@@ -404,6 +464,16 @@ namespace BlackFoxCSharp.Model
                     this.BatchSize.Equals(input.BatchSize))
                 ) && 
                 (
+                    this.RecurrentDropout == input.RecurrentDropout ||
+                    (this.RecurrentDropout != null &&
+                    this.RecurrentDropout.Equals(input.RecurrentDropout))
+                ) && 
+                (
+                    this.RecurrentOutputCount == input.RecurrentOutputCount ||
+                    (this.RecurrentOutputCount != null &&
+                    this.RecurrentOutputCount.Equals(input.RecurrentOutputCount))
+                ) && 
+                (
                     this.DatasetId == input.DatasetId ||
                     (this.DatasetId != null &&
                     this.DatasetId.Equals(input.DatasetId))
@@ -417,11 +487,6 @@ namespace BlackFoxCSharp.Model
                     this.OutputRanges == input.OutputRanges ||
                     this.OutputRanges != null &&
                     this.OutputRanges.SequenceEqual(input.OutputRanges)
-                ) && 
-                (
-                    this.ProblemType == input.ProblemType ||
-                    (this.ProblemType != null &&
-                    this.ProblemType.Equals(input.ProblemType))
                 ) && 
                 (
                     this.HiddenLayerCountRange == input.HiddenLayerCountRange ||
@@ -444,14 +509,14 @@ namespace BlackFoxCSharp.Model
                     this.ActivationFunctions.SequenceEqual(input.ActivationFunctions)
                 ) && 
                 (
+                    this.RecurrentActivationFunctions == input.RecurrentActivationFunctions ||
+                    this.RecurrentActivationFunctions != null &&
+                    this.RecurrentActivationFunctions.SequenceEqual(input.RecurrentActivationFunctions)
+                ) && 
+                (
                     this.MaxEpoch == input.MaxEpoch ||
                     (this.MaxEpoch != null &&
                     this.MaxEpoch.Equals(input.MaxEpoch))
-                ) && 
-                (
-                    this.CrossValidation == input.CrossValidation ||
-                    (this.CrossValidation != null &&
-                    this.CrossValidation.Equals(input.CrossValidation))
                 ) && 
                 (
                     this.ValidationSplit == input.ValidationSplit ||
@@ -462,6 +527,11 @@ namespace BlackFoxCSharp.Model
                     this.RandomSeed == input.RandomSeed ||
                     (this.RandomSeed != null &&
                     this.RandomSeed.Equals(input.RandomSeed))
+                ) && 
+                (
+                    this.RecurrentInputCountRange == input.RecurrentInputCountRange ||
+                    (this.RecurrentInputCountRange != null &&
+                    this.RecurrentInputCountRange.Equals(input.RecurrentInputCountRange))
                 ) && 
                 (
                     this.EngineConfig == input.EngineConfig ||
@@ -483,14 +553,16 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.Dropout.GetHashCode();
                 if (this.BatchSize != null)
                     hashCode = hashCode * 59 + this.BatchSize.GetHashCode();
+                if (this.RecurrentDropout != null)
+                    hashCode = hashCode * 59 + this.RecurrentDropout.GetHashCode();
+                if (this.RecurrentOutputCount != null)
+                    hashCode = hashCode * 59 + this.RecurrentOutputCount.GetHashCode();
                 if (this.DatasetId != null)
                     hashCode = hashCode * 59 + this.DatasetId.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
                 if (this.OutputRanges != null)
                     hashCode = hashCode * 59 + this.OutputRanges.GetHashCode();
-                if (this.ProblemType != null)
-                    hashCode = hashCode * 59 + this.ProblemType.GetHashCode();
                 if (this.HiddenLayerCountRange != null)
                     hashCode = hashCode * 59 + this.HiddenLayerCountRange.GetHashCode();
                 if (this.NeuronsPerLayer != null)
@@ -499,14 +571,16 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.TrainingAlgorithms.GetHashCode();
                 if (this.ActivationFunctions != null)
                     hashCode = hashCode * 59 + this.ActivationFunctions.GetHashCode();
+                if (this.RecurrentActivationFunctions != null)
+                    hashCode = hashCode * 59 + this.RecurrentActivationFunctions.GetHashCode();
                 if (this.MaxEpoch != null)
                     hashCode = hashCode * 59 + this.MaxEpoch.GetHashCode();
-                if (this.CrossValidation != null)
-                    hashCode = hashCode * 59 + this.CrossValidation.GetHashCode();
                 if (this.ValidationSplit != null)
                     hashCode = hashCode * 59 + this.ValidationSplit.GetHashCode();
                 if (this.RandomSeed != null)
                     hashCode = hashCode * 59 + this.RandomSeed.GetHashCode();
+                if (this.RecurrentInputCountRange != null)
+                    hashCode = hashCode * 59 + this.RecurrentInputCountRange.GetHashCode();
                 if (this.EngineConfig != null)
                     hashCode = hashCode * 59 + this.EngineConfig.GetHashCode();
                 return hashCode;

@@ -24,30 +24,51 @@ namespace BlackFoxCSharp.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Download nework file (*.h5)
+        /// Download model file (*.h5)
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>System.IO.Stream</returns>
         System.IO.Stream Get (string id, bool? integrateScaler = null, string networkType = null);
 
         /// <summary>
-        /// Download nework file (*.h5)
+        /// Download model file (*.h5)
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         ApiResponse<System.IO.Stream> GetWithHttpInfo (string id, bool? integrateScaler = null, string networkType = null);
+        /// <summary>
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Object</returns>
+        Object GetMetadata (string id);
+
+        /// <summary>
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> GetMetadataWithHttpInfo (string id);
         /// <summary>
         /// Check if h5 file exist
         /// </summary>
@@ -55,7 +76,7 @@ namespace BlackFoxCSharp.Api
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns></returns>
         void Head (string id);
 
@@ -66,32 +87,11 @@ namespace BlackFoxCSharp.Api
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> HeadWithHttpInfo (string id);
         /// <summary>
-        /// Get h5 file metadata
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>Object</returns>
-        Object Metadata (string id);
-
-        /// <summary>
-        /// Get h5 file metadata
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> MetadataWithHttpInfo (string id);
-        /// <summary>
-        /// Upload h5 file
+        /// Upload model(h5 file)
         /// </summary>
         /// <remarks>
         /// 
@@ -102,7 +102,7 @@ namespace BlackFoxCSharp.Api
         string Post (System.IO.Stream file = null);
 
         /// <summary>
-        /// Upload h5 file
+        /// Upload model(h5 file)
         /// </summary>
         /// <remarks>
         /// 
@@ -114,30 +114,51 @@ namespace BlackFoxCSharp.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Download nework file (*.h5)
+        /// Download model file (*.h5)
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>Task of System.IO.Stream</returns>
         System.Threading.Tasks.Task<System.IO.Stream> GetAsync (string id, bool? integrateScaler = null, string networkType = null);
 
         /// <summary>
-        /// Download nework file (*.h5)
+        /// Download model file (*.h5)
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
         System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> GetAsyncWithHttpInfo (string id, bool? integrateScaler = null, string networkType = null);
+        /// <summary>
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> GetMetadataAsync (string id);
+
+        /// <summary>
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> GetMetadataAsyncWithHttpInfo (string id);
         /// <summary>
         /// Check if h5 file exist
         /// </summary>
@@ -145,7 +166,7 @@ namespace BlackFoxCSharp.Api
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task HeadAsync (string id);
 
@@ -156,32 +177,11 @@ namespace BlackFoxCSharp.Api
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> HeadAsyncWithHttpInfo (string id);
         /// <summary>
-        /// Get h5 file metadata
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> MetadataAsync (string id);
-
-        /// <summary>
-        /// Get h5 file metadata
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> MetadataAsyncWithHttpInfo (string id);
-        /// <summary>
-        /// Upload h5 file
+        /// Upload model(h5 file)
         /// </summary>
         /// <remarks>
         /// 
@@ -192,7 +192,7 @@ namespace BlackFoxCSharp.Api
         System.Threading.Tasks.Task<string> PostAsync (System.IO.Stream file = null);
 
         /// <summary>
-        /// Upload h5 file
+        /// Upload model(h5 file)
         /// </summary>
         /// <remarks>
         /// 
@@ -302,12 +302,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Download nework file (*.h5) 
+        /// Download model file (*.h5) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream Get (string id, bool? integrateScaler = null, string networkType = null)
         {
@@ -316,12 +316,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Download nework file (*.h5) 
+        /// Download model file (*.h5) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         public ApiResponse< System.IO.Stream > GetWithHttpInfo (string id, bool? integrateScaler = null, string networkType = null)
         {
@@ -329,7 +329,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->Get");
 
-            var localVarPath = "./api/Network/{id}";
+            var localVarPath = "./api/network/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -374,12 +374,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Download nework file (*.h5) 
+        /// Download model file (*.h5) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>Task of System.IO.Stream</returns>
         public async System.Threading.Tasks.Task<System.IO.Stream> GetAsync (string id, bool? integrateScaler = null, string networkType = null)
         {
@@ -389,12 +389,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Download nework file (*.h5) 
+        /// Download model file (*.h5) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Nework Id</param>
-        /// <param name="integrateScaler"> (optional, default to false)</param>
-        /// <param name="networkType"> (optional, default to h5)</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="networkType">h5, onnx, pb (optional, default to h5)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> GetAsyncWithHttpInfo (string id, bool? integrateScaler = null, string networkType = null)
         {
@@ -402,7 +402,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->Get");
 
-            var localVarPath = "./api/Network/{id}";
+            var localVarPath = "./api/network/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -447,10 +447,147 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Object</returns>
+        public Object GetMetadata (string id)
+        {
+             ApiResponse<Object> localVarResponse = GetMetadataWithHttpInfo(id);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse< Object > GetMetadataWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->GetMetadata");
+
+            var localVarPath = "./api/network/{id}/metadata";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMetadata", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> GetMetadataAsync (string id)
+        {
+             ApiResponse<Object> localVarResponse = await GetMetadataAsyncWithHttpInfo(id);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetMetadataAsyncWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->GetMetadata");
+
+            var localVarPath = "./api/network/{id}/metadata";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMetadata", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
         /// Check if h5 file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns></returns>
         public void Head (string id)
         {
@@ -461,7 +598,7 @@ namespace BlackFoxCSharp.Api
         /// Check if h5 file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public ApiResponse<Object> HeadWithHttpInfo (string id)
         {
@@ -469,7 +606,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->Head");
 
-            var localVarPath = "./api/Network/{id}";
+            var localVarPath = "./api/network/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -514,7 +651,7 @@ namespace BlackFoxCSharp.Api
         /// Check if h5 file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task HeadAsync (string id)
         {
@@ -526,7 +663,7 @@ namespace BlackFoxCSharp.Api
         /// Check if h5 file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAsyncWithHttpInfo (string id)
         {
@@ -534,7 +671,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->Head");
 
-            var localVarPath = "./api/Network/{id}";
+            var localVarPath = "./api/network/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -576,144 +713,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Get h5 file metadata 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>Object</returns>
-        public Object Metadata (string id)
-        {
-             ApiResponse<Object> localVarResponse = MetadataWithHttpInfo(id);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get h5 file metadata 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>ApiResponse of Object</returns>
-        public ApiResponse< Object > MetadataWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->Metadata");
-
-            var localVarPath = "./api/Network/{id}/Metadata";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "text/plain",
-                "application/json",
-                "text/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("Metadata", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-        }
-
-        /// <summary>
-        /// Get h5 file metadata 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> MetadataAsync (string id)
-        {
-             ApiResponse<Object> localVarResponse = await MetadataAsyncWithHttpInfo(id);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get h5 file metadata 
-        /// </summary>
-        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
-        /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> MetadataAsyncWithHttpInfo (string id)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling NetworkApi->Metadata");
-
-            var localVarPath = "./api/Network/{id}/Metadata";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "text/plain",
-                "application/json",
-                "text/json"
-            };
-            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
-
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("Metadata", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
-        }
-
-        /// <summary>
-        /// Upload h5 file 
+        /// Upload model(h5 file) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -725,7 +725,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload h5 file 
+        /// Upload model(h5 file) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -733,7 +733,7 @@ namespace BlackFoxCSharp.Api
         public ApiResponse< string > PostWithHttpInfo (System.IO.Stream file = null)
         {
 
-            var localVarPath = "./api/Network";
+            var localVarPath = "./api/network";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -779,7 +779,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload h5 file 
+        /// Upload model(h5 file) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -792,7 +792,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload h5 file 
+        /// Upload model(h5 file) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -800,7 +800,7 @@ namespace BlackFoxCSharp.Api
         public async System.Threading.Tasks.Task<ApiResponse<string>> PostAsyncWithHttpInfo (System.IO.Stream file = null)
         {
 
-            var localVarPath = "./api/Network";
+            var localVarPath = "./api/network";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);

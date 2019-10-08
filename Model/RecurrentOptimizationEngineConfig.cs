@@ -23,45 +23,19 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// OptimizationEngineConfig
+    /// RecurrentOptimizationEngineConfig
     /// </summary>
     [DataContract]
-    public partial class OptimizationEngineConfig :  IEquatable<OptimizationEngineConfig>
+    public partial class RecurrentOptimizationEngineConfig :  IEquatable<RecurrentOptimizationEngineConfig>
     {
         /// <summary>
-        /// Defines OptimizationAlgorithm
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum OptimizationAlgorithmEnum
-        {
-            
-            /// <summary>
-            /// Enum SimpleGA for value: SimpleGA
-            /// </summary>
-            [EnumMember(Value = "SimpleGA")]
-            SimpleGA = 1,
-            
-            /// <summary>
-            /// Enum VidnerovaNeruda for value: VidnerovaNeruda
-            /// </summary>
-            [EnumMember(Value = "VidnerovaNeruda")]
-            VidnerovaNeruda = 2
-        }
-
-        /// <summary>
-        /// Gets or Sets OptimizationAlgorithm
-        /// </summary>
-        [DataMember(Name="optimizationAlgorithm", EmitDefaultValue=false)]
-        public OptimizationAlgorithmEnum? OptimizationAlgorithm { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OptimizationEngineConfig" /> class.
+        /// Initializes a new instance of the <see cref="RecurrentOptimizationEngineConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected OptimizationEngineConfig() { }
+        protected RecurrentOptimizationEngineConfig() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="OptimizationEngineConfig" /> class.
+        /// Initializes a new instance of the <see cref="RecurrentOptimizationEngineConfig" /> class.
         /// </summary>
-        /// <param name="optimizationAlgorithm">optimizationAlgorithm.</param>
         /// <param name="crossoverDistributionIndex">crossoverDistributionIndex.</param>
         /// <param name="crossoverProbability">crossoverProbability.</param>
         /// <param name="mutationDistributionIndex">mutationDistributionIndex.</param>
@@ -70,18 +44,17 @@ namespace BlackFoxCSharp.Model
         /// <param name="maxNumOfGenerations">Maximum number of generations in which to find optimal network.</param>
         /// <param name="populationSize">Number of individials in one generation.</param>
         /// <param name="hyperVolume">Define hyper volume for early stopping.</param>
-        public OptimizationEngineConfig(OptimizationAlgorithmEnum? optimizationAlgorithm = default(OptimizationAlgorithmEnum?), int? crossoverDistributionIndex = default(int?), double? crossoverProbability = default(double?), int? mutationDistributionIndex = default(int?), double? mutationProbability = default(double?), int? procTimeoutSeconds = default(int?), int? maxNumOfGenerations = default(int?), int? populationSize = default(int?), ConvergencyCriterion hyperVolume = default(ConvergencyCriterion))
+        public RecurrentOptimizationEngineConfig(int? crossoverDistributionIndex = default(int?), double? crossoverProbability = default(double?), int? mutationDistributionIndex = default(int?), double? mutationProbability = default(double?), int? procTimeoutSeconds = default(int?), int? maxNumOfGenerations = default(int?), int? populationSize = default(int?), ConvergencyCriterion hyperVolume = default(ConvergencyCriterion))
         {
             // to ensure "procTimeoutSeconds" is required (not null)
             if (procTimeoutSeconds == null)
             {
-                throw new InvalidDataException("procTimeoutSeconds is a required property for OptimizationEngineConfig and cannot be null");
+                throw new InvalidDataException("procTimeoutSeconds is a required property for RecurrentOptimizationEngineConfig and cannot be null");
             }
             else
             {
                 this.ProcTimeoutSeconds = procTimeoutSeconds;
             }
-            this.OptimizationAlgorithm = optimizationAlgorithm;
             this.CrossoverDistributionIndex = crossoverDistributionIndex;
             this.CrossoverProbability = crossoverProbability;
             this.MutationDistributionIndex = mutationDistributionIndex;
@@ -91,7 +64,6 @@ namespace BlackFoxCSharp.Model
             this.HyperVolume = hyperVolume;
         }
         
-
         /// <summary>
         /// Gets or Sets CrossoverDistributionIndex
         /// </summary>
@@ -151,8 +123,7 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class OptimizationEngineConfig {\n");
-            sb.Append("  OptimizationAlgorithm: ").Append(OptimizationAlgorithm).Append("\n");
+            sb.Append("class RecurrentOptimizationEngineConfig {\n");
             sb.Append("  CrossoverDistributionIndex: ").Append(CrossoverDistributionIndex).Append("\n");
             sb.Append("  CrossoverProbability: ").Append(CrossoverProbability).Append("\n");
             sb.Append("  MutationDistributionIndex: ").Append(MutationDistributionIndex).Append("\n");
@@ -181,25 +152,20 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as OptimizationEngineConfig);
+            return this.Equals(input as RecurrentOptimizationEngineConfig);
         }
 
         /// <summary>
-        /// Returns true if OptimizationEngineConfig instances are equal
+        /// Returns true if RecurrentOptimizationEngineConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of OptimizationEngineConfig to be compared</param>
+        /// <param name="input">Instance of RecurrentOptimizationEngineConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(OptimizationEngineConfig input)
+        public bool Equals(RecurrentOptimizationEngineConfig input)
         {
             if (input == null)
                 return false;
 
             return 
-                (
-                    this.OptimizationAlgorithm == input.OptimizationAlgorithm ||
-                    (this.OptimizationAlgorithm != null &&
-                    this.OptimizationAlgorithm.Equals(input.OptimizationAlgorithm))
-                ) && 
                 (
                     this.CrossoverDistributionIndex == input.CrossoverDistributionIndex ||
                     (this.CrossoverDistributionIndex != null &&
@@ -251,8 +217,6 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.OptimizationAlgorithm != null)
-                    hashCode = hashCode * 59 + this.OptimizationAlgorithm.GetHashCode();
                 if (this.CrossoverDistributionIndex != null)
                     hashCode = hashCode * 59 + this.CrossoverDistributionIndex.GetHashCode();
                 if (this.CrossoverProbability != null)

@@ -45,28 +45,28 @@ namespace BlackFoxCSharp.Api
         /// <returns>ApiResponse of System.IO.Stream</returns>
         ApiResponse<System.IO.Stream> GetWithHttpInfo (string id);
         /// <summary>
-        /// Check if csv file exist
+        /// Check if dataset file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns></returns>
         void Head (string id);
 
         /// <summary>
-        /// Check if csv file exist
+        /// Check if dataset file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> HeadWithHttpInfo (string id);
         /// <summary>
-        /// Upload csv file
+        /// Upload dataset file (*.csv)
         /// </summary>
         /// <remarks>
         /// 
@@ -77,7 +77,7 @@ namespace BlackFoxCSharp.Api
         string Post (System.IO.Stream file = null);
 
         /// <summary>
-        /// Upload csv file
+        /// Upload dataset file (*.csv)
         /// </summary>
         /// <remarks>
         /// 
@@ -110,28 +110,28 @@ namespace BlackFoxCSharp.Api
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
         System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> GetAsyncWithHttpInfo (string id);
         /// <summary>
-        /// Check if csv file exist
+        /// Check if dataset file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task HeadAsync (string id);
 
         /// <summary>
-        /// Check if csv file exist
+        /// Check if dataset file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> HeadAsyncWithHttpInfo (string id);
         /// <summary>
-        /// Upload csv file
+        /// Upload dataset file (*.csv)
         /// </summary>
         /// <remarks>
         /// 
@@ -142,7 +142,7 @@ namespace BlackFoxCSharp.Api
         System.Threading.Tasks.Task<string> PostAsync (System.IO.Stream file = null);
 
         /// <summary>
-        /// Upload csv file
+        /// Upload dataset file (*.csv)
         /// </summary>
         /// <remarks>
         /// 
@@ -275,7 +275,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Get");
 
-            var localVarPath = "./api/DataSet/{id}";
+            var localVarPath = "./api/dataset/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -342,7 +342,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Get");
 
-            var localVarPath = "./api/DataSet/{id}";
+            var localVarPath = "./api/dataset/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -385,10 +385,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if csv file exist 
+        /// Check if dataset file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns></returns>
         public void Head (string id)
         {
@@ -396,10 +396,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if csv file exist 
+        /// Check if dataset file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public ApiResponse<Object> HeadWithHttpInfo (string id)
         {
@@ -407,7 +407,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Head");
 
-            var localVarPath = "./api/DataSet/{id}";
+            var localVarPath = "./api/dataset/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -449,10 +449,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if csv file exist 
+        /// Check if dataset file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task HeadAsync (string id)
         {
@@ -461,10 +461,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if csv file exist 
+        /// Check if dataset file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">File hash(sha1)</param>
+        /// <param name="id">Dataset Id (sha1)</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Object>> HeadAsyncWithHttpInfo (string id)
         {
@@ -472,7 +472,7 @@ namespace BlackFoxCSharp.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Head");
 
-            var localVarPath = "./api/DataSet/{id}";
+            var localVarPath = "./api/dataset/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -514,7 +514,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload csv file 
+        /// Upload dataset file (*.csv) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -526,7 +526,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload csv file 
+        /// Upload dataset file (*.csv) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -534,7 +534,7 @@ namespace BlackFoxCSharp.Api
         public ApiResponse< string > PostWithHttpInfo (System.IO.Stream file = null)
         {
 
-            var localVarPath = "./api/DataSet";
+            var localVarPath = "./api/dataset";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -580,7 +580,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload csv file 
+        /// Upload dataset file (*.csv) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -593,7 +593,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload csv file 
+        /// Upload dataset file (*.csv) 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -601,7 +601,7 @@ namespace BlackFoxCSharp.Api
         public async System.Threading.Tasks.Task<ApiResponse<string>> PostAsyncWithHttpInfo (System.IO.Stream file = null)
         {
 
-            var localVarPath = "./api/DataSet";
+            var localVarPath = "./api/dataset";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);

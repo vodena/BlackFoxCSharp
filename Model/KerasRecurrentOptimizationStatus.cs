@@ -23,10 +23,10 @@ using SwaggerDateConverter = BlackFoxCSharp.Client.SwaggerDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// KerasOptimizationStatus
+    /// KerasRecurrentOptimizationStatus
     /// </summary>
     [DataContract]
-    public partial class KerasOptimizationStatus :  IEquatable<KerasOptimizationStatus>
+    public partial class KerasRecurrentOptimizationStatus :  IEquatable<KerasRecurrentOptimizationStatus>
     {
         /// <summary>
         /// Optimization state (Active, Finished, Stopped, Error)
@@ -68,7 +68,7 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="state", EmitDefaultValue=false)]
         public StateEnum? State { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="KerasOptimizationStatus" /> class.
+        /// Initializes a new instance of the <see cref="KerasRecurrentOptimizationStatus" /> class.
         /// </summary>
         /// <param name="state">Optimization state (Active, Finished, Stopped, Error).</param>
         /// <param name="generation">Current generation.</param>
@@ -77,7 +77,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="trainingSetError">Error on training set.</param>
         /// <param name="epoch">Number of epoch for current best network.</param>
         /// <param name="network">Best network, only set if optimization is finished.</param>
-        public KerasOptimizationStatus(StateEnum? state = default(StateEnum?), int? generation = default(int?), int? totalGenerations = default(int?), double? validationSetError = default(double?), double? trainingSetError = default(double?), int? epoch = default(int?), KerasOptimizedNetwork network = default(KerasOptimizedNetwork))
+        public KerasRecurrentOptimizationStatus(StateEnum? state = default(StateEnum?), int? generation = default(int?), int? totalGenerations = default(int?), double? validationSetError = default(double?), double? trainingSetError = default(double?), int? epoch = default(int?), KerasRecurrentOptimizedNetwork network = default(KerasRecurrentOptimizedNetwork))
         {
             this.State = state;
             this.Generation = generation;
@@ -129,7 +129,7 @@ namespace BlackFoxCSharp.Model
         /// </summary>
         /// <value>Best network, only set if optimization is finished</value>
         [DataMember(Name="network", EmitDefaultValue=false)]
-        public KerasOptimizedNetwork Network { get; set; }
+        public KerasRecurrentOptimizedNetwork Network { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -138,7 +138,7 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class KerasOptimizationStatus {\n");
+            sb.Append("class KerasRecurrentOptimizationStatus {\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Generation: ").Append(Generation).Append("\n");
             sb.Append("  TotalGenerations: ").Append(TotalGenerations).Append("\n");
@@ -166,15 +166,15 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as KerasOptimizationStatus);
+            return this.Equals(input as KerasRecurrentOptimizationStatus);
         }
 
         /// <summary>
-        /// Returns true if KerasOptimizationStatus instances are equal
+        /// Returns true if KerasRecurrentOptimizationStatus instances are equal
         /// </summary>
-        /// <param name="input">Instance of KerasOptimizationStatus to be compared</param>
+        /// <param name="input">Instance of KerasRecurrentOptimizationStatus to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(KerasOptimizationStatus input)
+        public bool Equals(KerasRecurrentOptimizationStatus input)
         {
             if (input == null)
                 return false;
