@@ -26,8 +26,10 @@ namespace BlackFoxCSharp.Model
     /// Range
     /// </summary>
     [DataContract]
-    public partial class Range :  IEquatable<Range>
+    public partial class Range : IEquatable<Range>
     {
+
+        public Range() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="Range" /> class.
         /// </summary>
@@ -38,17 +40,17 @@ namespace BlackFoxCSharp.Model
             this.Min = min;
             this.Max = max;
         }
-        
+
         /// <summary>
         /// Gets or Sets Min
         /// </summary>
-        [DataMember(Name="min", EmitDefaultValue=false)]
+        [DataMember(Name = "min", EmitDefaultValue = false)]
         public double? Min { get; set; }
 
         /// <summary>
         /// Gets or Sets Max
         /// </summary>
-        [DataMember(Name="max", EmitDefaultValue=false)]
+        [DataMember(Name = "max", EmitDefaultValue = false)]
         public double? Max { get; set; }
 
         /// <summary>
@@ -64,7 +66,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -94,12 +96,12 @@ namespace BlackFoxCSharp.Model
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.Min == input.Min ||
                     (this.Min != null &&
                     this.Min.Equals(input.Min))
-                ) && 
+                ) &&
                 (
                     this.Max == input.Max ||
                     (this.Max != null &&

@@ -197,7 +197,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="KerasOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected KerasOptimizationConfig() { }
+        public KerasOptimizationConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="KerasOptimizationConfig" /> class.
         /// </summary>

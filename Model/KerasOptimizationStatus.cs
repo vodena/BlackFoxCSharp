@@ -60,7 +60,6 @@ namespace BlackFoxCSharp.Model
             [EnumMember(Value = "Error")]
             Error = 4
         }
-
         /// <summary>
         /// Optimization state (Active, Finished, Stopped, Error)
         /// </summary>
@@ -87,6 +86,7 @@ namespace BlackFoxCSharp.Model
             this.Epoch = epoch;
             this.Network = network;
         }
+        public KerasOptimizationStatus() {}
         
 
         /// <summary>
