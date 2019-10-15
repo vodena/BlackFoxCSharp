@@ -115,6 +115,11 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
+
+        public KerasHiddenLayerConfig()
+        {
+
+        }
         
         /// <summary>
         /// Number of neurons in layer
