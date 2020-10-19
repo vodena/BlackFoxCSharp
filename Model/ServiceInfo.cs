@@ -23,36 +23,40 @@ using OpenAPIDateConverter = BlackFoxCSharp.Client.OpenAPIDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// Range
+    /// ServiceInfo
     /// </summary>
     [DataContract]
-    public partial class Range : IEquatable<Range>
+    public partial class ServiceInfo :  IEquatable<ServiceInfo>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Range" /> class.
+        /// Initializes a new instance of the <see cref="ServiceInfo" /> class.
         /// </summary>
-        /// <param name="min">min.</param>
-        /// <param name="max">max.</param>
-        public Range(double min = default(double), double max = default(double))
+        /// <param name="version">version (default to &quot;3.1.0&quot;).</param>
+        public ServiceInfo(string version = "3.1.0")
         {
-            this.Min = min;
-            this.Max = max;
+            this.Version = version;
+            // use default value if no "version" provided
+            if (version == null)
+            {
+                this.Version = "3.1.0";
+            }
+            else
+            {
+                this.Version = version;
+            }
         }
 
         [JsonConstructorAttribute]
-        protected Range() { }
+        protected ServiceInfo()
+        {
+            this.Version = "3.1.0";
+        }
 
         /// <summary>
-        /// Gets or Sets Min
+        /// Gets or Sets Version
         /// </summary>
-        [DataMember(Name = "min", EmitDefaultValue = false)]
-        public double Min { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Max
-        /// </summary>
-        [DataMember(Name = "max", EmitDefaultValue = false)]
-        public double Max { get; set; }
+        [DataMember(Name="version", EmitDefaultValue=true)]
+        public string Version { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,13 +65,12 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Range {\n");
-            sb.Append("  Min: ").Append(Min).Append("\n");
-            sb.Append("  Max: ").Append(Max).Append("\n");
+            sb.Append("class ServiceInfo {\n");
+            sb.Append("  Version: ").Append(Version).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-
+  
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -84,29 +87,24 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Range);
+            return this.Equals(input as ServiceInfo);
         }
 
         /// <summary>
-        /// Returns true if Range instances are equal
+        /// Returns true if ServiceInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of Range to be compared</param>
+        /// <param name="input">Instance of ServiceInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Range input)
+        public bool Equals(ServiceInfo input)
         {
             if (input == null)
                 return false;
 
-            return
+            return 
                 (
-                    this.Min == input.Min ||
-                    (this.Min != null &&
-                    this.Min.Equals(input.Min))
-                ) &&
-                (
-                    this.Max == input.Max ||
-                    (this.Max != null &&
-                    this.Max.Equals(input.Max))
+                    this.Version == input.Version ||
+                    (this.Version != null &&
+                    this.Version.Equals(input.Version))
                 );
         }
 
@@ -119,10 +117,8 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Min != null)
-                    hashCode = hashCode * 59 + this.Min.GetHashCode();
-                if (this.Max != null)
-                    hashCode = hashCode * 59 + this.Max.GetHashCode();
+                if (this.Version != null)
+                    hashCode = hashCode * 59 + this.Version.GetHashCode();
                 return hashCode;
             }
         }

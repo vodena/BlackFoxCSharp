@@ -2,7 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Vodena</Authors>
+    <Description>Blackfox REST API client for c#</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vodena/BlackFoxCSharp</RepositoryUrl>
+    <PackageTags>blackfox</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>3.1.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Model\ProblemDetails.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.8" />

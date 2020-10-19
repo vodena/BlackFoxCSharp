@@ -23,36 +23,36 @@ using OpenAPIDateConverter = BlackFoxCSharp.Client.OpenAPIDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// Range
+    /// RangeInt
     /// </summary>
     [DataContract]
-    public partial class Range : IEquatable<Range>
+    public partial class RangeInt : IEquatable<RangeInt>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Range" /> class.
+        /// Initializes a new instance of the <see cref="RangeInt" /> class.
         /// </summary>
         /// <param name="min">min.</param>
         /// <param name="max">max.</param>
-        public Range(double min = default(double), double max = default(double))
+        public RangeInt(int min = default(int), int max = default(int))
         {
             this.Min = min;
             this.Max = max;
         }
 
         [JsonConstructorAttribute]
-        protected Range() { }
+        protected RangeInt() { }
 
         /// <summary>
         /// Gets or Sets Min
         /// </summary>
         [DataMember(Name = "min", EmitDefaultValue = false)]
-        public double Min { get; set; }
+        public int Min { get; set; }
 
         /// <summary>
         /// Gets or Sets Max
         /// </summary>
         [DataMember(Name = "max", EmitDefaultValue = false)]
-        public double Max { get; set; }
+        public int Max { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,7 +61,7 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Range {\n");
+            sb.Append("class RangeInt {\n");
             sb.Append("  Min: ").Append(Min).Append("\n");
             sb.Append("  Max: ").Append(Max).Append("\n");
             sb.Append("}\n");
@@ -84,15 +84,15 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Range);
+            return this.Equals(input as RangeInt);
         }
 
         /// <summary>
-        /// Returns true if Range instances are equal
+        /// Returns true if RangeInt instances are equal
         /// </summary>
-        /// <param name="input">Instance of Range to be compared</param>
+        /// <param name="input">Instance of RangeInt to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Range input)
+        public bool Equals(RangeInt input)
         {
             if (input == null)
                 return false;

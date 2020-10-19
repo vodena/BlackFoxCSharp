@@ -21,53 +21,78 @@ namespace BlackFoxCSharp.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IDataSetApi : IApiAccessor
+    public interface IAnnModelApi : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
-        /// Download dataset file (*.csv)
+        /// Download model file
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>System.IO.Stream</returns>
-        System.IO.Stream Download (string id);
+        System.IO.Stream Download (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
 
         /// <summary>
-        /// Download dataset file (*.csv)
+        /// Download model file
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id);
+        ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
         /// <summary>
-        /// Check if dataset file exist
+        /// Check if model file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns></returns>
         void Exists (string id);
 
         /// <summary>
-        /// Check if dataset file exist
+        /// Check if model file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> ExistsWithHttpInfo (string id);
         /// <summary>
-        /// Upload dataset file (*.csv)
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Object</returns>
+        Object GetMetadata (string id);
+
+        /// <summary>
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>ApiResponse of Object</returns>
+        ApiResponse<Object> GetMetadataWithHttpInfo (string id);
+        /// <summary>
+        /// Upload model file
         /// </summary>
         /// <remarks>
         /// 
@@ -78,7 +103,7 @@ namespace BlackFoxCSharp.Api
         string Upload (System.IO.Stream file = default(System.IO.Stream));
 
         /// <summary>
-        /// Upload dataset file (*.csv)
+        /// Upload model file
         /// </summary>
         /// <remarks>
         /// 
@@ -90,49 +115,74 @@ namespace BlackFoxCSharp.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
-        /// Download dataset file (*.csv)
+        /// Download model file
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id);
+        System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
 
         /// <summary>
-        /// Download dataset file (*.csv)
+        /// Download model file
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id);
+        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
         /// <summary>
-        /// Check if dataset file exist
+        /// Check if model file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task ExistsAsync (string id);
 
         /// <summary>
-        /// Check if dataset file exist
+        /// Check if model file exist
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> ExistsAsyncWithHttpInfo (string id);
         /// <summary>
-        /// Upload dataset file (*.csv)
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of Object</returns>
+        System.Threading.Tasks.Task<Object> GetMetadataAsync (string id);
+
+        /// <summary>
+        /// Get model metadata
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> GetMetadataAsyncWithHttpInfo (string id);
+        /// <summary>
+        /// Upload model file
         /// </summary>
         /// <remarks>
         /// 
@@ -143,7 +193,7 @@ namespace BlackFoxCSharp.Api
         System.Threading.Tasks.Task<string> UploadAsync (System.IO.Stream file = default(System.IO.Stream));
 
         /// <summary>
-        /// Upload dataset file (*.csv)
+        /// Upload model file
         /// </summary>
         /// <remarks>
         /// 
@@ -158,15 +208,15 @@ namespace BlackFoxCSharp.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class DataSetApi : IDataSetApi
+    public partial class AnnModelApi : IAnnModelApi
     {
         private BlackFoxCSharp.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataSetApi"/> class.
+        /// Initializes a new instance of the <see cref="AnnModelApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public DataSetApi(String basePath)
+        public AnnModelApi(String basePath)
         {
             this.Configuration = new BlackFoxCSharp.Client.Configuration { BasePath = basePath };
 
@@ -174,10 +224,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataSetApi"/> class
+        /// Initializes a new instance of the <see cref="AnnModelApi"/> class
         /// </summary>
         /// <returns></returns>
-        public DataSetApi()
+        public AnnModelApi()
         {
             this.Configuration = BlackFoxCSharp.Client.Configuration.Default;
 
@@ -185,12 +235,12 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataSetApi"/> class
+        /// Initializes a new instance of the <see cref="AnnModelApi"/> class
         /// using Configuration object
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public DataSetApi(BlackFoxCSharp.Client.Configuration configuration = null)
+        public AnnModelApi(BlackFoxCSharp.Client.Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = BlackFoxCSharp.Client.Configuration.Default;
@@ -264,30 +314,34 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Download dataset file (*.csv) 
+        /// Download model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream Download (string id)
+        public System.IO.Stream Download (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
         {
-             ApiResponse<System.IO.Stream> localVarResponse = DownloadWithHttpInfo(id);
+             ApiResponse<System.IO.Stream> localVarResponse = DownloadWithHttpInfo(id, integrateScaler, modelType);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Download dataset file (*.csv) 
+        /// Download model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id)
+        public ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Download");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AnnModelApi->Download");
 
-            var localVarPath = "./api/dataset/{id}";
+            var localVarPath = "./api/ann/model/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -309,6 +363,8 @@ namespace BlackFoxCSharp.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (integrateScaler != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "integrateScaler", integrateScaler)); // query parameter
+            if (modelType != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "modelType", modelType)); // query parameter
 
 
             // make the HTTP request
@@ -330,31 +386,35 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Download dataset file (*.csv) 
+        /// Download model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id)
+        public async System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
         {
-             ApiResponse<System.IO.Stream> localVarResponse = await DownloadAsyncWithHttpInfo(id);
+             ApiResponse<System.IO.Stream> localVarResponse = await DownloadAsyncWithHttpInfo(id, integrateScaler, modelType);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Download dataset file (*.csv) 
+        /// Download model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id</param>
+        /// <param name="id">File hash(sha1)</param>
+        /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
+        /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id)
+        public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Download");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AnnModelApi->Download");
 
-            var localVarPath = "./api/dataset/{id}";
+            var localVarPath = "./api/ann/model/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -376,6 +436,8 @@ namespace BlackFoxCSharp.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (integrateScaler != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "integrateScaler", integrateScaler)); // query parameter
+            if (modelType != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "modelType", modelType)); // query parameter
 
 
             // make the HTTP request
@@ -397,10 +459,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if dataset file exist 
+        /// Check if model file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns></returns>
         public void Exists (string id)
         {
@@ -408,18 +470,18 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if dataset file exist 
+        /// Check if model file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public ApiResponse<Object> ExistsWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Exists");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AnnModelApi->Exists");
 
-            var localVarPath = "./api/dataset/{id}";
+            var localVarPath = "./api/ann/model/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -464,10 +526,10 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if dataset file exist 
+        /// Check if model file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task ExistsAsync (string id)
         {
@@ -476,18 +538,18 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Check if dataset file exist 
+        /// Check if model file exist 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Dataset Id (sha1)</param>
+        /// <param name="id">Model Id (sha1)</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Object>> ExistsAsyncWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling DataSetApi->Exists");
+                throw new ApiException(400, "Missing required parameter 'id' when calling AnnModelApi->Exists");
 
-            var localVarPath = "./api/dataset/{id}";
+            var localVarPath = "./api/ann/model/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -532,7 +594,144 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload dataset file (*.csv) 
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Object</returns>
+        public Object GetMetadata (string id)
+        {
+             ApiResponse<Object> localVarResponse = GetMetadataWithHttpInfo(id);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>ApiResponse of Object</returns>
+        public ApiResponse<Object> GetMetadataWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling AnnModelApi->GetMetadata");
+
+            var localVarPath = "./api/ann/model/{id}/metadata";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMetadata", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of Object</returns>
+        public async System.Threading.Tasks.Task<Object> GetMetadataAsync (string id)
+        {
+             ApiResponse<Object> localVarResponse = await GetMetadataAsyncWithHttpInfo(id);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get model metadata 
+        /// </summary>
+        /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Model Id (sha1)</param>
+        /// <returns>Task of ApiResponse (Object)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetMetadataAsyncWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling AnnModelApi->GetMetadata");
+
+            var localVarPath = "./api/ann/model/{id}/metadata";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetMetadata", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => string.Join(",", x.Value)),
+                (Object) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Object)));
+        }
+
+        /// <summary>
+        /// Upload model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -544,7 +743,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload dataset file (*.csv) 
+        /// Upload model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -552,7 +751,7 @@ namespace BlackFoxCSharp.Api
         public ApiResponse<string> UploadWithHttpInfo (System.IO.Stream file = default(System.IO.Stream))
         {
 
-            var localVarPath = "./api/dataset";
+            var localVarPath = "./api/ann/model";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
@@ -598,7 +797,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload dataset file (*.csv) 
+        /// Upload model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -611,7 +810,7 @@ namespace BlackFoxCSharp.Api
         }
 
         /// <summary>
-        /// Upload dataset file (*.csv) 
+        /// Upload model file 
         /// </summary>
         /// <exception cref="BlackFoxCSharp.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="file"> (optional)</param>
@@ -619,7 +818,7 @@ namespace BlackFoxCSharp.Api
         public async System.Threading.Tasks.Task<ApiResponse<string>> UploadAsyncWithHttpInfo (System.IO.Stream file = default(System.IO.Stream))
         {
 
-            var localVarPath = "./api/dataset";
+            var localVarPath = "./api/ann/model";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
