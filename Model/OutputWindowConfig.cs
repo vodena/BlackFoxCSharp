@@ -54,10 +54,8 @@ namespace BlackFoxCSharp.Model
                 this.Shift = shift;
             }
         }
-
         [JsonConstructorAttribute]
         protected OutputWindowConfig() { }
-
         /// <summary>
         /// Window width, number od values to take
         /// </summary>

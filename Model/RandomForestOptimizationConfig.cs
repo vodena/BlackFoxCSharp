@@ -41,6 +41,12 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="binaryOptimizationMetric", EmitDefaultValue=false)]
         public BinaryMetric? BinaryOptimizationMetric { get; set; }
         /// <summary>
+        /// USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize.
+        /// </summary>
+        /// <value>USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize.</value>
+        [DataMember(Name="regressionOptimizationMetric", EmitDefaultValue=false)]
+        public RegressionMetric? RegressionOptimizationMetric { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="RandomForestOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -54,13 +60,14 @@ namespace BlackFoxCSharp.Model
         /// <param name="outputRanges">Define min and max value for each output column(feature).</param>
         /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
         /// <param name="binaryOptimizationMetric">USED ONLY IN BINARY CLASSIFICATION.  Default metric: ROC_AUC (Area under ROC curve).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
+        /// <param name="regressionOptimizationMetric">USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
         /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required) (default to 0.2D).</param>
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false (default to 300).</param>
         /// <param name="engineConfig">Optimization engine config.</param>
         /// <param name="numberOfEstimators">Number of estimators (required).</param>
         /// <param name="maxDepth">Max depth of tree (required).</param>
         /// <param name="maxFeatures">Max features (required).</param>
-        public RandomForestOptimizationConfig(string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemType problemType = default(ProblemType), BinaryMetric binaryOptimizationMetric = default(BinaryMetric), double validationSplit = 0.2D, int? randomSeed = 300, OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig), RangeInt numberOfEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), Range maxFeatures = default(Range))
+        public RandomForestOptimizationConfig(string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), double validationSplit = 0.2D, int? randomSeed = 300, OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig), RangeInt numberOfEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), Range maxFeatures = default(Range))
         {
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
@@ -114,6 +121,7 @@ namespace BlackFoxCSharp.Model
             this.OutputRanges = outputRanges;
             this.ProblemType = problemType;
             this.BinaryOptimizationMetric = binaryOptimizationMetric;
+            this.RegressionOptimizationMetric = regressionOptimizationMetric;
             // use default value if no "randomSeed" provided
             if (randomSeed == null)
             {
@@ -156,11 +164,12 @@ namespace BlackFoxCSharp.Model
 
 
 
+
         /// <summary>
         /// Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false.
         /// </summary>
         /// <value>Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false.</value>
-        [DataMember(Name="validationSplit", EmitDefaultValue=false)]
+        [DataMember(Name="validationSplit", EmitDefaultValue=true)]
         public double ValidationSplit { get; set; }
 
         /// <summary>
@@ -181,21 +190,21 @@ namespace BlackFoxCSharp.Model
         /// Number of estimators
         /// </summary>
         /// <value>Number of estimators</value>
-        [DataMember(Name="numberOfEstimators", EmitDefaultValue=false)]
+        [DataMember(Name="numberOfEstimators", EmitDefaultValue=true)]
         public RangeInt NumberOfEstimators { get; set; }
 
         /// <summary>
         /// Max depth of tree
         /// </summary>
         /// <value>Max depth of tree</value>
-        [DataMember(Name="maxDepth", EmitDefaultValue=false)]
+        [DataMember(Name="maxDepth", EmitDefaultValue=true)]
         public RangeInt MaxDepth { get; set; }
 
         /// <summary>
         /// Max features
         /// </summary>
         /// <value>Max features</value>
-        [DataMember(Name="maxFeatures", EmitDefaultValue=false)]
+        [DataMember(Name="maxFeatures", EmitDefaultValue=true)]
         public Range MaxFeatures { get; set; }
 
         /// <summary>
@@ -212,6 +221,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("  OutputRanges: ").Append(OutputRanges).Append("\n");
             sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
             sb.Append("  BinaryOptimizationMetric: ").Append(BinaryOptimizationMetric).Append("\n");
+            sb.Append("  RegressionOptimizationMetric: ").Append(RegressionOptimizationMetric).Append("\n");
             sb.Append("  ValidationSplit: ").Append(ValidationSplit).Append("\n");
             sb.Append("  RandomSeed: ").Append(RandomSeed).Append("\n");
             sb.Append("  EngineConfig: ").Append(EngineConfig).Append("\n");
@@ -285,6 +295,11 @@ namespace BlackFoxCSharp.Model
                     this.BinaryOptimizationMetric.Equals(input.BinaryOptimizationMetric))
                 ) && 
                 (
+                    this.RegressionOptimizationMetric == input.RegressionOptimizationMetric ||
+                    (this.RegressionOptimizationMetric != null &&
+                    this.RegressionOptimizationMetric.Equals(input.RegressionOptimizationMetric))
+                ) && 
+                (
                     this.ValidationSplit == input.ValidationSplit ||
                     (this.ValidationSplit != null &&
                     this.ValidationSplit.Equals(input.ValidationSplit))
@@ -337,6 +352,8 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.ProblemType.GetHashCode();
                 if (this.BinaryOptimizationMetric != null)
                     hashCode = hashCode * 59 + this.BinaryOptimizationMetric.GetHashCode();
+                if (this.RegressionOptimizationMetric != null)
+                    hashCode = hashCode * 59 + this.RegressionOptimizationMetric.GetHashCode();
                 if (this.ValidationSplit != null)
                     hashCode = hashCode * 59 + this.ValidationSplit.GetHashCode();
                 if (this.RandomSeed != null)

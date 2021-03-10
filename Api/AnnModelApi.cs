@@ -35,7 +35,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>System.IO.Stream</returns>
-        System.IO.Stream Download (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
+        System.IO.Stream Download (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?));
 
         /// <summary>
         /// Download model file
@@ -48,7 +48,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
+        ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?));
         /// <summary>
         /// Check if model file exist
         /// </summary>
@@ -125,7 +125,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
+        System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?));
 
         /// <summary>
         /// Download model file
@@ -138,7 +138,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType));
+        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?));
         /// <summary>
         /// Check if model file exist
         /// </summary>
@@ -321,7 +321,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream Download (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
+        public System.IO.Stream Download (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?))
         {
              ApiResponse<System.IO.Stream> localVarResponse = DownloadWithHttpInfo(id, integrateScaler, modelType);
              return localVarResponse.Data;
@@ -335,7 +335,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
+        public ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -393,7 +393,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
+        public async System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?))
         {
              ApiResponse<System.IO.Stream> localVarResponse = await DownloadAsyncWithHttpInfo(id, integrateScaler, modelType);
              return localVarResponse.Data;
@@ -408,7 +408,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="integrateScaler">Integrate scaler in model (optional, default to false)</param>
         /// <param name="modelType">h5, onnx, pb (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, bool integrateScaler = default(bool), NeuralNetworkType modelType = default(NeuralNetworkType))
+        public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, bool? integrateScaler = default(bool?), NeuralNetworkType? modelType = default(NeuralNetworkType?))
         {
             // verify the required parameter 'id' is set
             if (id == null)

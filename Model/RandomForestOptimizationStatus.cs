@@ -49,7 +49,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="estimatedDateTime">Optimization estimated finish date and time.</param>
         /// <param name="generationSeconds">How many seconds has this generation worked.</param>
         /// <param name="metricName">Metric name.</param>
-        public RandomForestOptimizationStatus(List<bool> featureSelection = default(List<bool>), Guid guid = default(Guid), OptimizationState state = default(OptimizationState), int generation = default(int), int totalGenerations = default(int), double validationSetError = default(double), double trainingSetError = default(double), RandomForestModel bestModel = default(RandomForestModel), DateTime startDateTime = default(DateTime), DateTime estimatedDateTime = default(DateTime), long generationSeconds = default(long), string metricName = default(string))
+        public RandomForestOptimizationStatus(List<bool> featureSelection = default(List<bool>), Guid guid = default(Guid), OptimizationState? state = default(OptimizationState?), int generation = default(int), int totalGenerations = default(int), double validationSetError = default(double), double trainingSetError = default(double), RandomForestModel bestModel = default(RandomForestModel), DateTime startDateTime = default(DateTime), DateTime estimatedDateTime = default(DateTime), long generationSeconds = default(long), string metricName = default(string))
         {
             this.FeatureSelection = featureSelection;
             this.BestModel = bestModel;
@@ -67,10 +67,8 @@ namespace BlackFoxCSharp.Model
             this.GenerationSeconds = generationSeconds;
             this.MetricName = metricName;
         }
-
         [JsonConstructorAttribute]
         protected RandomForestOptimizationStatus() { }
-
         /// <summary>
         /// А bool value for each input indicating whether that input is significant
         /// </summary>

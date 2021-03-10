@@ -41,6 +41,12 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="binaryOptimizationMetric", EmitDefaultValue=false)]
         public BinaryMetric? BinaryOptimizationMetric { get; set; }
         /// <summary>
+        /// USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize.
+        /// </summary>
+        /// <value>USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize.</value>
+        [DataMember(Name="regressionOptimizationMetric", EmitDefaultValue=false)]
+        public RegressionMetric? RegressionOptimizationMetric { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="XGBoostSeriesOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -59,6 +65,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="randomSeed">randomSeed (default to 300).</param>
         /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
         /// <param name="binaryOptimizationMetric">USED ONLY IN BINARY CLASSIFICATION.  Default metric: ROC_AUC (Area under ROC curve).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
+        /// <param name="regressionOptimizationMetric">USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
         /// <param name="nEstimators">N Estimators (required).</param>
         /// <param name="maxDepth">MaxDepth (required).</param>
         /// <param name="minChildWeight">MinChildWeight (required).</param>
@@ -68,7 +75,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="regAlpha">RegAlpha (required).</param>
         /// <param name="learningRate">LearningRate (required).</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public XGBoostSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int outputSampleStep = default(int), string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), double validationSplit = 0.2D, int? randomSeed = 300, ProblemType problemType = default(ProblemType), BinaryMetric binaryOptimizationMetric = default(BinaryMetric), RangeInt nEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), RangeInt minChildWeight = default(RangeInt), Range gamma = default(Range), Range subsample = default(Range), Range colsampleBytree = default(Range), Range regAlpha = default(Range), Range learningRate = default(Range), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
+        public XGBoostSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int outputSampleStep = default(int), string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), double validationSplit = 0.2D, int? randomSeed = 300, ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt nEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), RangeInt minChildWeight = default(RangeInt), Range gamma = default(Range), Range subsample = default(Range), Range colsampleBytree = default(Range), Range regAlpha = default(Range), Range learningRate = default(Range), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
         {
             this.InputWindowRangeConfigs = inputWindowRangeConfigs;
             this.OutputWindowConfigs = outputWindowConfigs;
@@ -185,6 +192,7 @@ namespace BlackFoxCSharp.Model
             }
             this.ProblemType = problemType;
             this.BinaryOptimizationMetric = binaryOptimizationMetric;
+            this.RegressionOptimizationMetric = regressionOptimizationMetric;
             this.EngineConfig = engineConfig;
         }
         
@@ -244,60 +252,61 @@ namespace BlackFoxCSharp.Model
 
 
 
+
         /// <summary>
         /// N Estimators
         /// </summary>
         /// <value>N Estimators</value>
-        [DataMember(Name="nEstimators", EmitDefaultValue=false)]
+        [DataMember(Name="nEstimators", EmitDefaultValue=true)]
         public RangeInt NEstimators { get; set; }
 
         /// <summary>
         /// MaxDepth
         /// </summary>
         /// <value>MaxDepth</value>
-        [DataMember(Name="maxDepth", EmitDefaultValue=false)]
+        [DataMember(Name="maxDepth", EmitDefaultValue=true)]
         public RangeInt MaxDepth { get; set; }
 
         /// <summary>
         /// MinChildWeight
         /// </summary>
         /// <value>MinChildWeight</value>
-        [DataMember(Name="minChildWeight", EmitDefaultValue=false)]
+        [DataMember(Name="minChildWeight", EmitDefaultValue=true)]
         public RangeInt MinChildWeight { get; set; }
 
         /// <summary>
         /// Gamma
         /// </summary>
         /// <value>Gamma</value>
-        [DataMember(Name="gamma", EmitDefaultValue=false)]
+        [DataMember(Name="gamma", EmitDefaultValue=true)]
         public Range Gamma { get; set; }
 
         /// <summary>
         /// Subsample
         /// </summary>
         /// <value>Subsample</value>
-        [DataMember(Name="subsample", EmitDefaultValue=false)]
+        [DataMember(Name="subsample", EmitDefaultValue=true)]
         public Range Subsample { get; set; }
 
         /// <summary>
         /// ColsampleBytree
         /// </summary>
         /// <value>ColsampleBytree</value>
-        [DataMember(Name="colsampleBytree", EmitDefaultValue=false)]
+        [DataMember(Name="colsampleBytree", EmitDefaultValue=true)]
         public Range ColsampleBytree { get; set; }
 
         /// <summary>
         /// RegAlpha
         /// </summary>
         /// <value>RegAlpha</value>
-        [DataMember(Name="regAlpha", EmitDefaultValue=false)]
+        [DataMember(Name="regAlpha", EmitDefaultValue=true)]
         public Range RegAlpha { get; set; }
 
         /// <summary>
         /// LearningRate
         /// </summary>
         /// <value>LearningRate</value>
-        [DataMember(Name="learningRate", EmitDefaultValue=false)]
+        [DataMember(Name="learningRate", EmitDefaultValue=true)]
         public Range LearningRate { get; set; }
 
         /// <summary>
@@ -326,6 +335,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("  RandomSeed: ").Append(RandomSeed).Append("\n");
             sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
             sb.Append("  BinaryOptimizationMetric: ").Append(BinaryOptimizationMetric).Append("\n");
+            sb.Append("  RegressionOptimizationMetric: ").Append(RegressionOptimizationMetric).Append("\n");
             sb.Append("  NEstimators: ").Append(NEstimators).Append("\n");
             sb.Append("  MaxDepth: ").Append(MaxDepth).Append("\n");
             sb.Append("  MinChildWeight: ").Append(MinChildWeight).Append("\n");
@@ -429,6 +439,11 @@ namespace BlackFoxCSharp.Model
                     this.BinaryOptimizationMetric.Equals(input.BinaryOptimizationMetric))
                 ) && 
                 (
+                    this.RegressionOptimizationMetric == input.RegressionOptimizationMetric ||
+                    (this.RegressionOptimizationMetric != null &&
+                    this.RegressionOptimizationMetric.Equals(input.RegressionOptimizationMetric))
+                ) && 
+                (
                     this.NEstimators == input.NEstimators ||
                     (this.NEstimators != null &&
                     this.NEstimators.Equals(input.NEstimators))
@@ -506,6 +521,8 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.ProblemType.GetHashCode();
                 if (this.BinaryOptimizationMetric != null)
                     hashCode = hashCode * 59 + this.BinaryOptimizationMetric.GetHashCode();
+                if (this.RegressionOptimizationMetric != null)
+                    hashCode = hashCode * 59 + this.RegressionOptimizationMetric.GetHashCode();
                 if (this.NEstimators != null)
                     hashCode = hashCode * 59 + this.NEstimators.GetHashCode();
                 if (this.MaxDepth != null)

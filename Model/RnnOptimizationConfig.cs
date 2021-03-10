@@ -223,14 +223,14 @@ namespace BlackFoxCSharp.Model
         /// Maximum number of epoch
         /// </summary>
         /// <value>Maximum number of epoch</value>
-        [DataMember(Name="maxEpoch", EmitDefaultValue=false)]
+        [DataMember(Name="maxEpoch", EmitDefaultValue=true)]
         public int MaxEpoch { get; set; }
 
         /// <summary>
         /// Portion of data set to use for validation, must be between 0 and 1.
         /// </summary>
         /// <value>Portion of data set to use for validation, must be between 0 and 1.</value>
-        [DataMember(Name="validationSplit", EmitDefaultValue=false)]
+        [DataMember(Name="validationSplit", EmitDefaultValue=true)]
         public double ValidationSplit { get; set; }
 
         /// <summary>

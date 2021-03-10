@@ -43,10 +43,8 @@ namespace BlackFoxCSharp.Model
             this.MaxFeatures = maxFeatures;
             this.FeatureSelection = featureSelection;
         }
-
         [JsonConstructorAttribute]
         protected RandomForestModel() { }
-
         /// <summary>
         /// Number of estimators
         /// </summary>

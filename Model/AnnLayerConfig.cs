@@ -39,19 +39,17 @@ namespace BlackFoxCSharp.Model
         /// </summary>
         /// <param name="activationFunction">Layer activation function.</param>
         /// <param name="ranges">ranges.</param>
-        public AnnLayerConfig(NeuralNetworkActivationFunction activationFunction = default(NeuralNetworkActivationFunction), List<Range> ranges = default(List<Range>))
+        public AnnLayerConfig(NeuralNetworkActivationFunction? activationFunction = default(NeuralNetworkActivationFunction?), List<Range> ranges = default(List<Range>))
         {
             this.Ranges = ranges;
             this.ActivationFunction = activationFunction;
             this.Ranges = ranges;
         }
-
         [JsonConstructorAttribute]
         protected AnnLayerConfig()
         {
 
         }
-
 
         /// <summary>
         /// Gets or Sets Ranges

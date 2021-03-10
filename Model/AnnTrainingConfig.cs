@@ -52,7 +52,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="crossValidation">Use cross validation.</param>
         /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required).</param>
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false.</param>
-        public AnnTrainingConfig(int batchSize = 512, string datasetId = default(string), List<Range> inputRanges = default(List<Range>), AnnLayerConfig outputLayer = default(AnnLayerConfig), List<AnnHiddenLayerConfig> hiddenLayerConfigs = default(List<AnnHiddenLayerConfig>), NeuralNetworkTrainingAlgorithm trainingAlgorithm = default(NeuralNetworkTrainingAlgorithm), int maxEpoch = default(int), bool crossValidation = default(bool), double validationSplit = default(double), int? randomSeed = default(int?))
+        public AnnTrainingConfig(int batchSize = 512, string datasetId = default(string), List<InputConfig> inputRanges = default(List<InputConfig>), AnnLayerConfig outputLayer = default(AnnLayerConfig), List<AnnHiddenLayerConfig> hiddenLayerConfigs = default(List<AnnHiddenLayerConfig>), NeuralNetworkTrainingAlgorithm? trainingAlgorithm = default(NeuralNetworkTrainingAlgorithm?), int maxEpoch = default(int), bool crossValidation = default(bool), double validationSplit = default(double), int? randomSeed = default(int?))
         {
             this.DatasetId = datasetId;
             this.InputRanges = inputRanges;
@@ -116,7 +116,7 @@ namespace BlackFoxCSharp.Model
         /// </summary>
         /// <value>Define min and max value for each input column(feature)</value>
         [DataMember(Name="inputRanges", EmitDefaultValue=true)]
-        public List<Range> InputRanges { get; set; }
+        public List<InputConfig> InputRanges { get; set; }
 
         /// <summary>
         /// Define min and max value for each output column(feature), and output activation function
@@ -137,7 +137,7 @@ namespace BlackFoxCSharp.Model
         /// Maximum number of epoch
         /// </summary>
         /// <value>Maximum number of epoch</value>
-        [DataMember(Name="maxEpoch", EmitDefaultValue=false)]
+        [DataMember(Name="maxEpoch", EmitDefaultValue=true)]
         public int MaxEpoch { get; set; }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace BlackFoxCSharp.Model
         /// Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false.
         /// </summary>
         /// <value>Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false.</value>
-        [DataMember(Name="validationSplit", EmitDefaultValue=false)]
+        [DataMember(Name="validationSplit", EmitDefaultValue=true)]
         public double ValidationSplit { get; set; }
 
         /// <summary>

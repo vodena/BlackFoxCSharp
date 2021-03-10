@@ -45,10 +45,8 @@ namespace BlackFoxCSharp.Model
             this.ErrorsOnValidationSet = errorsOnValidationSet;
             this.ErrorsOnTrainingSet = errorsOnTrainingSet;
         }
-
         [JsonConstructorAttribute]
         protected TrainedNetwork() { }
-
         /// <summary>
         /// Gets or Sets Id
         /// </summary>

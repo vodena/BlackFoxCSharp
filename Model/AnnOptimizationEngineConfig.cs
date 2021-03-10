@@ -50,7 +50,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="maxNumOfGenerations">Maximum number of generations in which to find optimal network (required) (default to 50).</param>
         /// <param name="populationSize">Number of individials in one generation (default to 50).</param>
         /// <param name="hyperVolume">Define hyper volume for early stopping.</param>
-        public AnnOptimizationEngineConfig(OptimizationAlgorithm optimizationAlgorithm = default(OptimizationAlgorithm), int crossoverDistributionIndex = 20, double crossoverProbability = 0.9D, int mutationDistributionIndex = 20, double mutationProbability = default(double), int procTimeoutSeconds = 10800, int maxNumOfGenerations = 50, int populationSize = 50, ConvergencyCriterion hyperVolume = default(ConvergencyCriterion))
+        public AnnOptimizationEngineConfig(OptimizationAlgorithm? optimizationAlgorithm = default(OptimizationAlgorithm?), int crossoverDistributionIndex = 20, double crossoverProbability = 0.9D, int mutationDistributionIndex = 20, double mutationProbability = default(double), int procTimeoutSeconds = 10800, int maxNumOfGenerations = 50, int populationSize = 50, ConvergencyCriterion hyperVolume = default(ConvergencyCriterion))
         {
             // to ensure "procTimeoutSeconds" is required (not null)
             if (procTimeoutSeconds == null)
@@ -143,14 +143,14 @@ namespace BlackFoxCSharp.Model
         /// Time in seconds in which individual network must finish training.  If not finished in time error will have maximum value.
         /// </summary>
         /// <value>Time in seconds in which individual network must finish training.  If not finished in time error will have maximum value.</value>
-        [DataMember(Name="procTimeoutSeconds", EmitDefaultValue=false)]
+        [DataMember(Name="procTimeoutSeconds", EmitDefaultValue=true)]
         public int ProcTimeoutSeconds { get; set; }
 
         /// <summary>
         /// Maximum number of generations in which to find optimal network
         /// </summary>
         /// <value>Maximum number of generations in which to find optimal network</value>
-        [DataMember(Name="maxNumOfGenerations", EmitDefaultValue=false)]
+        [DataMember(Name="maxNumOfGenerations", EmitDefaultValue=true)]
         public int MaxNumOfGenerations { get; set; }
 
         /// <summary>

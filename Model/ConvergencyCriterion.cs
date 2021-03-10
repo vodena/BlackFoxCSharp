@@ -33,7 +33,7 @@ namespace BlackFoxCSharp.Model
         /// </summary>
         /// <param name="numberOfLatestGenerations">numberOfLatestGenerations (default to 10).</param>
         /// <param name="percentageOfTolerance">percentageOfTolerance (default to 50).</param>
-        public ConvergencyCriterion(int numberOfLatestGenerations = 10, double percentageOfTolerance = 50)
+        public ConvergencyCriterion(int numberOfLatestGenerations = 10, double percentageOfTolerance = 5D)
         {
             // use default value if no "numberOfLatestGenerations" provided
             if (numberOfLatestGenerations == null)
@@ -54,17 +54,15 @@ namespace BlackFoxCSharp.Model
                 this.PercentageOfTolerance = percentageOfTolerance;
             }
         }
-
         public ConvergencyCriterion()
         {
             this.NumberOfLatestGenerations = 10;
             this.PercentageOfTolerance = 50;
         }
-
-            /// <summary>
-            /// Gets or Sets NumberOfLatestGenerations
-            /// </summary>
-            [DataMember(Name="numberOfLatestGenerations", EmitDefaultValue=false)]
+        /// <summary>
+        /// Gets or Sets NumberOfLatestGenerations
+        /// </summary>
+        [DataMember(Name="numberOfLatestGenerations", EmitDefaultValue=false)]
         public int NumberOfLatestGenerations { get; set; }
 
         /// <summary>

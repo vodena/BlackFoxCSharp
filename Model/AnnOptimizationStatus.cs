@@ -49,7 +49,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="estimatedDateTime">Optimization estimated finish date and time.</param>
         /// <param name="generationSeconds">How many seconds has this generation worked.</param>
         /// <param name="metricName">Metric name.</param>
-        public AnnOptimizationStatus(int epoch = default(int), Guid guid = default(Guid), OptimizationState state = default(OptimizationState), int generation = default(int), int totalGenerations = default(int), double validationSetError = default(double), double trainingSetError = default(double), AnnModel bestModel = default(AnnModel), DateTime startDateTime = default(DateTime), DateTime estimatedDateTime = default(DateTime), long generationSeconds = default(long), string metricName = default(string))
+        public AnnOptimizationStatus(int epoch = default(int), Guid guid = default(Guid), OptimizationState? state = default(OptimizationState?), int generation = default(int), int totalGenerations = default(int), double validationSetError = default(double), double trainingSetError = default(double), AnnModel bestModel = default(AnnModel), DateTime startDateTime = default(DateTime), DateTime estimatedDateTime = default(DateTime), long generationSeconds = default(long), string metricName = default(string))
         {
             this.BestModel = bestModel;
             this.MetricName = metricName;
@@ -66,10 +66,8 @@ namespace BlackFoxCSharp.Model
             this.GenerationSeconds = generationSeconds;
             this.MetricName = metricName;
         }
-
         [JsonConstructorAttribute]
         protected AnnOptimizationStatus() { }
-
         /// <summary>
         /// Number of epoch for current best model
         /// </summary>

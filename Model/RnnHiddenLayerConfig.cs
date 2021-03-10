@@ -48,7 +48,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="neuronCount">Number of neurons in layer.</param>
         /// <param name="activationFunction">Layer activation function.</param>
         /// <param name="dropout">Layer dropout.</param>
-        public RnnHiddenLayerConfig(NeuralNetworkActivationFunction recurrentActivationFunction = default(NeuralNetworkActivationFunction), double? recurrentDropout = default(double?), int neuronCount = default(int), NeuralNetworkActivationFunction activationFunction = default(NeuralNetworkActivationFunction), double dropout = default(double))
+        public RnnHiddenLayerConfig(NeuralNetworkActivationFunction? recurrentActivationFunction = default(NeuralNetworkActivationFunction?), double? recurrentDropout = default(double?), int neuronCount = default(int), NeuralNetworkActivationFunction? activationFunction = default(NeuralNetworkActivationFunction?), double dropout = default(double))
         {
             this.RecurrentDropout = recurrentDropout;
             this.RecurrentActivationFunction = recurrentActivationFunction;
@@ -57,10 +57,8 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
-
         [JsonConstructorAttribute]
         protected RnnHiddenLayerConfig() { }
-
 
         /// <summary>
         /// Recurrent dropout

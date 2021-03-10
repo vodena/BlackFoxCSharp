@@ -41,7 +41,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="aggregationType">Aggregation type for values.</param>
         /// <param name="window">Window width, number od values to take (default to 1).</param>
         /// <param name="shift">Number of values to skip before taking value.  The negative value skips the data to the left, the positive skips the data to the right. (default to 0).</param>
-        public InputWindowConfig(int step = 1, AggregationType aggregationType = default(AggregationType), int window = 1, int shift = 0)
+        public InputWindowConfig(int step = 1, AggregationType? aggregationType = default(AggregationType?), int window = 1, int shift = 0)
         {
             // use default value if no "step" provided
             if (step == null)
@@ -72,10 +72,8 @@ namespace BlackFoxCSharp.Model
                 this.Shift = shift;
             }
         }
-
         [JsonConstructorAttribute]
         protected InputWindowConfig() { }
-
         /// <summary>
         /// Number od values to skip before taking next value
         /// </summary>

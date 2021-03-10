@@ -34,7 +34,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>System.IO.Stream</returns>
-        System.IO.Stream Download (string id, RandomForestModelType modelType = default(RandomForestModelType));
+        System.IO.Stream Download (string id, RandomForestModelType? modelType = default(RandomForestModelType?));
 
         /// <summary>
         /// Download model file (*.h5)
@@ -46,7 +46,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, RandomForestModelType modelType = default(RandomForestModelType));
+        ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, RandomForestModelType? modelType = default(RandomForestModelType?));
         /// <summary>
         /// Check if h5 file exist
         /// </summary>
@@ -122,7 +122,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, RandomForestModelType modelType = default(RandomForestModelType));
+        System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, RandomForestModelType? modelType = default(RandomForestModelType?));
 
         /// <summary>
         /// Download model file (*.h5)
@@ -134,7 +134,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, RandomForestModelType modelType = default(RandomForestModelType));
+        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, RandomForestModelType? modelType = default(RandomForestModelType?));
         /// <summary>
         /// Check if h5 file exist
         /// </summary>
@@ -316,7 +316,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream Download (string id, RandomForestModelType modelType = default(RandomForestModelType))
+        public System.IO.Stream Download (string id, RandomForestModelType? modelType = default(RandomForestModelType?))
         {
              ApiResponse<System.IO.Stream> localVarResponse = DownloadWithHttpInfo(id, modelType);
              return localVarResponse.Data;
@@ -329,7 +329,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
-        public ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, RandomForestModelType modelType = default(RandomForestModelType))
+        public ApiResponse<System.IO.Stream> DownloadWithHttpInfo (string id, RandomForestModelType? modelType = default(RandomForestModelType?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -385,7 +385,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, RandomForestModelType modelType = default(RandomForestModelType))
+        public async System.Threading.Tasks.Task<System.IO.Stream> DownloadAsync (string id, RandomForestModelType? modelType = default(RandomForestModelType?))
         {
              ApiResponse<System.IO.Stream> localVarResponse = await DownloadAsyncWithHttpInfo(id, modelType);
              return localVarResponse.Data;
@@ -399,7 +399,7 @@ namespace BlackFoxCSharp.Api
         /// <param name="id">File hash(sha1)</param>
         /// <param name="modelType">binary, onnx (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, RandomForestModelType modelType = default(RandomForestModelType))
+        public async System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> DownloadAsyncWithHttpInfo (string id, RandomForestModelType? modelType = default(RandomForestModelType?))
         {
             // verify the required parameter 'id' is set
             if (id == null)

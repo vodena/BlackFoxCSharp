@@ -40,19 +40,17 @@ namespace BlackFoxCSharp.Model
         /// <param name="neuronCount">Number of neurons in layer.</param>
         /// <param name="activationFunction">Layer activation function.</param>
         /// <param name="dropout">Layer dropout.</param>
-        public AnnHiddenLayerConfig(int neuronCount = default(int), NeuralNetworkActivationFunction activationFunction = default(NeuralNetworkActivationFunction), double dropout = default(double))
+        public AnnHiddenLayerConfig(int neuronCount = default(int), NeuralNetworkActivationFunction? activationFunction = default(NeuralNetworkActivationFunction?), double dropout = default(double))
         {
             this.NeuronCount = neuronCount;
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
-
         [JsonConstructorAttribute]
         protected AnnHiddenLayerConfig()
         {
 
         }
-
         /// <summary>
         /// Number of neurons in layer
         /// </summary>

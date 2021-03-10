@@ -47,7 +47,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="trainingAlgorithm">Algorithm on which model was trained.</param>
         /// <param name="outputLayerActivationFunction">Activation function on output layer.</param>
         /// <param name="featureSelection">А bool value for each input indicating whether that input is significant.</param>
-        public RnnModel(List<RnnHiddenLayerConfig> hiddenLayers = default(List<RnnHiddenLayerConfig>), NeuralNetworkTrainingAlgorithm trainingAlgorithm = default(NeuralNetworkTrainingAlgorithm), NeuralNetworkActivationFunction outputLayerActivationFunction = default(NeuralNetworkActivationFunction), List<bool> featureSelection = default(List<bool>))
+        public RnnModel(List<RnnHiddenLayerConfig> hiddenLayers = default(List<RnnHiddenLayerConfig>), NeuralNetworkTrainingAlgorithm? trainingAlgorithm = default(NeuralNetworkTrainingAlgorithm?), NeuralNetworkActivationFunction? outputLayerActivationFunction = default(NeuralNetworkActivationFunction?), List<bool> featureSelection = default(List<bool>))
         {
             this.HiddenLayers = hiddenLayers;
             this.FeatureSelection = featureSelection;
@@ -56,10 +56,8 @@ namespace BlackFoxCSharp.Model
             this.OutputLayerActivationFunction = outputLayerActivationFunction;
             this.FeatureSelection = featureSelection;
         }
-
         [JsonConstructorAttribute]
         protected RnnModel() { }
-
         /// <summary>
         /// List of hidden layers
         /// </summary>

@@ -135,14 +135,14 @@ namespace BlackFoxCSharp.Model
         /// Time in seconds in which individual network must finish training.  If not finished in time error will have maximum value.
         /// </summary>
         /// <value>Time in seconds in which individual network must finish training.  If not finished in time error will have maximum value.</value>
-        [DataMember(Name="procTimeoutSeconds", EmitDefaultValue=false)]
+        [DataMember(Name="procTimeoutSeconds", EmitDefaultValue=true)]
         public int ProcTimeoutSeconds { get; set; }
 
         /// <summary>
         /// Maximum number of generations in which to find optimal network
         /// </summary>
         /// <value>Maximum number of generations in which to find optimal network</value>
-        [DataMember(Name="maxNumOfGenerations", EmitDefaultValue=false)]
+        [DataMember(Name="maxNumOfGenerations", EmitDefaultValue=true)]
         public int MaxNumOfGenerations { get; set; }
 
         /// <summary>

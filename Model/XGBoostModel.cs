@@ -53,10 +53,8 @@ namespace BlackFoxCSharp.Model
             this.LearningRate = learningRate;
             this.FeatureSelection = featureSelection;
         }
-
         [JsonConstructorAttribute]
         protected XGBoostModel() { }
-
         /// <summary>
         /// NEstimators
         /// </summary>
