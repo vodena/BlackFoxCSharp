@@ -60,7 +60,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="datasetId">datasetId.</param>
         /// <param name="validationSetId">validationSetId.</param>
         /// <param name="inputs">inputs.</param>
-        /// <param name="outputRanges">outputRanges.</param>
+        /// <param name="outputs">outputs.</param>
         /// <param name="validationSplit">validationSplit (default to 0.2D).</param>
         /// <param name="randomSeed">randomSeed (default to 300).</param>
         /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
@@ -75,14 +75,14 @@ namespace BlackFoxCSharp.Model
         /// <param name="regAlpha">RegAlpha (required).</param>
         /// <param name="learningRate">LearningRate (required).</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public XGBoostSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int outputSampleStep = default(int), string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), double validationSplit = 0.2D, int? randomSeed = 300, ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt nEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), RangeInt minChildWeight = default(RangeInt), Range gamma = default(Range), Range subsample = default(Range), Range colsampleBytree = default(Range), Range regAlpha = default(Range), Range learningRate = default(Range), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
+        public XGBoostSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int outputSampleStep = default(int), string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), double validationSplit = 0.2D, int? randomSeed = 300, ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt nEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), RangeInt minChildWeight = default(RangeInt), Range gamma = default(Range), Range subsample = default(Range), Range colsampleBytree = default(Range), Range regAlpha = default(Range), Range learningRate = default(Range), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
         {
             this.InputWindowRangeConfigs = inputWindowRangeConfigs;
             this.OutputWindowConfigs = outputWindowConfigs;
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             this.RandomSeed = randomSeed;
             // to ensure "nEstimators" is required (not null)
             if (nEstimators == null)
@@ -171,7 +171,7 @@ namespace BlackFoxCSharp.Model
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             // use default value if no "validationSplit" provided
             if (validationSplit == null)
             {
@@ -233,10 +233,10 @@ namespace BlackFoxCSharp.Model
         public List<InputConfig> Inputs { get; set; }
 
         /// <summary>
-        /// Gets or Sets OutputRanges
+        /// Gets or Sets Outputs
         /// </summary>
-        [DataMember(Name="outputRanges", EmitDefaultValue=true)]
-        public List<Range> OutputRanges { get; set; }
+        [DataMember(Name="outputs", EmitDefaultValue=true)]
+        public List<OutputConfig> Outputs { get; set; }
 
         /// <summary>
         /// Gets or Sets ValidationSplit
@@ -330,7 +330,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  ValidationSetId: ").Append(ValidationSetId).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
-            sb.Append("  OutputRanges: ").Append(OutputRanges).Append("\n");
+            sb.Append("  Outputs: ").Append(Outputs).Append("\n");
             sb.Append("  ValidationSplit: ").Append(ValidationSplit).Append("\n");
             sb.Append("  RandomSeed: ").Append(RandomSeed).Append("\n");
             sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
@@ -413,10 +413,10 @@ namespace BlackFoxCSharp.Model
                     this.Inputs.SequenceEqual(input.Inputs)
                 ) && 
                 (
-                    this.OutputRanges == input.OutputRanges ||
-                    this.OutputRanges != null &&
-                    input.OutputRanges != null &&
-                    this.OutputRanges.SequenceEqual(input.OutputRanges)
+                    this.Outputs == input.Outputs ||
+                    this.Outputs != null &&
+                    input.Outputs != null &&
+                    this.Outputs.SequenceEqual(input.Outputs)
                 ) && 
                 (
                     this.ValidationSplit == input.ValidationSplit ||
@@ -511,8 +511,8 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.ValidationSetId.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
-                if (this.OutputRanges != null)
-                    hashCode = hashCode * 59 + this.OutputRanges.GetHashCode();
+                if (this.Outputs != null)
+                    hashCode = hashCode * 59 + this.Outputs.GetHashCode();
                 if (this.ValidationSplit != null)
                     hashCode = hashCode * 59 + this.ValidationSplit.GetHashCode();
                 if (this.RandomSeed != null)

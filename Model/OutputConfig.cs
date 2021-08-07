@@ -23,40 +23,43 @@ using OpenAPIDateConverter = BlackFoxCSharp.Client.OpenAPIDateConverter;
 namespace BlackFoxCSharp.Model
 {
     /// <summary>
-    /// AnnLayerConfig
+    /// Configuration for output column (target)
     /// </summary>
     [DataContract]
-    public partial class AnnLayerConfig :  IEquatable<AnnLayerConfig>
+    public partial class OutputConfig :  IEquatable<OutputConfig>
     {
         /// <summary>
-        /// Layer activation function
+        /// Initializes a new instance of the <see cref="OutputConfig" /> class.
         /// </summary>
-        /// <value>Layer activation function</value>
-        [DataMember(Name="activationFunction", EmitDefaultValue=false)]
-        public NeuralNetworkActivationFunction? ActivationFunction { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AnnLayerConfig" /> class.
-        /// </summary>
-        /// <param name="activationFunction">Layer activation function.</param>
-        /// <param name="outputs">outputs.</param>
-        public AnnLayerConfig(NeuralNetworkActivationFunction? activationFunction = default(NeuralNetworkActivationFunction?), List<OutputConfig> outputs = default(List<OutputConfig>))
+        /// <param name="range">Min and max value for output.</param>
+        /// <param name="encoding">Whether to encode output(target) (default to false).</param>
+        public OutputConfig(Range range = default(Range), bool encoding = false)
         {
-            this.Outputs = outputs;
-            this.ActivationFunction = activationFunction;
-            this.Outputs = outputs;
+            this.Range = range;
+            // use default value if no "encoding" provided
+            if (encoding == null)
+            {
+                this.Encoding = false;
+            }
+            else
+            {
+                this.Encoding = encoding;
+            }
         }
         
-        [JsonConstructorAttribute]
-        protected AnnLayerConfig()
-        {
-
-        }
+        /// <summary>
+        /// Min and max value for output
+        /// </summary>
+        /// <value>Min and max value for output</value>
+        [DataMember(Name="range", EmitDefaultValue=true)]
+        public Range Range { get; set; }
 
         /// <summary>
-        /// Gets or Sets Outputs
+        /// Whether to encode output(target)
         /// </summary>
-        [DataMember(Name="outputs", EmitDefaultValue=true)]
-        public List<OutputConfig> Outputs { get; set; }
+        /// <value>Whether to encode output(target)</value>
+        [DataMember(Name="encoding", EmitDefaultValue=false)]
+        public bool Encoding { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,9 +68,9 @@ namespace BlackFoxCSharp.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class AnnLayerConfig {\n");
-            sb.Append("  ActivationFunction: ").Append(ActivationFunction).Append("\n");
-            sb.Append("  Outputs: ").Append(Outputs).Append("\n");
+            sb.Append("class OutputConfig {\n");
+            sb.Append("  Range: ").Append(Range).Append("\n");
+            sb.Append("  Encoding: ").Append(Encoding).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -88,30 +91,29 @@ namespace BlackFoxCSharp.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AnnLayerConfig);
+            return this.Equals(input as OutputConfig);
         }
 
         /// <summary>
-        /// Returns true if AnnLayerConfig instances are equal
+        /// Returns true if OutputConfig instances are equal
         /// </summary>
-        /// <param name="input">Instance of AnnLayerConfig to be compared</param>
+        /// <param name="input">Instance of OutputConfig to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AnnLayerConfig input)
+        public bool Equals(OutputConfig input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.ActivationFunction == input.ActivationFunction ||
-                    (this.ActivationFunction != null &&
-                    this.ActivationFunction.Equals(input.ActivationFunction))
+                    this.Range == input.Range ||
+                    (this.Range != null &&
+                    this.Range.Equals(input.Range))
                 ) && 
                 (
-                    this.Outputs == input.Outputs ||
-                    this.Outputs != null &&
-                    input.Outputs != null &&
-                    this.Outputs.SequenceEqual(input.Outputs)
+                    this.Encoding == input.Encoding ||
+                    (this.Encoding != null &&
+                    this.Encoding.Equals(input.Encoding))
                 );
         }
 
@@ -124,10 +126,10 @@ namespace BlackFoxCSharp.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ActivationFunction != null)
-                    hashCode = hashCode * 59 + this.ActivationFunction.GetHashCode();
-                if (this.Outputs != null)
-                    hashCode = hashCode * 59 + this.Outputs.GetHashCode();
+                if (this.Range != null)
+                    hashCode = hashCode * 59 + this.Range.GetHashCode();
+                if (this.Encoding != null)
+                    hashCode = hashCode * 59 + this.Encoding.GetHashCode();
                 return hashCode;
             }
         }

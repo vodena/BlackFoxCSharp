@@ -59,7 +59,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="datasetId">Data set id on which to train network.</param>
         /// <param name="validationSetId">Data set id on which to validate network.</param>
         /// <param name="inputs">Define min and max value for each output column(feature), and is input optional.</param>
-        /// <param name="outputRanges">Define min and max value for each output column(feature).</param>
+        /// <param name="outputs">Define min and max value for each output column(feature).</param>
         /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
         /// <param name="binaryOptimizationMetric">USED ONLY IN BINARY CLASSIFICATION.  Default metric: ROC_AUC (Area under ROC curve).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
         /// <param name="regressionOptimizationMetric">USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
@@ -72,13 +72,13 @@ namespace BlackFoxCSharp.Model
         /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required) (default to 0.2D).</param>
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false (default to 300).</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public AnnOptimizationConfig(Range dropout = default(Range), int batchSize = 512, string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, bool crossValidation = false, double validationSplit = 0.2D, int? randomSeed = 300, AnnOptimizationEngineConfig engineConfig = default(AnnOptimizationEngineConfig))
+        public AnnOptimizationConfig(Range dropout = default(Range), int batchSize = 512, string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, bool crossValidation = false, double validationSplit = 0.2D, int? randomSeed = 300, AnnOptimizationEngineConfig engineConfig = default(AnnOptimizationEngineConfig))
         {
             this.Dropout = dropout;
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
             this.NeuronsPerLayer = neuronsPerLayer;
             this.TrainingAlgorithms = trainingAlgorithms;
@@ -118,7 +118,7 @@ namespace BlackFoxCSharp.Model
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             this.ProblemType = problemType;
             this.BinaryOptimizationMetric = binaryOptimizationMetric;
             this.RegressionOptimizationMetric = regressionOptimizationMetric;
@@ -184,8 +184,8 @@ namespace BlackFoxCSharp.Model
         /// Define min and max value for each output column(feature)
         /// </summary>
         /// <value>Define min and max value for each output column(feature)</value>
-        [DataMember(Name="outputRanges", EmitDefaultValue=true)]
-        public List<Range> OutputRanges { get; set; }
+        [DataMember(Name="outputs", EmitDefaultValue=true)]
+        public List<OutputConfig> Outputs { get; set; }
 
 
 
@@ -266,7 +266,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  ValidationSetId: ").Append(ValidationSetId).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
-            sb.Append("  OutputRanges: ").Append(OutputRanges).Append("\n");
+            sb.Append("  Outputs: ").Append(Outputs).Append("\n");
             sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
             sb.Append("  BinaryOptimizationMetric: ").Append(BinaryOptimizationMetric).Append("\n");
             sb.Append("  RegressionOptimizationMetric: ").Append(RegressionOptimizationMetric).Append("\n");
@@ -340,10 +340,10 @@ namespace BlackFoxCSharp.Model
                     this.Inputs.SequenceEqual(input.Inputs)
                 ) && 
                 (
-                    this.OutputRanges == input.OutputRanges ||
-                    this.OutputRanges != null &&
-                    input.OutputRanges != null &&
-                    this.OutputRanges.SequenceEqual(input.OutputRanges)
+                    this.Outputs == input.Outputs ||
+                    this.Outputs != null &&
+                    input.Outputs != null &&
+                    this.Outputs.SequenceEqual(input.Outputs)
                 ) && 
                 (
                     this.ProblemType == input.ProblemType ||
@@ -428,8 +428,8 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.ValidationSetId.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
-                if (this.OutputRanges != null)
-                    hashCode = hashCode * 59 + this.OutputRanges.GetHashCode();
+                if (this.Outputs != null)
+                    hashCode = hashCode * 59 + this.Outputs.GetHashCode();
                 if (this.ProblemType != null)
                     hashCode = hashCode * 59 + this.ProblemType.GetHashCode();
                 if (this.BinaryOptimizationMetric != null)

@@ -32,7 +32,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="ConvergencyCriterion" /> class.
         /// </summary>
         /// <param name="numberOfLatestGenerations">numberOfLatestGenerations (default to 10).</param>
-        /// <param name="percentageOfTolerance">percentageOfTolerance (default to 50).</param>
+        /// <param name="percentageOfTolerance">percentageOfTolerance (default to 5D).</param>
         public ConvergencyCriterion(int numberOfLatestGenerations = 10, double percentageOfTolerance = 5D)
         {
             // use default value if no "numberOfLatestGenerations" provided

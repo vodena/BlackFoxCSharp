@@ -64,7 +64,6 @@ namespace BlackFoxCSharp.Model
             this.StartDateTime = startDateTime;
             this.EstimatedDateTime = estimatedDateTime;
             this.GenerationSeconds = generationSeconds;
-            this.MetricName = metricName;
         }
         [JsonConstructorAttribute]
         protected AnnOptimizationStatus() { }

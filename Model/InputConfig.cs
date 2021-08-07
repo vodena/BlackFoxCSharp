@@ -29,20 +29,13 @@ namespace BlackFoxCSharp.Model
     public partial class InputConfig :  IEquatable<InputConfig>
     {
         /// <summary>
-        /// Set encoding method for each input variable
-        /// </summary>
-        /// <value>Set encoding method for each input variable</value>
-        [DataMember(Name="encoding", EmitDefaultValue=false)]
-        public Encoding? Encoding { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="InputConfig" /> class.
         /// </summary>
         /// <param name="range">Min and max value for input.</param>
         /// <param name="encoding">Set encoding method for each input variable.</param>
         /// <param name="isOptional">Is input(feature) optional, used for feature selection (default to false).</param>
-        public InputConfig(Range range = default(Range), Encoding? encoding = default(Encoding?), bool isOptional = false)
+        public InputConfig(Range range = default(Range), List<Encoding> encoding = default(List<Encoding>), bool isOptional = false)
         {
-            this.Range = range;
             this.Range = range;
             this.Encoding = encoding;
             // use default value if no "isOptional" provided
@@ -64,6 +57,12 @@ namespace BlackFoxCSharp.Model
         [DataMember(Name="range", EmitDefaultValue=true)]
         public Range Range { get; set; }
 
+        /// <summary>
+        /// Set encoding method for each input variable
+        /// </summary>
+        /// <value>Set encoding method for each input variable</value>
+        [DataMember(Name="encoding", EmitDefaultValue=true)]
+        public List<Encoding> Encoding { get; set; }
 
         /// <summary>
         /// Is input(feature) optional, used for feature selection
@@ -124,8 +123,9 @@ namespace BlackFoxCSharp.Model
                 ) && 
                 (
                     this.Encoding == input.Encoding ||
-                    (this.Encoding != null &&
-                    this.Encoding.Equals(input.Encoding))
+                    this.Encoding != null &&
+                    input.Encoding != null &&
+                    this.Encoding.SequenceEqual(input.Encoding)
                 ) && 
                 (
                     this.IsOptional == input.IsOptional ||

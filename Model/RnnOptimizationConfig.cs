@@ -43,7 +43,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="datasetId">Data set id on which to train network.</param>
         /// <param name="validationSetId">Data set id on which to validate network.</param>
         /// <param name="inputs">Define min and max value for each output column(feature), and is input optional.</param>
-        /// <param name="outputRanges">Define min and max value for each output column(feature).</param>
+        /// <param name="outputs">Define min and max value for each output column(feature).</param>
         /// <param name="hiddenLayerCountRange">Range in which to search number of hidden layers.</param>
         /// <param name="neuronsPerLayer">Range in which to search number of neurons per layer.</param>
         /// <param name="trainingAlgorithms">List of training algorithms to use.</param>
@@ -54,14 +54,14 @@ namespace BlackFoxCSharp.Model
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled (default to 300).</param>
         /// <param name="recurrentInputCountRange">Range in which to search number of recurrent inputs.</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public RnnOptimizationConfig(Range dropout = default(Range), int batchSize = 512, Range recurrentDropout = default(Range), int recurrentOutputCount = 1, string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), List<NeuralNetworkActivationFunction> recurrentActivationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, double validationSplit = 0.2D, int? randomSeed = 300, RangeInt recurrentInputCountRange = default(RangeInt), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
+        public RnnOptimizationConfig(Range dropout = default(Range), int batchSize = 512, Range recurrentDropout = default(Range), int recurrentOutputCount = 1, string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), List<NeuralNetworkActivationFunction> recurrentActivationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, double validationSplit = 0.2D, int? randomSeed = 300, RangeInt recurrentInputCountRange = default(RangeInt), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
         {
             this.Dropout = dropout;
             this.RecurrentDropout = recurrentDropout;
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
             this.NeuronsPerLayer = neuronsPerLayer;
             this.TrainingAlgorithms = trainingAlgorithms;
@@ -113,7 +113,7 @@ namespace BlackFoxCSharp.Model
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
             this.NeuronsPerLayer = neuronsPerLayer;
             this.TrainingAlgorithms = trainingAlgorithms;
@@ -181,8 +181,8 @@ namespace BlackFoxCSharp.Model
         /// Define min and max value for each output column(feature)
         /// </summary>
         /// <value>Define min and max value for each output column(feature)</value>
-        [DataMember(Name="outputRanges", EmitDefaultValue=true)]
-        public List<Range> OutputRanges { get; set; }
+        [DataMember(Name="outputs", EmitDefaultValue=true)]
+        public List<OutputConfig> Outputs { get; set; }
 
         /// <summary>
         /// Range in which to search number of hidden layers
@@ -269,7 +269,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  ValidationSetId: ").Append(ValidationSetId).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
-            sb.Append("  OutputRanges: ").Append(OutputRanges).Append("\n");
+            sb.Append("  Outputs: ").Append(Outputs).Append("\n");
             sb.Append("  HiddenLayerCountRange: ").Append(HiddenLayerCountRange).Append("\n");
             sb.Append("  NeuronsPerLayer: ").Append(NeuronsPerLayer).Append("\n");
             sb.Append("  TrainingAlgorithms: ").Append(TrainingAlgorithms).Append("\n");
@@ -351,10 +351,10 @@ namespace BlackFoxCSharp.Model
                     this.Inputs.SequenceEqual(input.Inputs)
                 ) && 
                 (
-                    this.OutputRanges == input.OutputRanges ||
-                    this.OutputRanges != null &&
-                    input.OutputRanges != null &&
-                    this.OutputRanges.SequenceEqual(input.OutputRanges)
+                    this.Outputs == input.Outputs ||
+                    this.Outputs != null &&
+                    input.Outputs != null &&
+                    this.Outputs.SequenceEqual(input.Outputs)
                 ) && 
                 (
                     this.HiddenLayerCountRange == input.HiddenLayerCountRange ||
@@ -434,8 +434,8 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.ValidationSetId.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
-                if (this.OutputRanges != null)
-                    hashCode = hashCode * 59 + this.OutputRanges.GetHashCode();
+                if (this.Outputs != null)
+                    hashCode = hashCode * 59 + this.Outputs.GetHashCode();
                 if (this.HiddenLayerCountRange != null)
                     hashCode = hashCode * 59 + this.HiddenLayerCountRange.GetHashCode();
                 if (this.NeuronsPerLayer != null)

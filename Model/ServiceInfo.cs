@@ -31,14 +31,14 @@ namespace BlackFoxCSharp.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceInfo" /> class.
         /// </summary>
-        /// <param name="version">version (default to &quot;3.3.0&quot;).</param>
-        public ServiceInfo(string version = "3.3.0")
+        /// <param name="version">version (default to &quot;5.0.0&quot;).</param>
+        public ServiceInfo(string version = "5.0.0")
         {
             this.Version = version;
             // use default value if no "version" provided
             if (version == null)
             {
-                this.Version = "3.3.0";
+                this.Version = "5.0.0";
             }
             else
             {
@@ -48,7 +48,7 @@ namespace BlackFoxCSharp.Model
         [JsonConstructorAttribute]
         protected ServiceInfo()
         {
-            this.Version = "3.3.0";
+            this.Version = "5.0.0";
         }
         /// <summary>
         /// Gets or Sets Version

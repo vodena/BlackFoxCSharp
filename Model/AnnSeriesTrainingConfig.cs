@@ -102,7 +102,6 @@ namespace BlackFoxCSharp.Model
             this.HiddenLayerConfigs = hiddenLayerConfigs;
             this.TrainingAlgorithm = trainingAlgorithm;
             this.CrossValidation = crossValidation;
-            this.RandomSeed = randomSeed;
         }
         
         /// <summary>

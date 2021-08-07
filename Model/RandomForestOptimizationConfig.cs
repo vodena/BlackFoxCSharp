@@ -57,7 +57,7 @@ namespace BlackFoxCSharp.Model
         /// <param name="datasetId">Data set id on which to train model.</param>
         /// <param name="validationSetId">Data set id on which to validate model.</param>
         /// <param name="inputs">Define min and max value for each output column(feature), and is input optional.</param>
-        /// <param name="outputRanges">Define min and max value for each output column(feature).</param>
+        /// <param name="outputs">Define min and max value for each output column(feature).</param>
         /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
         /// <param name="binaryOptimizationMetric">USED ONLY IN BINARY CLASSIFICATION.  Default metric: ROC_AUC (Area under ROC curve).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
         /// <param name="regressionOptimizationMetric">USED ONLY IN REGRESSION.  Default metric: MAE (MEAN ABSOLUTE ERROR).   Depending on the task at hand, it is recommended to choose an appropriate metric to optimize..</param>
@@ -67,12 +67,12 @@ namespace BlackFoxCSharp.Model
         /// <param name="numberOfEstimators">Number of estimators (required).</param>
         /// <param name="maxDepth">Max depth of tree (required).</param>
         /// <param name="maxFeatures">Max features (required).</param>
-        public RandomForestOptimizationConfig(string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<Range> outputRanges = default(List<Range>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), double validationSplit = 0.2D, int? randomSeed = 300, OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig), RangeInt numberOfEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), Range maxFeatures = default(Range))
+        public RandomForestOptimizationConfig(string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), double validationSplit = 0.2D, int? randomSeed = 300, OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig), RangeInt numberOfEstimators = default(RangeInt), RangeInt maxDepth = default(RangeInt), Range maxFeatures = default(Range))
         {
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             // to ensure "validationSplit" is required (not null)
             if (validationSplit == null)
             {
@@ -118,7 +118,7 @@ namespace BlackFoxCSharp.Model
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
             this.Inputs = inputs;
-            this.OutputRanges = outputRanges;
+            this.Outputs = outputs;
             this.ProblemType = problemType;
             this.BinaryOptimizationMetric = binaryOptimizationMetric;
             this.RegressionOptimizationMetric = regressionOptimizationMetric;
@@ -159,8 +159,8 @@ namespace BlackFoxCSharp.Model
         /// Define min and max value for each output column(feature)
         /// </summary>
         /// <value>Define min and max value for each output column(feature)</value>
-        [DataMember(Name="outputRanges", EmitDefaultValue=true)]
-        public List<Range> OutputRanges { get; set; }
+        [DataMember(Name="outputs", EmitDefaultValue=true)]
+        public List<OutputConfig> Outputs { get; set; }
 
 
 
@@ -218,7 +218,7 @@ namespace BlackFoxCSharp.Model
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  ValidationSetId: ").Append(ValidationSetId).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
-            sb.Append("  OutputRanges: ").Append(OutputRanges).Append("\n");
+            sb.Append("  Outputs: ").Append(Outputs).Append("\n");
             sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
             sb.Append("  BinaryOptimizationMetric: ").Append(BinaryOptimizationMetric).Append("\n");
             sb.Append("  RegressionOptimizationMetric: ").Append(RegressionOptimizationMetric).Append("\n");
@@ -279,10 +279,10 @@ namespace BlackFoxCSharp.Model
                     this.Inputs.SequenceEqual(input.Inputs)
                 ) && 
                 (
-                    this.OutputRanges == input.OutputRanges ||
-                    this.OutputRanges != null &&
-                    input.OutputRanges != null &&
-                    this.OutputRanges.SequenceEqual(input.OutputRanges)
+                    this.Outputs == input.Outputs ||
+                    this.Outputs != null &&
+                    input.Outputs != null &&
+                    this.Outputs.SequenceEqual(input.Outputs)
                 ) && 
                 (
                     this.ProblemType == input.ProblemType ||
@@ -346,8 +346,8 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.ValidationSetId.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
-                if (this.OutputRanges != null)
-                    hashCode = hashCode * 59 + this.OutputRanges.GetHashCode();
+                if (this.Outputs != null)
+                    hashCode = hashCode * 59 + this.Outputs.GetHashCode();
                 if (this.ProblemType != null)
                     hashCode = hashCode * 59 + this.ProblemType.GetHashCode();
                 if (this.BinaryOptimizationMetric != null)
