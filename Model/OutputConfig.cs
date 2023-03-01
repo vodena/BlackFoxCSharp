@@ -36,6 +36,7 @@ namespace BlackFoxCSharp.Model
         public OutputConfig(Range range = default(Range), bool encoding = false)
         {
             this.Range = range;
+            this.Range = range;
             // use default value if no "encoding" provided
             if (encoding == null)
             {

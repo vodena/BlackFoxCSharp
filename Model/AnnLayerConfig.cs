@@ -46,11 +46,6 @@ namespace BlackFoxCSharp.Model
             this.Outputs = outputs;
         }
         
-        [JsonConstructorAttribute]
-        protected AnnLayerConfig()
-        {
-
-        }
 
         /// <summary>
         /// Gets or Sets Outputs

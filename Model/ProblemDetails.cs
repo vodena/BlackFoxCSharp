@@ -43,6 +43,11 @@ namespace BlackFoxCSharp.Model
             this.Status = status;
             this.Detail = detail;
             this.Instance = instance;
+            this.Type = type;
+            this.Title = title;
+            this.Status = status;
+            this.Detail = detail;
+            this.Instance = instance;
         }
         
         /// <summary>

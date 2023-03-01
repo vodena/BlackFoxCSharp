@@ -46,8 +46,7 @@ namespace BlackFoxCSharp.Model
             this.Step = step;
             this.AggregationTypes = aggregationTypes;
         }
-        [JsonConstructorAttribute]
-        protected InputWindowRangeConfig() { }
+        
         /// <summary>
         /// Gets or Sets Window
         /// </summary>

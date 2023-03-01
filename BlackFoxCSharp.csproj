@@ -7,10 +7,16 @@
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/vodena/BlackFoxCSharp</RepositoryUrl>
     <PackageTags>blackfox</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>5.0.0</Version>
+    <Version>6.1.0</Version>
+    <Product>BlackFoxCSharp</Product>
+    <PackageId>BlackFoxCSharp</PackageId>
+    <PackageReleaseNotes>6.1.0 version</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <Company>Vodena</Company>
+    <UserSecretsId>f65dcecd-e0a5-4d54-8e52-d09c947329fd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

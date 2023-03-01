@@ -67,8 +67,7 @@ namespace BlackFoxCSharp.Model
             this.GenerationSeconds = generationSeconds;
             this.MetricName = metricName;
         }
-        [JsonConstructorAttribute]
-        protected RandomForestOptimizationStatus() { }
+        
         /// <summary>
         /// А bool value for each input indicating whether that input is significant
         /// </summary>

@@ -38,8 +38,7 @@ namespace BlackFoxCSharp.Model
             this.Min = min;
             this.Max = max;
         }
-        [JsonConstructorAttribute]
-        protected Range() { }
+        
         /// <summary>
         /// Gets or Sets Min
         /// </summary>

@@ -46,8 +46,7 @@ namespace BlackFoxCSharp.Model
             this.InputRanges = inputRanges;
             this.OutputRanges = outputRanges;
         }
-        [JsonConstructorAttribute]
-        protected PredictionFileConfig() { }
+        
         /// <summary>
         /// Gets or Sets DataSetId
         /// </summary>

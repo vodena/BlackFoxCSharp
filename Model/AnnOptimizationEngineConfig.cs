@@ -111,6 +111,7 @@ namespace BlackFoxCSharp.Model
             {
                 this.PopulationSize = populationSize;
             }
+            this.HyperVolume = hyperVolume;
         }
         
 

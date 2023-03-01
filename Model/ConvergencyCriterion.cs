@@ -54,11 +54,7 @@ namespace BlackFoxCSharp.Model
                 this.PercentageOfTolerance = percentageOfTolerance;
             }
         }
-        public ConvergencyCriterion()
-        {
-            this.NumberOfLatestGenerations = 10;
-            this.PercentageOfTolerance = 50;
-        }
+        
         /// <summary>
         /// Gets or Sets NumberOfLatestGenerations
         /// </summary>

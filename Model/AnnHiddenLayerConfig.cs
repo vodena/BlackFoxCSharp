@@ -46,11 +46,7 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
-        [JsonConstructorAttribute]
-        protected AnnHiddenLayerConfig()
-        {
-
-        }
+        
         /// <summary>
         /// Number of neurons in layer
         /// </summary>

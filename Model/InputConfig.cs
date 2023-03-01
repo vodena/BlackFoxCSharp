@@ -38,6 +38,8 @@ namespace BlackFoxCSharp.Model
         {
             this.Range = range;
             this.Encoding = encoding;
+            this.Range = range;
+            this.Encoding = encoding;
             // use default value if no "isOptional" provided
             if (isOptional == null)
             {
@@ -48,8 +50,7 @@ namespace BlackFoxCSharp.Model
                 this.IsOptional = isOptional;
             }
         }
-        [JsonConstructorAttribute]
-        protected InputConfig() { }
+        
         /// <summary>
         /// Min and max value for input
         /// </summary>

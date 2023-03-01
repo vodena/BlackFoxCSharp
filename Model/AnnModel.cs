@@ -54,12 +54,9 @@ namespace BlackFoxCSharp.Model
             this.HiddenLayers = hiddenLayers;
             this.TrainingAlgorithm = trainingAlgorithm;
             this.OutputLayerActivationFunction = outputLayerActivationFunction;
+            this.FeatureSelection = featureSelection;
         }
-        [JsonConstructorAttribute]
-        protected AnnModel()
-        {
-
-        }
+        
         /// <summary>
         /// List of hidden layers
         /// </summary>

@@ -51,9 +51,9 @@ namespace BlackFoxCSharp.Model
             this.ColsampleBytree = colsampleBytree;
             this.RegAlpha = regAlpha;
             this.LearningRate = learningRate;
+            this.FeatureSelection = featureSelection;
         }
-        [JsonConstructorAttribute]
-        protected XGBoostModel() { }
+        
         /// <summary>
         /// NEstimators
         /// </summary>

@@ -61,6 +61,10 @@ namespace BlackFoxCSharp.Model
         /// <param name="batchSize">batchSize (default to 512).</param>
         /// <param name="datasetId">Data set id on which to train network.</param>
         /// <param name="validationSetId">Data set id on which to validate network.</param>
+        /// <param name="customMetricId">Custom metric id on which to evaluate population.</param>
+        /// <param name="customMetric">Custom metric user supplied path or function.</param>
+        /// <param name="binaryClassificationThreshold">Threshold for binary classification.</param>
+        /// <param name="customMetricParameters">Parameters for custom metric.</param>
         /// <param name="inputs">Define min and max value for each output column(feature), and is input optional.</param>
         /// <param name="outputs">Define min and max value for each output column(feature).</param>
         /// <param name="problemType">Defines the problem type. In case of binary classification,  there must be only one output column..</param>
@@ -75,13 +79,19 @@ namespace BlackFoxCSharp.Model
         /// <param name="validationSplit">Portion of data set to use for validation, must be between 0 and 1.   Used only when CrossValidation &#x3D; false. (required) (default to 0.2D).</param>
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled  Used only if CrossValidation &#x3D; false (default to 300).</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public AnnSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int outputSampleStep = 1, Range dropout = default(Range), int batchSize = 512, string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, bool crossValidation = false, double validationSplit = 0.2D, int? randomSeed = 300, AnnOptimizationEngineConfig engineConfig = default(AnnOptimizationEngineConfig))
+        /// <param name="customMetricMinimization">Custom metric minimizatin.</param>
+        /// <param name="useBinaryClassWeight">Class weight.</param>
+        public AnnSeriesOptimizationConfig(List<InputWindowRangeConfig> inputWindowRangeConfigs = default(List<InputWindowRangeConfig>), List<OutputWindowConfig> outputWindowConfigs = default(List<OutputWindowConfig>), int outputSampleStep = 1, Range dropout = default(Range), int batchSize = 512, string datasetId = default(string), string validationSetId = default(string), string customMetricId = default(string), string customMetric = default(string), double? binaryClassificationThreshold = default(double?), string customMetricParameters = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), ProblemType? problemType = default(ProblemType?), BinaryMetric? binaryOptimizationMetric = default(BinaryMetric?), RegressionMetric? regressionOptimizationMetric = default(RegressionMetric?), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, bool crossValidation = false, double validationSplit = 0.2D, int? randomSeed = 300, AnnOptimizationEngineConfig engineConfig = default(AnnOptimizationEngineConfig), bool customMetricMinimization = default(bool), bool useBinaryClassWeight = default(bool))
         {
             this.InputWindowRangeConfigs = inputWindowRangeConfigs;
             this.OutputWindowConfigs = outputWindowConfigs;
             this.Dropout = dropout;
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
+            this.CustomMetricId = customMetricId;
+            this.CustomMetric = customMetric;
+            this.BinaryClassificationThreshold = binaryClassificationThreshold;
+            this.CustomMetricParameters = customMetricParameters;
             this.Inputs = inputs;
             this.Outputs = outputs;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
@@ -133,6 +143,10 @@ namespace BlackFoxCSharp.Model
             }
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
+            this.CustomMetricId = customMetricId;
+            this.CustomMetric = customMetric;
+            this.BinaryClassificationThreshold = binaryClassificationThreshold;
+            this.CustomMetricParameters = customMetricParameters;
             this.Inputs = inputs;
             this.Outputs = outputs;
             this.ProblemType = problemType;
@@ -160,6 +174,9 @@ namespace BlackFoxCSharp.Model
             {
                 this.RandomSeed = randomSeed;
             }
+            this.EngineConfig = engineConfig;
+            this.CustomMetricMinimization = customMetricMinimization;
+            this.UseBinaryClassWeight = useBinaryClassWeight;
         }
         
         /// <summary>
@@ -205,6 +222,34 @@ namespace BlackFoxCSharp.Model
         /// <value>Data set id on which to validate network</value>
         [DataMember(Name="validationSetId", EmitDefaultValue=true)]
         public string ValidationSetId { get; set; }
+
+        /// <summary>
+        /// Custom metric id on which to evaluate population
+        /// </summary>
+        /// <value>Custom metric id on which to evaluate population</value>
+        [DataMember(Name="customMetricId", EmitDefaultValue=true)]
+        public string CustomMetricId { get; set; }
+
+        /// <summary>
+        /// Custom metric user supplied path or function
+        /// </summary>
+        /// <value>Custom metric user supplied path or function</value>
+        [DataMember(Name="customMetric", EmitDefaultValue=true)]
+        public string CustomMetric { get; set; }
+
+        /// <summary>
+        /// Threshold for binary classification
+        /// </summary>
+        /// <value>Threshold for binary classification</value>
+        [DataMember(Name="binaryClassificationThreshold", EmitDefaultValue=true)]
+        public double? BinaryClassificationThreshold { get; set; }
+
+        /// <summary>
+        /// Parameters for custom metric
+        /// </summary>
+        /// <value>Parameters for custom metric</value>
+        [DataMember(Name="customMetricParameters", EmitDefaultValue=true)]
+        public string CustomMetricParameters { get; set; }
 
         /// <summary>
         /// Define min and max value for each output column(feature), and is input optional
@@ -287,6 +332,20 @@ namespace BlackFoxCSharp.Model
         public AnnOptimizationEngineConfig EngineConfig { get; set; }
 
         /// <summary>
+        /// Custom metric minimizatin
+        /// </summary>
+        /// <value>Custom metric minimizatin</value>
+        [DataMember(Name="customMetricMinimization", EmitDefaultValue=false)]
+        public bool CustomMetricMinimization { get; set; }
+
+        /// <summary>
+        /// Class weight
+        /// </summary>
+        /// <value>Class weight</value>
+        [DataMember(Name="useBinaryClassWeight", EmitDefaultValue=false)]
+        public bool UseBinaryClassWeight { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -301,6 +360,10 @@ namespace BlackFoxCSharp.Model
             sb.Append("  BatchSize: ").Append(BatchSize).Append("\n");
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  ValidationSetId: ").Append(ValidationSetId).Append("\n");
+            sb.Append("  CustomMetricId: ").Append(CustomMetricId).Append("\n");
+            sb.Append("  CustomMetric: ").Append(CustomMetric).Append("\n");
+            sb.Append("  BinaryClassificationThreshold: ").Append(BinaryClassificationThreshold).Append("\n");
+            sb.Append("  CustomMetricParameters: ").Append(CustomMetricParameters).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
             sb.Append("  Outputs: ").Append(Outputs).Append("\n");
             sb.Append("  ProblemType: ").Append(ProblemType).Append("\n");
@@ -315,6 +378,8 @@ namespace BlackFoxCSharp.Model
             sb.Append("  ValidationSplit: ").Append(ValidationSplit).Append("\n");
             sb.Append("  RandomSeed: ").Append(RandomSeed).Append("\n");
             sb.Append("  EngineConfig: ").Append(EngineConfig).Append("\n");
+            sb.Append("  CustomMetricMinimization: ").Append(CustomMetricMinimization).Append("\n");
+            sb.Append("  UseBinaryClassWeight: ").Append(UseBinaryClassWeight).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -385,6 +450,26 @@ namespace BlackFoxCSharp.Model
                     this.ValidationSetId == input.ValidationSetId ||
                     (this.ValidationSetId != null &&
                     this.ValidationSetId.Equals(input.ValidationSetId))
+                ) && 
+                (
+                    this.CustomMetricId == input.CustomMetricId ||
+                    (this.CustomMetricId != null &&
+                    this.CustomMetricId.Equals(input.CustomMetricId))
+                ) && 
+                (
+                    this.CustomMetric == input.CustomMetric ||
+                    (this.CustomMetric != null &&
+                    this.CustomMetric.Equals(input.CustomMetric))
+                ) && 
+                (
+                    this.BinaryClassificationThreshold == input.BinaryClassificationThreshold ||
+                    (this.BinaryClassificationThreshold != null &&
+                    this.BinaryClassificationThreshold.Equals(input.BinaryClassificationThreshold))
+                ) && 
+                (
+                    this.CustomMetricParameters == input.CustomMetricParameters ||
+                    (this.CustomMetricParameters != null &&
+                    this.CustomMetricParameters.Equals(input.CustomMetricParameters))
                 ) && 
                 (
                     this.Inputs == input.Inputs ||
@@ -459,6 +544,16 @@ namespace BlackFoxCSharp.Model
                     this.EngineConfig == input.EngineConfig ||
                     (this.EngineConfig != null &&
                     this.EngineConfig.Equals(input.EngineConfig))
+                ) && 
+                (
+                    this.CustomMetricMinimization == input.CustomMetricMinimization ||
+                    (this.CustomMetricMinimization != null &&
+                    this.CustomMetricMinimization.Equals(input.CustomMetricMinimization))
+                ) && 
+                (
+                    this.UseBinaryClassWeight == input.UseBinaryClassWeight ||
+                    (this.UseBinaryClassWeight != null &&
+                    this.UseBinaryClassWeight.Equals(input.UseBinaryClassWeight))
                 );
         }
 
@@ -485,6 +580,14 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.DatasetId.GetHashCode();
                 if (this.ValidationSetId != null)
                     hashCode = hashCode * 59 + this.ValidationSetId.GetHashCode();
+                if (this.CustomMetricId != null)
+                    hashCode = hashCode * 59 + this.CustomMetricId.GetHashCode();
+                if (this.CustomMetric != null)
+                    hashCode = hashCode * 59 + this.CustomMetric.GetHashCode();
+                if (this.BinaryClassificationThreshold != null)
+                    hashCode = hashCode * 59 + this.BinaryClassificationThreshold.GetHashCode();
+                if (this.CustomMetricParameters != null)
+                    hashCode = hashCode * 59 + this.CustomMetricParameters.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
                 if (this.Outputs != null)
@@ -513,6 +616,10 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.RandomSeed.GetHashCode();
                 if (this.EngineConfig != null)
                     hashCode = hashCode * 59 + this.EngineConfig.GetHashCode();
+                if (this.CustomMetricMinimization != null)
+                    hashCode = hashCode * 59 + this.CustomMetricMinimization.GetHashCode();
+                if (this.UseBinaryClassWeight != null)
+                    hashCode = hashCode * 59 + this.UseBinaryClassWeight.GetHashCode();
                 return hashCode;
             }
         }

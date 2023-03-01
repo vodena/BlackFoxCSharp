@@ -42,6 +42,11 @@ namespace BlackFoxCSharp.Model
         /// <param name="recurrentOutputCount">recurrentOutputCount (default to 1).</param>
         /// <param name="datasetId">Data set id on which to train network.</param>
         /// <param name="validationSetId">Data set id on which to validate network.</param>
+        /// <param name="customMetricId">Custom metric id on which to evaluate population.</param>
+        /// <param name="customMetric">Custom metric user supplied path or function.</param>
+        /// <param name="customMetricMinimization">Custom metric minimizatin.</param>
+        /// <param name="binaryClassificationThreshold">Threshold for binary classification.</param>
+        /// <param name="customMetricParameters">Parameters for custom metric.</param>
         /// <param name="inputs">Define min and max value for each output column(feature), and is input optional.</param>
         /// <param name="outputs">Define min and max value for each output column(feature).</param>
         /// <param name="hiddenLayerCountRange">Range in which to search number of hidden layers.</param>
@@ -54,12 +59,16 @@ namespace BlackFoxCSharp.Model
         /// <param name="randomSeed">Random number generator seed, if the value is zero, the rows will not be randomly shuffled (default to 300).</param>
         /// <param name="recurrentInputCountRange">Range in which to search number of recurrent inputs.</param>
         /// <param name="engineConfig">Optimization engine config.</param>
-        public RnnOptimizationConfig(Range dropout = default(Range), int batchSize = 512, Range recurrentDropout = default(Range), int recurrentOutputCount = 1, string datasetId = default(string), string validationSetId = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), List<NeuralNetworkActivationFunction> recurrentActivationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, double validationSplit = 0.2D, int? randomSeed = 300, RangeInt recurrentInputCountRange = default(RangeInt), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
+        public RnnOptimizationConfig(Range dropout = default(Range), int batchSize = 512, Range recurrentDropout = default(Range), int recurrentOutputCount = 1, string datasetId = default(string), string validationSetId = default(string), string customMetricId = default(string), string customMetric = default(string), bool customMetricMinimization = default(bool), double? binaryClassificationThreshold = default(double?), string customMetricParameters = default(string), List<InputConfig> inputs = default(List<InputConfig>), List<OutputConfig> outputs = default(List<OutputConfig>), RangeInt hiddenLayerCountRange = default(RangeInt), RangeInt neuronsPerLayer = default(RangeInt), List<NeuralNetworkTrainingAlgorithm> trainingAlgorithms = default(List<NeuralNetworkTrainingAlgorithm>), List<NeuralNetworkActivationFunction> activationFunctions = default(List<NeuralNetworkActivationFunction>), List<NeuralNetworkActivationFunction> recurrentActivationFunctions = default(List<NeuralNetworkActivationFunction>), int maxEpoch = 3000, double validationSplit = 0.2D, int? randomSeed = 300, RangeInt recurrentInputCountRange = default(RangeInt), OptimizationEngineConfig engineConfig = default(OptimizationEngineConfig))
         {
             this.Dropout = dropout;
             this.RecurrentDropout = recurrentDropout;
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
+            this.CustomMetricId = customMetricId;
+            this.CustomMetric = customMetric;
+            this.BinaryClassificationThreshold = binaryClassificationThreshold;
+            this.CustomMetricParameters = customMetricParameters;
             this.Inputs = inputs;
             this.Outputs = outputs;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
@@ -112,6 +121,11 @@ namespace BlackFoxCSharp.Model
             }
             this.DatasetId = datasetId;
             this.ValidationSetId = validationSetId;
+            this.CustomMetricId = customMetricId;
+            this.CustomMetric = customMetric;
+            this.CustomMetricMinimization = customMetricMinimization;
+            this.BinaryClassificationThreshold = binaryClassificationThreshold;
+            this.CustomMetricParameters = customMetricParameters;
             this.Inputs = inputs;
             this.Outputs = outputs;
             this.HiddenLayerCountRange = hiddenLayerCountRange;
@@ -169,6 +183,41 @@ namespace BlackFoxCSharp.Model
         /// <value>Data set id on which to validate network</value>
         [DataMember(Name="validationSetId", EmitDefaultValue=true)]
         public string ValidationSetId { get; set; }
+
+        /// <summary>
+        /// Custom metric id on which to evaluate population
+        /// </summary>
+        /// <value>Custom metric id on which to evaluate population</value>
+        [DataMember(Name="customMetricId", EmitDefaultValue=true)]
+        public string CustomMetricId { get; set; }
+
+        /// <summary>
+        /// Custom metric user supplied path or function
+        /// </summary>
+        /// <value>Custom metric user supplied path or function</value>
+        [DataMember(Name="customMetric", EmitDefaultValue=true)]
+        public string CustomMetric { get; set; }
+
+        /// <summary>
+        /// Custom metric minimizatin
+        /// </summary>
+        /// <value>Custom metric minimizatin</value>
+        [DataMember(Name="customMetricMinimization", EmitDefaultValue=false)]
+        public bool CustomMetricMinimization { get; set; }
+
+        /// <summary>
+        /// Threshold for binary classification
+        /// </summary>
+        /// <value>Threshold for binary classification</value>
+        [DataMember(Name="binaryClassificationThreshold", EmitDefaultValue=true)]
+        public double? BinaryClassificationThreshold { get; set; }
+
+        /// <summary>
+        /// Parameters for custom metric
+        /// </summary>
+        /// <value>Parameters for custom metric</value>
+        [DataMember(Name="customMetricParameters", EmitDefaultValue=true)]
+        public string CustomMetricParameters { get; set; }
 
         /// <summary>
         /// Define min and max value for each output column(feature), and is input optional
@@ -268,6 +317,11 @@ namespace BlackFoxCSharp.Model
             sb.Append("  RecurrentOutputCount: ").Append(RecurrentOutputCount).Append("\n");
             sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("  ValidationSetId: ").Append(ValidationSetId).Append("\n");
+            sb.Append("  CustomMetricId: ").Append(CustomMetricId).Append("\n");
+            sb.Append("  CustomMetric: ").Append(CustomMetric).Append("\n");
+            sb.Append("  CustomMetricMinimization: ").Append(CustomMetricMinimization).Append("\n");
+            sb.Append("  BinaryClassificationThreshold: ").Append(BinaryClassificationThreshold).Append("\n");
+            sb.Append("  CustomMetricParameters: ").Append(CustomMetricParameters).Append("\n");
             sb.Append("  Inputs: ").Append(Inputs).Append("\n");
             sb.Append("  Outputs: ").Append(Outputs).Append("\n");
             sb.Append("  HiddenLayerCountRange: ").Append(HiddenLayerCountRange).Append("\n");
@@ -343,6 +397,31 @@ namespace BlackFoxCSharp.Model
                     this.ValidationSetId == input.ValidationSetId ||
                     (this.ValidationSetId != null &&
                     this.ValidationSetId.Equals(input.ValidationSetId))
+                ) && 
+                (
+                    this.CustomMetricId == input.CustomMetricId ||
+                    (this.CustomMetricId != null &&
+                    this.CustomMetricId.Equals(input.CustomMetricId))
+                ) && 
+                (
+                    this.CustomMetric == input.CustomMetric ||
+                    (this.CustomMetric != null &&
+                    this.CustomMetric.Equals(input.CustomMetric))
+                ) && 
+                (
+                    this.CustomMetricMinimization == input.CustomMetricMinimization ||
+                    (this.CustomMetricMinimization != null &&
+                    this.CustomMetricMinimization.Equals(input.CustomMetricMinimization))
+                ) && 
+                (
+                    this.BinaryClassificationThreshold == input.BinaryClassificationThreshold ||
+                    (this.BinaryClassificationThreshold != null &&
+                    this.BinaryClassificationThreshold.Equals(input.BinaryClassificationThreshold))
+                ) && 
+                (
+                    this.CustomMetricParameters == input.CustomMetricParameters ||
+                    (this.CustomMetricParameters != null &&
+                    this.CustomMetricParameters.Equals(input.CustomMetricParameters))
                 ) && 
                 (
                     this.Inputs == input.Inputs ||
@@ -432,6 +511,16 @@ namespace BlackFoxCSharp.Model
                     hashCode = hashCode * 59 + this.DatasetId.GetHashCode();
                 if (this.ValidationSetId != null)
                     hashCode = hashCode * 59 + this.ValidationSetId.GetHashCode();
+                if (this.CustomMetricId != null)
+                    hashCode = hashCode * 59 + this.CustomMetricId.GetHashCode();
+                if (this.CustomMetric != null)
+                    hashCode = hashCode * 59 + this.CustomMetric.GetHashCode();
+                if (this.CustomMetricMinimization != null)
+                    hashCode = hashCode * 59 + this.CustomMetricMinimization.GetHashCode();
+                if (this.BinaryClassificationThreshold != null)
+                    hashCode = hashCode * 59 + this.BinaryClassificationThreshold.GetHashCode();
+                if (this.CustomMetricParameters != null)
+                    hashCode = hashCode * 59 + this.CustomMetricParameters.GetHashCode();
                 if (this.Inputs != null)
                     hashCode = hashCode * 59 + this.Inputs.GetHashCode();
                 if (this.Outputs != null)

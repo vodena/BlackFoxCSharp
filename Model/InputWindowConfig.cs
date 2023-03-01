@@ -72,8 +72,7 @@ namespace BlackFoxCSharp.Model
                 this.Shift = shift;
             }
         }
-        [JsonConstructorAttribute]
-        protected InputWindowConfig() { }
+        
         /// <summary>
         /// Number od values to skip before taking next value
         /// </summary>
