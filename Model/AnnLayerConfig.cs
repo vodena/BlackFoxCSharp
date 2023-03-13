@@ -26,13 +26,13 @@ namespace BlackFoxCSharp.Model
     /// AnnLayerConfig
     /// </summary>
     [DataContract]
-    public partial class AnnLayerConfig :  IEquatable<AnnLayerConfig>
+    public partial class AnnLayerConfig : IEquatable<AnnLayerConfig>
     {
         /// <summary>
         /// Layer activation function
         /// </summary>
         /// <value>Layer activation function</value>
-        [DataMember(Name="activationFunction", EmitDefaultValue=false)]
+        [DataMember(Name = "activationFunction", EmitDefaultValue = false)]
         public NeuralNetworkActivationFunction? ActivationFunction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnLayerConfig" /> class.
@@ -45,7 +45,8 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Outputs = outputs;
         }
-        
+
+        public AnnLayerConfig() { }
 
         /// <summary>
         /// Gets or Sets Outputs

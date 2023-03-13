@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// Range
     /// </summary>
     [DataContract]
-    public partial class Range :  IEquatable<Range>
+    public partial class Range : IEquatable<Range>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Range" /> class.
@@ -38,7 +38,9 @@ namespace BlackFoxCSharp.Model
             this.Min = min;
             this.Max = max;
         }
-        
+
+        public Range() { }
+
         /// <summary>
         /// Gets or Sets Min
         /// </summary>

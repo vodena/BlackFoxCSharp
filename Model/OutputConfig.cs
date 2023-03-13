@@ -47,7 +47,9 @@ namespace BlackFoxCSharp.Model
                 this.Encoding = encoding;
             }
         }
-        
+
+        public OutputConfig() { }
+
         /// <summary>
         /// Min and max value for output
         /// </summary>

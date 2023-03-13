@@ -66,7 +66,9 @@ namespace BlackFoxCSharp.Model
             this.GenerationSeconds = generationSeconds;
             this.MetricName = metricName;
         }
-        
+
+        public AnnOptimizationStatus() { }
+
         /// <summary>
         /// Number of epoch for current best model
         /// </summary>

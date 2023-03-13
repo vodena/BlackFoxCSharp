@@ -54,7 +54,9 @@ namespace BlackFoxCSharp.Model
                 this.Shift = shift;
             }
         }
-        
+
+        public OutputWindowConfig() { }
+
         /// <summary>
         /// Window width, number od values to take
         /// </summary>

@@ -38,7 +38,9 @@ namespace BlackFoxCSharp.Model
             this.Min = min;
             this.Max = max;
         }
-        
+
+        public RangeInt() { }
+
         /// <summary>
         /// Gets or Sets Min
         /// </summary>

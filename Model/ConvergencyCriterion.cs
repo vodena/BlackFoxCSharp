@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// Configuration for optimization early stopping
     /// </summary>
     [DataContract]
-    public partial class ConvergencyCriterion :  IEquatable<ConvergencyCriterion>
+    public partial class ConvergencyCriterion : IEquatable<ConvergencyCriterion>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvergencyCriterion" /> class.
@@ -54,7 +54,9 @@ namespace BlackFoxCSharp.Model
                 this.PercentageOfTolerance = percentageOfTolerance;
             }
         }
-        
+
+        public ConvergencyCriterion() { }
+
         /// <summary>
         /// Gets or Sets NumberOfLatestGenerations
         /// </summary>

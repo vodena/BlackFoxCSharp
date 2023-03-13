@@ -46,7 +46,9 @@ namespace BlackFoxCSharp.Model
             this.InputRanges = inputRanges;
             this.OutputRanges = outputRanges;
         }
-        
+
+        public PredictionArrayConfig() { }
+
         /// <summary>
         /// Gets or Sets DataSet
         /// </summary>

@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// RandomForestModel
     /// </summary>
     [DataContract]
-    public partial class RandomForestModel :  IEquatable<RandomForestModel>
+    public partial class RandomForestModel : IEquatable<RandomForestModel>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomForestModel" /> class.
@@ -43,7 +43,9 @@ namespace BlackFoxCSharp.Model
             this.MaxFeatures = maxFeatures;
             this.FeatureSelection = featureSelection;
         }
-        
+
+        public RandomForestModel() { }
+
         /// <summary>
         /// Number of estimators
         /// </summary>

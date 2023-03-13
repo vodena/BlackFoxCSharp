@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// PredictionFileConfig
     /// </summary>
     [DataContract]
-    public partial class PredictionFileConfig :  IEquatable<PredictionFileConfig>
+    public partial class PredictionFileConfig : IEquatable<PredictionFileConfig>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PredictionFileConfig" /> class.
@@ -46,7 +46,9 @@ namespace BlackFoxCSharp.Model
             this.InputRanges = inputRanges;
             this.OutputRanges = outputRanges;
         }
-        
+
+        public PredictionFileConfig() { }
+
         /// <summary>
         /// Gets or Sets DataSetId
         /// </summary>

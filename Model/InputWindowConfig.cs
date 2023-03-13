@@ -26,13 +26,13 @@ namespace BlackFoxCSharp.Model
     /// Series input column configuration
     /// </summary>
     [DataContract]
-    public partial class InputWindowConfig :  IEquatable<InputWindowConfig>
+    public partial class InputWindowConfig : IEquatable<InputWindowConfig>
     {
         /// <summary>
         /// Aggregation type for values
         /// </summary>
         /// <value>Aggregation type for values</value>
-        [DataMember(Name="aggregationType", EmitDefaultValue=false)]
+        [DataMember(Name = "aggregationType", EmitDefaultValue = false)]
         public AggregationType? AggregationType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="InputWindowConfig" /> class.
@@ -72,7 +72,9 @@ namespace BlackFoxCSharp.Model
                 this.Shift = shift;
             }
         }
-        
+
+        public InputWindowConfig() { }
+
         /// <summary>
         /// Number od values to skip before taking next value
         /// </summary>

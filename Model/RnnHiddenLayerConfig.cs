@@ -57,7 +57,8 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
-        
+
+        public RnnHiddenLayerConfig() { }
 
         /// <summary>
         /// Recurrent dropout

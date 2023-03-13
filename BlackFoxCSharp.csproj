@@ -10,7 +10,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>6.1.0</Version>
+    <Version>6.1.1</Version>
     <Product>BlackFoxCSharp</Product>
     <PackageId>BlackFoxCSharp</PackageId>
     <PackageReleaseNotes>6.1.0 version</PackageReleaseNotes>

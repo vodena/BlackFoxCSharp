@@ -26,19 +26,19 @@ namespace BlackFoxCSharp.Model
     /// AnnModel
     /// </summary>
     [DataContract]
-    public partial class AnnModel :  IEquatable<AnnModel>
+    public partial class AnnModel : IEquatable<AnnModel>
     {
         /// <summary>
         /// Algorithm on which model was trained
         /// </summary>
         /// <value>Algorithm on which model was trained</value>
-        [DataMember(Name="trainingAlgorithm", EmitDefaultValue=false)]
+        [DataMember(Name = "trainingAlgorithm", EmitDefaultValue = false)]
         public NeuralNetworkTrainingAlgorithm? TrainingAlgorithm { get; set; }
         /// <summary>
         /// Activation function on output layer
         /// </summary>
         /// <value>Activation function on output layer</value>
-        [DataMember(Name="outputLayerActivationFunction", EmitDefaultValue=false)]
+        [DataMember(Name = "outputLayerActivationFunction", EmitDefaultValue = false)]
         public NeuralNetworkActivationFunction? OutputLayerActivationFunction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnModel" /> class.
@@ -56,7 +56,9 @@ namespace BlackFoxCSharp.Model
             this.OutputLayerActivationFunction = outputLayerActivationFunction;
             this.FeatureSelection = featureSelection;
         }
-        
+
+        public AnnModel() { }
+
         /// <summary>
         /// List of hidden layers
         /// </summary>

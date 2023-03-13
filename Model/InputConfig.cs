@@ -50,7 +50,9 @@ namespace BlackFoxCSharp.Model
                 this.IsOptional = isOptional;
             }
         }
-        
+
+        public InputConfig() { }
+
         /// <summary>
         /// Min and max value for input
         /// </summary>

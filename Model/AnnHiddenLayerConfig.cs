@@ -46,6 +46,7 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
+        public AnnHiddenLayerConfig() { }
         
         /// <summary>
         /// Number of neurons in layer
