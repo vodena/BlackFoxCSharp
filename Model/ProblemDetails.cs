@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// ProblemDetails
     /// </summary>
     [DataContract]
-    public partial class ProblemDetails : Dictionary<String, Object>, IEquatable<ProblemDetails>
+    public partial class ProblemDetails : Dictionary<String, Object>,  IEquatable<ProblemDetails>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProblemDetails" /> class.

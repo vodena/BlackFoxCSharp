@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// RangeInt
     /// </summary>
     [DataContract]
-    public partial class RangeInt :  IEquatable<RangeInt>
+    public partial class RangeInt : IEquatable<RangeInt>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RangeInt" /> class.

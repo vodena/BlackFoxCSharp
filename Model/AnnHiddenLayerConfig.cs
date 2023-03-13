@@ -26,13 +26,13 @@ namespace BlackFoxCSharp.Model
     /// Generic hidden layer configuration
     /// </summary>
     [DataContract]
-    public partial class AnnHiddenLayerConfig :  IEquatable<AnnHiddenLayerConfig>
+    public partial class AnnHiddenLayerConfig : IEquatable<AnnHiddenLayerConfig>
     {
         /// <summary>
         /// Layer activation function
         /// </summary>
         /// <value>Layer activation function</value>
-        [DataMember(Name="activationFunction", EmitDefaultValue=false)]
+        [DataMember(Name = "activationFunction", EmitDefaultValue = false)]
         public NeuralNetworkActivationFunction? ActivationFunction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnHiddenLayerConfig" /> class.
@@ -46,8 +46,9 @@ namespace BlackFoxCSharp.Model
             this.ActivationFunction = activationFunction;
             this.Dropout = dropout;
         }
+
         public AnnHiddenLayerConfig() { }
-        
+
         /// <summary>
         /// Number of neurons in layer
         /// </summary>

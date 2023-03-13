@@ -37,7 +37,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="AnnOptimizationEngineConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AnnOptimizationEngineConfig() { }
+        public AnnOptimizationEngineConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnOptimizationEngineConfig" /> class.
         /// </summary>

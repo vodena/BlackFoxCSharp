@@ -64,7 +64,9 @@ namespace BlackFoxCSharp.Model
             this.GenerationSeconds = generationSeconds;
             this.MetricName = metricName;
         }
-        
+
+        public XGBoostOptimizationStatus() { }
+
         /// <summary>
         /// Guid
         /// </summary>

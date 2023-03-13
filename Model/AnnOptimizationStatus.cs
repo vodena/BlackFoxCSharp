@@ -26,13 +26,13 @@ namespace BlackFoxCSharp.Model
     /// AnnOptimizationStatus
     /// </summary>
     [DataContract]
-    public partial class AnnOptimizationStatus :  IEquatable<AnnOptimizationStatus>
+    public partial class AnnOptimizationStatus : IEquatable<AnnOptimizationStatus>
     {
         /// <summary>
         /// Optimization state (Active, Finished, Stopped, Error)
         /// </summary>
         /// <value>Optimization state (Active, Finished, Stopped, Error)</value>
-        [DataMember(Name="state", EmitDefaultValue=false)]
+        [DataMember(Name = "state", EmitDefaultValue = false)]
         public OptimizationState? State { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnOptimizationStatus" /> class.

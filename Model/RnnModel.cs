@@ -56,7 +56,9 @@ namespace BlackFoxCSharp.Model
             this.OutputLayerActivationFunction = outputLayerActivationFunction;
             this.FeatureSelection = featureSelection;
         }
-        
+
+        public RnnModel() { }
+
         /// <summary>
         /// List of hidden layers
         /// </summary>

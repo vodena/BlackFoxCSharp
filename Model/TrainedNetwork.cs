@@ -45,7 +45,9 @@ namespace BlackFoxCSharp.Model
             this.ErrorsOnValidationSet = errorsOnValidationSet;
             this.ErrorsOnTrainingSet = errorsOnTrainingSet;
         }
-        
+
+        public TrainedNetwork() { }
+
         /// <summary>
         /// Gets or Sets Id
         /// </summary>

@@ -50,7 +50,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="XGBoostSeriesOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected XGBoostSeriesOptimizationConfig() { }
+        public XGBoostSeriesOptimizationConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="XGBoostSeriesOptimizationConfig" /> class.
         /// </summary>

@@ -32,7 +32,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="OptimizationEngineConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected OptimizationEngineConfig() { }
+        public OptimizationEngineConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="OptimizationEngineConfig" /> class.
         /// </summary>

@@ -50,7 +50,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="RandomForestOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected RandomForestOptimizationConfig() { }
+        public RandomForestOptimizationConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="RandomForestOptimizationConfig" /> class.
         /// </summary>

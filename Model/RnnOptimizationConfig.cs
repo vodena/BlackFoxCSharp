@@ -32,7 +32,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="RnnOptimizationConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected RnnOptimizationConfig() { }
+        public RnnOptimizationConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="RnnOptimizationConfig" /> class.
         /// </summary>

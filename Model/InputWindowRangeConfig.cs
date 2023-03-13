@@ -26,7 +26,7 @@ namespace BlackFoxCSharp.Model
     /// InputWindowRangeConfig
     /// </summary>
     [DataContract]
-    public partial class InputWindowRangeConfig : IEquatable<InputWindowRangeConfig>
+    public partial class InputWindowRangeConfig :  IEquatable<InputWindowRangeConfig>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InputWindowRangeConfig" /> class.

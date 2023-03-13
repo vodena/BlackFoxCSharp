@@ -38,7 +38,7 @@ namespace BlackFoxCSharp.Model
         /// Initializes a new instance of the <see cref="AnnSeriesTrainingConfig" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AnnSeriesTrainingConfig() { }
+        public AnnSeriesTrainingConfig() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnnSeriesTrainingConfig" /> class.
         /// </summary>
